@@ -119,5 +119,13 @@ namespace FinalProject_NetCore
             Image<Bgr, byte> neg = img.Not();
             ptb_main.Image = neg.ToBitmap();
         }
+
+        private void làmMờToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            Image<Bgr, byte> neg = img.SmoothGaussian(5);
+            ptb_main.Image = neg.ToBitmap();
+        }
     }
 }
