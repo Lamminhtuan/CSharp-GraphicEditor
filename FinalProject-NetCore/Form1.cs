@@ -1,5 +1,6 @@
 ﻿using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.XPhoto;
 namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
@@ -41,7 +42,7 @@ namespace FinalProject_NetCore
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         private void bar_brightness_Scroll(object sender, EventArgs e)
@@ -110,6 +111,8 @@ namespace FinalProject_NetCore
         private void button1_Click(object sender, EventArgs e)
         {
             ptb_main.Image = ori.ToBitmap();
+            bar_brightness.Value = 0;
+            bar_contrast.Value = 100;
         }
 
         private void âmBảnToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +178,87 @@ namespace FinalProject_NetCore
         private void ptb_main_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void mùaHèToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
+            Matrix<double> kernel = new Matrix<double>(3,3);
+            kernel[0, 0] = 0.272;
+            kernel[0, 1] = 0.534;
+            kernel[0, 2] = 0.131;
+            kernel[1, 0] = 0.349;
+            kernel[1, 1] = 0.686;
+            kernel[1, 2] = 0.168;
+            kernel[2, 0] = 0.393;
+            kernel[2, 1] = 0.769;
+            kernel[2, 2] = 0.189;
+            Mat output = new Mat();
+            CvInvoke.Transform(img, output, kernel);
+            ptb_main.Image = output.ToBitmap();
+        }
+
+        private void xoayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void khửMắtĐỏToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+            CascadeClassifier eyes_cascade = new CascadeClassifier("haarcascade_eye.xml");
+            Rectangle[] eyes;
+            eyes = eyes_cascade.DetectMultiScale(img);
+            for (int i = 0; i < eyes.Length; i++)
+            {
+                
+            }
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void pn_adjust_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cânBằngHistogramToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cânBằngHistogramToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+            Image<Gray, byte> gray = img.Convert<Gray, byte>();
+            Mat output = new Mat();
+            CvInvoke.EqualizeHist(gray, output);
+
+          
+            ptb_main.Image = output.ToBitmap();
+          
+        }
+
+        private void cânBằngTrắngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+          
+            Mat output = new Mat();
+ 
+            var wb = new LearningBasedWB();
+            wb.BalanceWhite(img, output);
+            ptb_main.Image = output.ToBitmap();
         }
     }
 }
