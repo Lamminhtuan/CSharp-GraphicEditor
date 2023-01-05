@@ -124,8 +124,57 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> neg = img.SmoothGaussian(5);
+            Image<Bgr, byte> neg = img.SmoothGaussian(25);
             ptb_main.Image = neg.ToBitmap();
+        }
+
+        private void mờToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
+           
+         
+            ptb_main.Image = neg.ToBitmap();
+        }
+
+        private void vẽBútChìĐenTrắngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+            Mat output_gray = new Mat();
+            Mat output = new Mat();
+            CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+            ptb_main.Image = output_gray.ToBitmap();
+        }
+
+        private void vẽBútChìMàuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+            Mat output_gray = new Mat();
+            Mat output = new Mat();
+            CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+            ptb_main.Image = output.ToBitmap();
+            
+        }
+
+        private void hDRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+
+           
+            Mat output = new Mat();
+            CvInvoke.DetailEnhance(img, output, (float)12.0, (float)0.15);
+            ptb_main.Image = output.ToBitmap();
+        }
+
+        private void ptb_main_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
