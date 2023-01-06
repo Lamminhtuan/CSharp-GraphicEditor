@@ -224,6 +224,7 @@ namespace FinalProject_NetCore
             kernel[2, 2] = 0.189;
             Mat output = new Mat();
             CvInvoke.Transform(img, output, kernel);
+            ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
         }
 
@@ -297,6 +298,7 @@ namespace FinalProject_NetCore
             Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
             Mat output = new Mat();
             XPhotoInvoke.OilPainting(img, output, 7, 1);
+            ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
         }
     }
