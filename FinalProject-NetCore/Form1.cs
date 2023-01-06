@@ -2,16 +2,18 @@
 using Emgu.CV.Structure;
 using Emgu.CV.XPhoto;
 using System.Drawing.Imaging;
-
+using System.Drawing;
 namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
     {
-
+        int x, y, h, w;
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
         Image<Bgr, byte> prev;
+        bool flag = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -237,16 +239,7 @@ namespace FinalProject_NetCore
 
         private void khửMắtĐỏToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-
-            CascadeClassifier eyes_cascade = new CascadeClassifier("haarcascade_eye.xml");
-            Rectangle[] eyes;
-            eyes = eyes_cascade.DetectMultiScale(img);
-            for (int i = 0; i < eyes.Length; i++)
-            {
-                
-            }
+            
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -304,6 +297,29 @@ namespace FinalProject_NetCore
             ptb_main.Image = output.ToBitmap();
         }
 
+        private void xóaNềnXanhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap inp = (Bitmap)ptb_main.Image;
+            Bitmap output = new Bitmap(inp.Width, inp.Height);
+            for (int y = 0; y < inp.Height; y++)
+            {
+                for (int x = 0; x < inp.Width; x++)
+                {
+                    Color camcolor = inp.GetPixel(x, y);
+                    byte max = Math.Max(Math.Max(camcolor.R, camcolor.G), camcolor.B);
+                    byte min = Math.Min(Math.Min(camcolor.R, camcolor.G), camcolor.B);
+                    bool replace = camcolor.G != min //Xanh không phải màu có giá trị nhỏ nhất 
+                        && (camcolor.G == max || max - camcolor.G < 12)
+                        && (max - min > 96);
+                    if (replace)
+                        camcolor = Color.Black;
+                    output.SetPixel(x, y, camcolor);
+                }
+            }
+            ori_filter = output.ToImage<Bgr, byte>();
+            ptb_main.Image = output;
+        }
+
         private void lưuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -326,6 +342,27 @@ namespace FinalProject_NetCore
                 {
                     ptb_main.Image.Save(save.FileName, ImageFormat.Png);
                 }
+            }
+        }
+
+        private void ptb_main_MouseDown(object sender, MouseEventArgs e)
+        {
+           
+                x = e.X;
+                y = e.Y;
+            
+        }
+
+        private void ptb_main_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (flag)
+            {
+                Graphics g = this.CreateGraphics();
+                Pen p = new Pen(Color.Red, 2);
+                h = e.X - x;
+                w = e.Y - y;
+                Rectangle shape = new Rectangle(x, y, h, w);
+                g.DrawEllipse(p, shape);
             }
         }
     }
