@@ -7,6 +7,9 @@ namespace FinalProject_NetCore
     {
 
         Image<Bgr, byte> ori;
+        Image<Bgr, byte> ori_rotate;
+        Image<Bgr, byte> ori_filter;
+        Image<Bgr, byte> prev;
         public Form1()
         {
             InitializeComponent();
@@ -20,6 +23,8 @@ namespace FinalProject_NetCore
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
                 ori = img;
+                ori_rotate = ori;
+                ori_filter = ori;
                 ptb_main.Image = img.ToBitmap();
             }
         }
@@ -27,10 +32,11 @@ namespace FinalProject_NetCore
         {
             try
             {
-                
-                
+
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                Image<Bgr, byte> inp = bmp.ToImage<Bgr, byte>();
                 double currentcontrast = (double)bar_contrast.Value / 100;
-                var imgoutput = ori.Mul(currentcontrast) + bar_brightness.Value;
+                var imgoutput = ori_filter.Mul(currentcontrast) + bar_brightness.Value;
               
                 ptb_main.Image = imgoutput.AsBitmap();
             }
@@ -64,7 +70,10 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            
+            Bitmap rotated = bmp;
+       
+            ori_rotate = rotated.ToImage<Bgr, byte>();
+            ori_filter = ori_rotate;
             ptb_main.Image = bmp;
         }
 
@@ -72,7 +81,10 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            Bitmap rotated = bmp;
            
+            ori_rotate = rotated.ToImage<Bgr, byte>();
+            ori_filter = ori_rotate;
             ptb_main.Image = bmp;
         }
 
@@ -80,7 +92,10 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            
+            Bitmap rotated = bmp;
+           
+            ori_rotate = rotated.ToImage<Bgr, byte>();
+            ori_filter = ori_rotate;
             ptb_main.Image = bmp;
         }
 
@@ -88,7 +103,10 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            
+            Bitmap rotated = bmp; 
+          
+            ori_rotate = rotated.ToImage<Bgr, byte>();
+            ori_filter = ori_rotate;
             ptb_main.Image = bmp;
         }
 
@@ -96,7 +114,10 @@ namespace FinalProject_NetCore
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-         
+            Bitmap rotated = bmp; 
+           
+            ori_rotate = rotated.ToImage<Bgr, byte>();
+            ori_filter = ori_rotate;
             ptb_main.Image = bmp;
         }
 
@@ -105,6 +126,7 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Gray, byte> gray = img.Convert<Gray, byte>();
+            ori_filter = gray.Convert<Bgr, byte>();
             ptb_main.Image = gray.ToBitmap();
         }
 
@@ -117,61 +139,66 @@ namespace FinalProject_NetCore
 
         private void âmBảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.Not();
+            ori_filter = neg;
             ptb_main.Image = neg.ToBitmap();
         }
 
         private void làmMờToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.SmoothGaussian(25);
+            ori_filter = neg;
             ptb_main.Image = neg.ToBitmap();
         }
 
         private void mờToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
-           
-         
+
+            ori_filter = neg;
             ptb_main.Image = neg.ToBitmap();
         }
 
         private void vẽBútChìĐenTrắngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
             Mat output_gray = new Mat();
             Mat output = new Mat();
             CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+            ori_filter = output_gray.ToImage<Bgr, byte>();
             ptb_main.Image = output_gray.ToBitmap();
         }
 
         private void vẽBútChìMàuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
             Mat output_gray = new Mat();
             Mat output = new Mat();
             CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+            ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
             
         }
 
         private void hDRToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
            
             Mat output = new Mat();
             CvInvoke.DetailEnhance(img, output, (float)12.0, (float)0.15);
+            ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
         }
 
@@ -182,7 +209,7 @@ namespace FinalProject_NetCore
 
         private void mùaHèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
             Matrix<double> kernel = new Matrix<double>(3,3);
@@ -243,7 +270,7 @@ namespace FinalProject_NetCore
             Mat output = new Mat();
             CvInvoke.EqualizeHist(gray, output);
 
-          
+            ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
           
         }
@@ -258,6 +285,18 @@ namespace FinalProject_NetCore
  
             var wb = new LearningBasedWB();
             wb.BalanceWhite(img, output);
+            ori_filter = output.ToImage<Bgr, byte>();
+            ptb_main.Image = output.ToBitmap();
+    
+        }
+       
+        private void tranhSơnDầuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
+            Mat output = new Mat();
+            XPhotoInvoke.OilPainting(img, output, 7, 1);
             ptb_main.Image = output.ToBitmap();
         }
     }
