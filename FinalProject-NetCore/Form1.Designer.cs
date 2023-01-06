@@ -107,7 +107,7 @@
             // 
             this.mởTậpTinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mởTậpTinToolStripMenuItem.Image")));
             this.mởTậpTinToolStripMenuItem.Name = "mởTậpTinToolStripMenuItem";
-            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.mởTậpTinToolStripMenuItem.Text = "Mở tập tin";
             this.mởTậpTinToolStripMenuItem.Click += new System.EventHandler(this.mởTậpTinToolStripMenuItem_Click);
             // 
@@ -115,8 +115,9 @@
             // 
             this.lưuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("lưuToolStripMenuItem.Image")));
             this.lưuToolStripMenuItem.Name = "lưuToolStripMenuItem";
-            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.lưuToolStripMenuItem.Text = "Lưu";
+            this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
             // 
             // xoayToolStripMenuItem
             // 

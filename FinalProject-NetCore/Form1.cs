@@ -1,6 +1,8 @@
 ﻿using Emgu.CV;
 using Emgu.CV.Structure;
 using Emgu.CV.XPhoto;
+using System.Drawing.Imaging;
+
 namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
@@ -300,6 +302,31 @@ namespace FinalProject_NetCore
             XPhotoInvoke.OilPainting(img, output, 7, 1);
             ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
+        }
+
+        private void lưuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Bitmap Image(.bmp)| *.bmp | Gif Image(.gif) | *.gif | JPEG Image(.jpeg) | *.jpeg | Png Image(.png) | *.png";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                if (save.FilterIndex == 1)
+                {
+                    ptb_main.Image.Save(save.FileName, ImageFormat.Bmp);
+                }
+                if (save.FilterIndex == 2)
+                {
+                    ptb_main.Image.Save(save.FileName, ImageFormat.Gif);
+                }
+                if (save.FilterIndex == 3)
+                {
+                    ptb_main.Image.Save(save.FileName, ImageFormat.Jpeg);
+                }
+                if (save.FilterIndex == 4)
+                {
+                    ptb_main.Image.Save(save.FileName, ImageFormat.Png);
+                }
+            }
         }
     }
 }
