@@ -312,7 +312,7 @@ namespace FinalProject_NetCore
                         && (camcolor.G == max || max - camcolor.G < 12)
                         && (max - min > 96);
                     if (replace)
-                        camcolor = Color.Black;
+                        camcolor = Color.Transparent;
                     output.SetPixel(x, y, camcolor);
                 }
             }
