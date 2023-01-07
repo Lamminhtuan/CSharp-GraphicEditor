@@ -320,6 +320,12 @@ namespace FinalProject_NetCore
             ptb_main.Image = output;
         }
 
+        private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            info_form f = new info_form();
+            f.ShowDialog();
+        }
+
         private void lưuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();

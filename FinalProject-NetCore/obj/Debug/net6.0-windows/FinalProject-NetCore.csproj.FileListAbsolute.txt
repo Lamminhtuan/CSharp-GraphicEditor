@@ -96,3 +96,4 @@ C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Deb
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject-NetCore.pdb
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject-NetCore.genruntimeconfig.cache
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\ref\FinalProject-NetCore.dll
+C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.info_form.resources
