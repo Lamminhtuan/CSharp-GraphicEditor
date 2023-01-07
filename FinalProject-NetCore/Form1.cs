@@ -7,16 +7,24 @@ namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
     {
-        int x, y, h, w;
+  
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
         Image<Bgr, byte> prev;
         bool flag = false;
-
+        Color paintcolor;
+        bool choose = false;
+        bool draw = false;
+        Item currentitem;
+        int x, y, lx, ly = 0;
         public Form1()
         {
             InitializeComponent();
+        }
+        public enum Item
+        {
+            FilledRect, Rectangle, FilledEll, Ellipse, Line, Text, Brush, Pencil, eraser, ColorPicker
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -52,7 +60,11 @@ namespace FinalProject_NetCore
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            FontFamily[] ffm = FontFamily.Families;
+            foreach (FontFamily f in ffm)
+                ts_fontcb.Items.Add(f.GetName(1).ToString());
+            for (int i = 8; i<100;i+=2)
+                ts_brushsize.Items.Add(i.ToString());
         }
 
         private void bar_brightness_Scroll(object sender, EventArgs e)
@@ -242,10 +254,7 @@ namespace FinalProject_NetCore
             
         }
 
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-          
-        }
+       
 
         private void pn_adjust_Paint(object sender, PaintEventArgs e)
         {
@@ -326,6 +335,147 @@ namespace FinalProject_NetCore
             f.ShowDialog();
         }
 
+        private void ảnhGốcToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ptb_main.Image = ori.ToBitmap();
+            bar_brightness.Value = 0;
+            bar_contrast.Value = 100;
+        }
+
+        private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
+        {
+            choose = true;
+        }
+
+        private void pictureBox5_MouseUp(object sender, MouseEventArgs e)
+        {
+            choose = false;
+        }
+
+        private void pictureBox5_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (choose)
+                {
+                    Bitmap bmp = (Bitmap)ptb_palette.Image.Clone();
+                    paintcolor = bmp.GetPixel(e.X, e.Y);
+                    ptb_ccolor.BackColor = paintcolor;
+                    bar_red.Value = paintcolor.R;
+                    bar_blue.Value = paintcolor.B;
+                    bar_green.Value = paintcolor.G;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Màu chọn không phù hợp!");
+            }
+        }
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ptb_adjust_Click(object sender, EventArgs e)
+        {
+            pn_adjust.Visible = true;
+            pn_color.Visible = false;
+        }
+
+        private void ptb_color_Click(object sender, EventArgs e)
+        {
+            pn_adjust.Visible = false;
+            pn_color.Visible = true;
+        }
+
+        private void ptb_main_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (draw)
+            {
+                Graphics g = ptb_main.CreateGraphics();
+                switch (currentitem) {
+                    case Item.Brush:
+                        g.FillEllipse(new SolidBrush(paintcolor), e.X, e.Y, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
+                        break;
+                }
+
+                g.Dispose();
+            }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Line;
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Rectangle;
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Ellipse;
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll;
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Brush;
+        }
+
+        private void ptb_main_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            draw = true;
+            x = e.X;
+            y = e.Y;
+        }
+
+        private void ptb_main_MouseUp(object sender, MouseEventArgs e)
+        {
+            draw = false;
+            lx = e.X;
+            ly = e.Y;
+            Graphics g = ptb_main.CreateGraphics();
+            switch (currentitem)
+            {
+                case Item.FilledRect:
+                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X - x, e.Y - y);
+
+                    break;
+                case Item.Rectangle:
+                    g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X - x, e.Y - y);
+
+                    break;
+                case Item.Line:
+                    g.DrawLine(new Pen(new SolidBrush(paintcolor)), new Point(x, y), new Point(lx, ly));
+                    break;
+                case Item.FilledEll:
+                    g.FillEllipse(new SolidBrush(paintcolor), x, y, e.X - x, e.Y - y);
+                    break;
+                case Item.Ellipse:
+                    g.DrawEllipse(new Pen(paintcolor, 2), x, y, e.X - x, e.Y - y);
+                    break;
+                
+            }
+
+
+
+            g.Dispose();
+            
+            
+        }
         private void lưuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
@@ -351,25 +501,6 @@ namespace FinalProject_NetCore
             }
         }
 
-        private void ptb_main_MouseDown(object sender, MouseEventArgs e)
-        {
-           
-                x = e.X;
-                y = e.Y;
-            
-        }
-
-        private void ptb_main_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (flag)
-            {
-                Graphics g = this.CreateGraphics();
-                Pen p = new Pen(Color.Red, 2);
-                h = e.X - x;
-                w = e.Y - y;
-                Rectangle shape = new Rectangle(x, y, h, w);
-                g.DrawEllipse(p, shape);
-            }
-        }
+        
     }
 }
