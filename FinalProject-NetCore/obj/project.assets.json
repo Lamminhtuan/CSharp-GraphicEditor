@@ -1663,11 +1663,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tuan\\Downloads\\CSharp-GraphicEditor-nam\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
+      "projectUniqueName": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
       "projectName": "FinalProject-NetCore",
-      "projectPath": "C:\\Users\\Tuan\\Downloads\\CSharp-GraphicEditor-nam\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
+      "projectPath": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
       "packagesPath": "C:\\Users\\Tuan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tuan\\Downloads\\CSharp-GraphicEditor-nam\\FinalProject-NetCore\\obj\\",
+      "outputPath": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Tuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
