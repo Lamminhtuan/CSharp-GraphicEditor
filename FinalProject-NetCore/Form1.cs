@@ -7,7 +7,7 @@ namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
     {
-  
+
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;

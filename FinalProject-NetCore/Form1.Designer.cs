@@ -377,6 +377,9 @@
             // 
             // ptb_main
             // 
+            this.ptb_main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ptb_main.Location = new System.Drawing.Point(35, 58);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -393,19 +396,22 @@
             // 
             // pn_adjust
             // 
+            this.pn_adjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pn_adjust.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pn_adjust.Controls.Add(this.pictureBox2);
             this.pn_adjust.Controls.Add(this.pictureBox1);
             this.pn_adjust.Controls.Add(this.bar_contrast);
             this.pn_adjust.Controls.Add(this.bar_brightness);
-            this.pn_adjust.Location = new System.Drawing.Point(981, 135);
+            this.pn_adjust.Location = new System.Drawing.Point(981, 124);
             this.pn_adjust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_adjust.Name = "pn_adjust";
-            this.pn_adjust.Size = new System.Drawing.Size(181, 420);
+            this.pn_adjust.Size = new System.Drawing.Size(181, 431);
             this.pn_adjust.TabIndex = 2;
             this.pn_adjust.Paint += new System.Windows.Forms.PaintEventHandler(this.pn_adjust_Paint);
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Location = new System.Drawing.Point(121, 189);
@@ -417,9 +423,10 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(40, 189);
+            this.pictureBox1.Location = new System.Drawing.Point(70, 189);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 26);
@@ -428,6 +435,7 @@
             // 
             // bar_contrast
             // 
+            this.bar_contrast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bar_contrast.Location = new System.Drawing.Point(121, 219);
             this.bar_contrast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_contrast.Maximum = 500;
@@ -440,7 +448,8 @@
             // 
             // bar_brightness
             // 
-            this.bar_brightness.Location = new System.Drawing.Point(40, 219);
+            this.bar_brightness.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bar_brightness.Location = new System.Drawing.Point(70, 219);
             this.bar_brightness.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_brightness.Maximum = 100;
             this.bar_brightness.Name = "bar_brightness";
@@ -451,22 +460,24 @@
             // 
             // ptb_color
             // 
+            this.ptb_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_color.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_color.BackgroundImage")));
-            this.ptb_color.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ptb_color.Location = new System.Drawing.Point(1060, 58);
+            this.ptb_color.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ptb_color.Location = new System.Drawing.Point(1081, 58);
             this.ptb_color.Name = "ptb_color";
-            this.ptb_color.Size = new System.Drawing.Size(58, 61);
+            this.ptb_color.Size = new System.Drawing.Size(61, 61);
             this.ptb_color.TabIndex = 3;
             this.ptb_color.TabStop = false;
             this.ptb_color.Click += new System.EventHandler(this.ptb_color_Click);
             // 
             // ptb_adjust
             // 
+            this.ptb_adjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_adjust.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_adjust.BackgroundImage")));
             this.ptb_adjust.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptb_adjust.Location = new System.Drawing.Point(981, 58);
+            this.ptb_adjust.Location = new System.Drawing.Point(1014, 58);
             this.ptb_adjust.Name = "ptb_adjust";
-            this.ptb_adjust.Size = new System.Drawing.Size(74, 61);
+            this.ptb_adjust.Size = new System.Drawing.Size(61, 61);
             this.ptb_adjust.TabIndex = 3;
             this.ptb_adjust.TabStop = false;
             this.ptb_adjust.Click += new System.EventHandler(this.ptb_adjust_Click);
@@ -479,6 +490,8 @@
             // 
             // pn_color
             // 
+            this.pn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pn_color.BackColor = System.Drawing.SystemColors.Control;
             this.pn_color.Controls.Add(this.lb_bar_b);
             this.pn_color.Controls.Add(this.lb_bar_g);
             this.pn_color.Controls.Add(this.lb_bar_r);
@@ -491,15 +504,16 @@
             this.pn_color.Controls.Add(this.bar_green);
             this.pn_color.Controls.Add(this.trackBar1);
             this.pn_color.Controls.Add(this.bar_red);
-            this.pn_color.Location = new System.Drawing.Point(978, 137);
+            this.pn_color.Location = new System.Drawing.Point(978, 126);
             this.pn_color.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_color.Name = "pn_color";
-            this.pn_color.Size = new System.Drawing.Size(181, 420);
+            this.pn_color.Size = new System.Drawing.Size(181, 429);
             this.pn_color.TabIndex = 3;
             this.pn_color.Visible = false;
             // 
             // lb_bar_b
             // 
+            this.lb_bar_b.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_bar_b.AutoSize = true;
             this.lb_bar_b.Location = new System.Drawing.Point(139, 396);
             this.lb_bar_b.Name = "lb_bar_b";
@@ -509,6 +523,7 @@
             // 
             // lb_bar_g
             // 
+            this.lb_bar_g.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_bar_g.AutoSize = true;
             this.lb_bar_g.Location = new System.Drawing.Point(81, 396);
             this.lb_bar_g.Name = "lb_bar_g";
@@ -518,6 +533,7 @@
             // 
             // lb_bar_r
             // 
+            this.lb_bar_r.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_bar_r.AutoSize = true;
             this.lb_bar_r.Location = new System.Drawing.Point(23, 396);
             this.lb_bar_r.Name = "lb_bar_r";
@@ -527,6 +543,7 @@
             // 
             // pictureBox5
             // 
+            this.pictureBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.BackColor = System.Drawing.Color.Blue;
             this.pictureBox5.Location = new System.Drawing.Point(123, 178);
             this.pictureBox5.Name = "pictureBox5";
@@ -537,6 +554,7 @@
             // 
             // pictureBox4
             // 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.Lime;
             this.pictureBox4.Location = new System.Drawing.Point(72, 178);
             this.pictureBox4.Name = "pictureBox4";
@@ -547,6 +565,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.Red;
             this.pictureBox3.Location = new System.Drawing.Point(21, 178);
             this.pictureBox3.Name = "pictureBox3";
@@ -557,6 +576,7 @@
             // 
             // ptb_ccolor
             // 
+            this.ptb_ccolor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_ccolor.Location = new System.Drawing.Point(3, 148);
             this.ptb_ccolor.Name = "ptb_ccolor";
             this.ptb_ccolor.Size = new System.Drawing.Size(175, 24);
@@ -565,6 +585,7 @@
             // 
             // ptb_palette
             // 
+            this.ptb_palette.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_palette.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ptb_palette.Image = ((System.Drawing.Image)(resources.GetObject("ptb_palette.Image")));
             this.ptb_palette.Location = new System.Drawing.Point(3, 3);
@@ -578,6 +599,7 @@
             // 
             // bar_blue
             // 
+            this.bar_blue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bar_blue.Location = new System.Drawing.Point(123, 201);
             this.bar_blue.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_blue.Maximum = 255;
@@ -588,6 +610,7 @@
             // 
             // bar_green
             // 
+            this.bar_green.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bar_green.Location = new System.Drawing.Point(72, 201);
             this.bar_green.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_green.Maximum = 255;
@@ -608,6 +631,7 @@
             // 
             // bar_red
             // 
+            this.bar_red.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.bar_red.Location = new System.Drawing.Point(21, 201);
             this.bar_red.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_red.Maximum = 255;
@@ -909,10 +933,10 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.ptb_color);
             this.Controls.Add(this.ptb_adjust);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chỉnh sửa ảnh";
