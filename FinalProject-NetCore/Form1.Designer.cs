@@ -57,6 +57,7 @@
             this.cânBằngTrắngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xóaNềnXanhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chiaSẻQuaFacebookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.pn_adjust = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -88,7 +89,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.ts_txtToDraw = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.ts_btn_drawtext = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.ts_FontSize = new System.Windows.Forms.ToolStripComboBox();
@@ -108,6 +109,7 @@
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.ptb_test = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).BeginInit();
             this.pn_adjust.SuspendLayout();
@@ -129,6 +131,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar_red)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_test)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -140,7 +143,8 @@
             this.xoayToolStripMenuItem,
             this.bộLọcToolStripMenuItem,
             this.côngCụToolStripMenuItem,
-            this.thôngTinToolStripMenuItem});
+            this.thôngTinToolStripMenuItem,
+            this.chiaSẻQuaFacebookToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -375,6 +379,14 @@
             this.thôngTinToolStripMenuItem.Text = "Thông tin";
             this.thôngTinToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
             // 
+            // chiaSẻQuaFacebookToolStripMenuItem
+            // 
+            this.chiaSẻQuaFacebookToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chiaSẻQuaFacebookToolStripMenuItem.Image")));
+            this.chiaSẻQuaFacebookToolStripMenuItem.Name = "chiaSẻQuaFacebookToolStripMenuItem";
+            this.chiaSẻQuaFacebookToolStripMenuItem.Size = new System.Drawing.Size(154, 24);
+            this.chiaSẻQuaFacebookToolStripMenuItem.Text = "Chia sẻ qua Facebook";
+            this.chiaSẻQuaFacebookToolStripMenuItem.Click += new System.EventHandler(this.chiaSẻQuaFacebookToolStripMenuItem_Click);
+            // 
             // ptb_main
             // 
             this.ptb_main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -491,7 +503,7 @@
             // pn_color
             // 
             this.pn_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pn_color.BackColor = System.Drawing.SystemColors.Control;
+            this.pn_color.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pn_color.Controls.Add(this.lb_bar_b);
             this.pn_color.Controls.Add(this.lb_bar_g);
             this.pn_color.Controls.Add(this.lb_bar_r);
@@ -652,7 +664,7 @@
             this.toolStripSeparator3,
             this.toolStripLabel3,
             this.ts_txtToDraw,
-            this.toolStripButton11,
+            this.ts_btn_drawtext,
             this.toolStripSeparator4,
             this.toolStripLabel4,
             this.ts_FontSize,
@@ -687,8 +699,8 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(63, 24);
-            this.toolStripLabel2.Text = "Brush Size:";
+            this.toolStripLabel2.Size = new System.Drawing.Size(47, 24);
+            this.toolStripLabel2.Text = "Độ dày:";
             // 
             // ts_brushsize
             // 
@@ -712,15 +724,16 @@
             this.ts_txtToDraw.Name = "ts_txtToDraw";
             this.ts_txtToDraw.Size = new System.Drawing.Size(88, 27);
             // 
-            // toolStripButton11
+            // ts_btn_drawtext
             // 
-            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
-            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton11.Name = "toolStripButton11";
-            this.toolStripButton11.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButton11.Text = "toolStripButton11";
-            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
+            this.ts_btn_drawtext.BackColor = System.Drawing.Color.Red;
+            this.ts_btn_drawtext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ts_btn_drawtext.Image = ((System.Drawing.Image)(resources.GetObject("ts_btn_drawtext.Image")));
+            this.ts_btn_drawtext.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ts_btn_drawtext.Name = "ts_btn_drawtext";
+            this.ts_btn_drawtext.Size = new System.Drawing.Size(24, 24);
+            this.ts_btn_drawtext.Text = "toolStripButton11";
+            this.ts_btn_drawtext.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
             // toolStripSeparator4
             // 
@@ -919,12 +932,22 @@
             this.toolStripButton10.Text = "toolStripButton10";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
+            // ptb_test
+            // 
+            this.ptb_test.Location = new System.Drawing.Point(63, 69);
+            this.ptb_test.Name = "ptb_test";
+            this.ptb_test.Size = new System.Drawing.Size(100, 50);
+            this.ptb_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_test.TabIndex = 6;
+            this.ptb_test.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1159, 566);
+            this.Controls.Add(this.ptb_test);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pn_color);
@@ -967,6 +990,7 @@
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_test)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1041,7 +1065,7 @@
         private ToolStripButton toolStripButton10;
         private ToolStripLabel toolStripLabel3;
         private ToolStripTextBox ts_txtToDraw;
-        private ToolStripButton toolStripButton11;
+        private ToolStripButton ts_btn_drawtext;
         private ToolStripLabel toolStripLabel4;
         private ToolStripSeparator toolStripSeparator2;
         private ToolStripSeparator toolStripSeparator3;
@@ -1052,5 +1076,7 @@
         private ToolStripComboBox ts_TxtShadow;
         private ToolStripLabel toolStripLabel6;
         private ToolStripComboBox ts_FontStyle;
+        private ToolStripMenuItem chiaSẻQuaFacebookToolStripMenuItem;
+        private PictureBox ptb_test;
     }
 }
