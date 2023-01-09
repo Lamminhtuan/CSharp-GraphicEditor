@@ -19,8 +19,9 @@ namespace FinalProject_NetCore
         bool draw = false;
         bool drawtext = false;
         Item currentitem;
-        int x, y, lx, ly = 0;
+        int x, y, lx, ly;
         Size orisize;
+        float ratio;
 
         // font style => ts_fontcb => tscombobox3
         // ptn_main => picturebox1
@@ -43,11 +44,12 @@ namespace FinalProject_NetCore
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
-               
-                if (((img.Width > 1800) && img.Height > 497))
+              
+                if (img.Height > 1080)
                 {
                     ptb_main.Width = (int)img.Width / 3;
                     ptb_main.Height = (int)img.Height / 3;
+                    
                 }
                 else if (img.Width > 940 || img.Height > 497)
                 {
@@ -61,10 +63,13 @@ namespace FinalProject_NetCore
                     ptb_main.Width = (int)img.Width / 1;
                     ptb_main.Height = (int)img.Height / 1;
                 }
+                this.Invalidate();
+                ratio = (float)img.Width / ptb_main.Width;
                 ori = img;
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
+                ptb_main.BackColor = Color.Red;
                 ptb_main.Image = img.ToBitmap();
 
             }
@@ -116,7 +121,9 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
             Bitmap rotated = bmp;
-        
+            int oldwidth = ptb_main.Width;
+            ptb_main.Width = ptb_main.Height;
+            ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -127,7 +134,9 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
             Bitmap rotated = bmp;
-            
+            int oldwidth = ptb_main.Width;
+            ptb_main.Width = ptb_main.Height;
+            ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -430,24 +439,25 @@ namespace FinalProject_NetCore
 
                 switch (currentitem) {
                     case Item.Brush:
-                        g.FillEllipse(new SolidBrush(paintcolor), e.X, e.Y, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
+                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y * ratio, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
                         break;
 
                     case Item.eraser:
-                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), e.X - x + x, e.Y - y + y,
+                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), e.X * ratio, e.Y * ratio,
                             Convert.ToInt32(ts_brushsize.Text), Convert.ToInt32(ts_brushsize.Text));
                         break;
                     case Item.Pencil:
 
-                        g.FillEllipse(new SolidBrush(paintcolor), e.X, e.Y, 5, 5);
+                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y *ratio, 5, 5);
                            
                         break;
 
                 }
-                
+
                 Bitmap bmp = (Bitmap)ptb_main.Image;
-          
+                ptb_main.Invalidate();
                 ori_filter = bmp.ToImage<Bgr, byte>();
+
                 g.Dispose();
             }
         }
@@ -565,33 +575,34 @@ namespace FinalProject_NetCore
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
             Graphics g = Graphics.FromImage(ptb_main.Image);
+ 
             if (currentitem == Item.Text && drawtext)
             {
                 // font
                 if (ts_FontStyle.Text == "Regular")
                 {
                     g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text), FontStyle.Regular)
-               , new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+               , new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                 }
                 else if (ts_FontStyle.Text == "Bold")
                 {
                     g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                        FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                        FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                 }
                 else if (ts_FontStyle.Text == "Underline")
                 {
                     g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                        FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                        FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                 }
                 else if (ts_FontStyle.Text == "Strikeout")
                 {
                     g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                        FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                        FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                 }
                 else if (ts_FontStyle.Text == "Italic")
                 {
                     g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                        FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                        FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                 }
 
                 // shadow 
@@ -600,37 +611,37 @@ namespace FinalProject_NetCore
                     if (ts_FontStyle.Text == "Regular")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y + 5));
+                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Bold")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y + 5));
+                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Underline")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y + 5));
+                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Strikeout")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y + 5));
+                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Italic")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y + 5));
+                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                 }
                 else if (ts_TxtShadow.Text == "SW")
@@ -638,37 +649,37 @@ namespace FinalProject_NetCore
                     if (ts_FontStyle.Text == "Regular")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y + 5));
+                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Bold")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y + 5));
+                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Underline")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y + 5));
+                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Strikeout")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y + 5));
+                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Italic")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y + 5));
+                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio + 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                 }
                 else if (ts_TxtShadow.Text == "NE")
@@ -676,37 +687,37 @@ namespace FinalProject_NetCore
                     if (ts_FontStyle.Text == "Regular")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y - 5));
+                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
                             FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
                     }
                     else if (ts_FontStyle.Text == "Bold")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y - 5));
+                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Underline")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y - 5));
+                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y *ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Strikeout")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y - 5));
+                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y  * ratio- 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Italic")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X + 5, e.Y - 5));
+                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                 }
                 else if (ts_TxtShadow.Text == "NW")
@@ -714,65 +725,67 @@ namespace FinalProject_NetCore
                     if (ts_FontStyle.Text == "Regular")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y - 5));
+                            FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X * ratio - 5, e.Y * ratio- 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Bold")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y - 5));
+                            FontStyle.Bold), new SolidBrush(Color.Gray), new PointF(e.X *ratio - 5, e.Y * ratio- 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Bold), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
                     else if (ts_FontStyle.Text == "Underline")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y - 5));
+                            FontStyle.Underline), new SolidBrush(Color.Gray), new PointF(e.X *ratio- 5, e.Y *ratio- 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Underline), new SolidBrush(paintcolor), new PointF(e.X*ratio, e.Y*ratio));
                     }
                     else if (ts_FontStyle.Text == "Strikeout")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y - 5));
+                            FontStyle.Strikeout), new SolidBrush(Color.Gray), new PointF(e.X*ratio - 5, e.Y*ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X*ratio, e.Y*ratio));
                     }
                     else if (ts_FontStyle.Text == "Italic")
                     {
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X - 5, e.Y - 5));
+                            FontStyle.Italic), new SolidBrush(Color.Gray), new PointF(e.X *ratio - 5, e.Y *ratio - 5));
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                            FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X*ratio, e.Y*ratio));
                     }
                 }
             }
-
+         
             Bitmap bmp = (Bitmap)ptb_main.Image;
-
+            ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
-            ptb_review.Image = bmp;
+       
             g.Dispose();
+          
             draw = true;
-            x = e.X;
-            y = e.Y;
+            x = (int)Math.Round(e.X * ratio);
+            y = (int)Math.Round(e.Y * ratio);
         }
 
         private void ptb_main_MouseUp(object sender, MouseEventArgs e)
         {
             draw = false;
-            lx = e.X;
-            ly = e.Y;
+            lx = (int)Math.Round(e.X * ratio);
+            ly = (int)Math.Round(e.Y * ratio);
             Graphics g = Graphics.FromImage(ptb_main.Image);
+  
             switch (currentitem)
             {
                 case Item.FilledRect:
-                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X - x, e.Y - y);
+                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Rectangle:
-                    g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X - x, e.Y - y);
+                    g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Line:
@@ -780,16 +793,17 @@ namespace FinalProject_NetCore
                     break;
 
                 case Item.FilledEll:
-                    g.FillEllipse(new SolidBrush(paintcolor), x, y, e.X - x, e.Y - y);
+                    g.FillEllipse(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Ellipse:
-                    g.DrawEllipse(new Pen(paintcolor, 2), x, y, e.X - x, e.Y - y);
+                    g.DrawEllipse(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
             }
             Bitmap bmp = (Bitmap)ptb_main.Image;
-
+            ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
+
 
             g.Dispose();
             
@@ -798,10 +812,7 @@ namespace FinalProject_NetCore
         {
             SaveFileDialog save = new SaveFileDialog();
 
-            //Bitmap bmp = new Bitmap(ptb_main.Width, ptb_main.Height);
-            //Graphics g = Graphics.FromImage(bmp);
-            //Rectangle rect = ptb_main.RectangleToScreen(ptb_main.ClientRectangle);
-            //g.CopyFromScreen(rect.Location, Point.Empty, ptb_main.Size);
+            
 
             save.Filter = "Bitmap Image(.bmp)| *.bmp | Gif Image(.gif) | *.gif | JPEG Image(.jpeg) | *.jpeg | Png Image(.png) | *.png";
             if (save.ShowDialog() == DialogResult.OK)
