@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tạoMớiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mởTậpTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lưuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ảnhGốcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,7 +110,7 @@
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.ptb_test = new System.Windows.Forms.PictureBox();
+            this.ptb_review = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).BeginInit();
             this.pn_adjust.SuspendLayout();
@@ -131,7 +132,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar_red)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_test)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_review)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -155,12 +156,20 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tạoMớiToolStripMenuItem,
             this.mởTậpTinToolStripMenuItem,
             this.lưuToolStripMenuItem});
             this.fileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
             this.fileToolStripMenuItem.Text = "File";
+            // 
+            // tạoMớiToolStripMenuItem
+            // 
+            this.tạoMớiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tạoMớiToolStripMenuItem.Image")));
+            this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
+            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
             // 
             // mởTậpTinToolStripMenuItem
             // 
@@ -392,12 +401,12 @@
             this.ptb_main.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ptb_main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptb_main.BackColor = System.Drawing.Color.Transparent;
             this.ptb_main.Location = new System.Drawing.Point(35, 58);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
             this.ptb_main.Size = new System.Drawing.Size(940, 497);
-            this.ptb_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptb_main.TabIndex = 1;
             this.ptb_main.TabStop = false;
             this.ptb_main.Click += new System.EventHandler(this.ptb_main_Click);
@@ -932,14 +941,14 @@
             this.toolStripButton10.Text = "toolStripButton10";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
-            // ptb_test
+            // ptb_review
             // 
-            this.ptb_test.Location = new System.Drawing.Point(63, 69);
-            this.ptb_test.Name = "ptb_test";
-            this.ptb_test.Size = new System.Drawing.Size(100, 50);
-            this.ptb_test.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ptb_test.TabIndex = 6;
-            this.ptb_test.TabStop = false;
+            this.ptb_review.Location = new System.Drawing.Point(795, 58);
+            this.ptb_review.Name = "ptb_review";
+            this.ptb_review.Size = new System.Drawing.Size(177, 109);
+            this.ptb_review.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ptb_review.TabIndex = 6;
+            this.ptb_review.TabStop = false;
             // 
             // Form1
             // 
@@ -947,7 +956,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1159, 566);
-            this.Controls.Add(this.ptb_test);
+            this.Controls.Add(this.ptb_review);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pn_color);
@@ -964,6 +973,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chỉnh sửa ảnh";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).EndInit();
@@ -990,7 +1000,7 @@
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptb_test)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_review)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1077,6 +1087,7 @@
         private ToolStripLabel toolStripLabel6;
         private ToolStripComboBox ts_FontStyle;
         private ToolStripMenuItem chiaSẻQuaFacebookToolStripMenuItem;
-        private PictureBox ptb_test;
+        private ToolStripMenuItem tạoMớiToolStripMenuItem;
+        private PictureBox ptb_review;
     }
 }

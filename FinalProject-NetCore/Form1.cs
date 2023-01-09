@@ -20,6 +20,7 @@ namespace FinalProject_NetCore
         bool drawtext = false;
         Item currentitem;
         int x, y, lx, ly = 0;
+        Size orisize;
 
         // font style => ts_fontcb => tscombobox3
         // ptn_main => picturebox1
@@ -42,10 +43,30 @@ namespace FinalProject_NetCore
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
+               
+                if (((img.Width > 1800) && img.Height > 497))
+                {
+                    ptb_main.Width = (int)img.Width / 3;
+                    ptb_main.Height = (int)img.Height / 3;
+                }
+                else if (img.Width > 940 || img.Height > 497)
+                {
+                    ptb_main.Width = (int)img.Width / 2;
+                    ptb_main.Height = (int)img.Height / 2;
+                    
+                }
+            
+                else
+                {
+                    ptb_main.Width = (int)img.Width / 1;
+                    ptb_main.Height = (int)img.Height / 1;
+                }
                 ori = img;
                 ori_rotate = ori;
                 ori_filter = ori;
+                orisize = ptb_main.Size;
                 ptb_main.Image = img.ToBitmap();
+
             }
         }
         private void AdjustBrightnessContrast()
@@ -95,7 +116,7 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
             Bitmap rotated = bmp;
-       
+        
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -106,7 +127,7 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
             Bitmap rotated = bmp;
-           
+            
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -117,7 +138,7 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
             Bitmap rotated = bmp;
-           
+         
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -405,8 +426,8 @@ namespace FinalProject_NetCore
             if (draw)
             {
 
-                //Graphics g = ptb_main.CreateGraphics();
                 Graphics g = Graphics.FromImage(ptb_main.Image);
+
                 switch (currentitem) {
                     case Item.Brush:
                         g.FillEllipse(new SolidBrush(paintcolor), e.X, e.Y, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
@@ -425,7 +446,7 @@ namespace FinalProject_NetCore
                 }
                 
                 Bitmap bmp = (Bitmap)ptb_main.Image;
-                ptb_test.Image = bmp;
+          
                 ori_filter = bmp.ToImage<Bgr, byte>();
                 g.Dispose();
             }
@@ -529,9 +550,21 @@ namespace FinalProject_NetCore
             var client = new FacebookClient();
         }
 
+        private void Form1_SizeChanged(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                ptb_main.Size = orisize;
+            }
+            if (WindowState == FormWindowState.Maximized)
+            {
+                ptb_main.Size = orisize * 2;
+            }
+        }
+
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
-            Graphics g = ptb_main.CreateGraphics();
+            Graphics g = Graphics.FromImage(ptb_main.Image);
             if (currentitem == Item.Text && drawtext)
             {
                 // font
@@ -715,9 +748,13 @@ namespace FinalProject_NetCore
                     }
                 }
             }
-         
-                g.Dispose();
-                draw = true;
+
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+
+            ori_filter = bmp.ToImage<Bgr, byte>();
+            ptb_review.Image = bmp;
+            g.Dispose();
+            draw = true;
             x = e.X;
             y = e.Y;
         }
@@ -750,15 +787,22 @@ namespace FinalProject_NetCore
                     g.DrawEllipse(new Pen(paintcolor, 2), x, y, e.X - x, e.Y - y);
                     break;
             }
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+
+            ori_filter = bmp.ToImage<Bgr, byte>();
 
             g.Dispose();
-            
             
         }
         private void lưuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog save = new SaveFileDialog();
-            
+
+            //Bitmap bmp = new Bitmap(ptb_main.Width, ptb_main.Height);
+            //Graphics g = Graphics.FromImage(bmp);
+            //Rectangle rect = ptb_main.RectangleToScreen(ptb_main.ClientRectangle);
+            //g.CopyFromScreen(rect.Location, Point.Empty, ptb_main.Size);
+
             save.Filter = "Bitmap Image(.bmp)| *.bmp | Gif Image(.gif) | *.gif | JPEG Image(.jpeg) | *.jpeg | Png Image(.png) | *.png";
             if (save.ShowDialog() == DialogResult.OK)
             {
@@ -781,6 +825,6 @@ namespace FinalProject_NetCore
             }
         }
 
-        
+
     }
 }
