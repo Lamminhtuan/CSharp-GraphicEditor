@@ -69,7 +69,7 @@ namespace FinalProject_NetCore
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
-                ptb_main.BackColor = Color.Red;
+                ptb_main.BackColor = Color.Transparent;
                 ptb_main.Image = img.ToBitmap();
 
             }
@@ -785,7 +785,7 @@ namespace FinalProject_NetCore
                     break;
 
                 case Item.Rectangle:
-                    g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    g.DrawRectangle(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Line:
@@ -797,7 +797,7 @@ namespace FinalProject_NetCore
                     break;
 
                 case Item.Ellipse:
-                    g.DrawEllipse(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    g.DrawEllipse(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
             }
             Bitmap bmp = (Bitmap)ptb_main.Image;
