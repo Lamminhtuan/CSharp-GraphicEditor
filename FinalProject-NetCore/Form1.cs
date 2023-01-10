@@ -131,7 +131,7 @@ namespace FinalProject_NetCore
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Chưa có ảnh!");
             }
         }
 
@@ -174,160 +174,233 @@ namespace FinalProject_NetCore
 
         private void xoayTráiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
-            Bitmap rotated = bmp;
-            int oldwidth = ptb_main.Width;
-            ptb_main.Width = ptb_main.Height;
-            ptb_main.Height = oldwidth;
-            ori_rotate = rotated.ToImage<Bgr, byte>();
-            ori_filter = ori_rotate;
-            prevsize = currentsize;
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                Bitmap rotated = bmp;
+                int oldwidth = ptb_main.Width;
+                ptb_main.Width = ptb_main.Height;
+                ptb_main.Height = oldwidth;
+                ori_rotate = rotated.ToImage<Bgr, byte>();
+                ori_filter = ori_rotate;
+                prevsize = currentsize;
 
-            currentsize = ptb_main.Size;
-            ptb_main.Image = bmp;
-
+                currentsize = ptb_main.Size;
+                ptb_main.Image = bmp;
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void xoayPhảiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            Bitmap rotated = bmp;
-            int oldwidth = ptb_main.Width;
-            ptb_main.Width = ptb_main.Height;
-            ptb_main.Height = oldwidth;
-            ori_rotate = rotated.ToImage<Bgr, byte>();
-            ori_filter = ori_rotate;
-            prevsize = currentsize;
-            currentsize = ptb_main.Size;
-            ptb_main.Image = bmp;
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                Bitmap rotated = bmp;
+                int oldwidth = ptb_main.Width;
+                ptb_main.Width = ptb_main.Height;
+                ptb_main.Height = oldwidth;
+                ori_rotate = rotated.ToImage<Bgr, byte>();
+                ori_filter = ori_rotate;
+                prevsize = currentsize;
+                currentsize = ptb_main.Size;
+                ptb_main.Image = bmp;
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void xoay180ĐộToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            Bitmap rotated = bmp;
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                Bitmap rotated = bmp;
 
-            ori_rotate = rotated.ToImage<Bgr, byte>();
-            ori_filter = ori_rotate;
-            ptb_main.Image = bmp;
+                ori_rotate = rotated.ToImage<Bgr, byte>();
+                ori_filter = ori_rotate;
+                ptb_main.Image = bmp;
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void lậtGươngNgangToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            Bitmap rotated = bmp;
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
+                Bitmap rotated = bmp;
 
-            ori_rotate = rotated.ToImage<Bgr, byte>();
-            ori_filter = ori_rotate;
-            ptb_main.Image = bmp;
+                ori_rotate = rotated.ToImage<Bgr, byte>();
+                ori_filter = ori_rotate;
+                ptb_main.Image = bmp;
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void lậtGươngDọcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            Bitmap rotated = bmp;
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                Bitmap rotated = bmp;
 
-            ori_rotate = rotated.ToImage<Bgr, byte>();
-            ori_filter = ori_rotate;
-            ptb_main.Image = bmp;
+                ori_rotate = rotated.ToImage<Bgr, byte>();
+                ori_filter = ori_rotate;
+                ptb_main.Image = bmp;
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void ảnhXámToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Gray, byte> gray = img.Convert<Gray, byte>();
-            ori_filter = gray.Convert<Bgr, byte>();
-            ptb_main.Image = gray.ToBitmap();
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                Image<Gray, byte> gray = img.Convert<Gray, byte>();
+                ori_filter = gray.Convert<Bgr, byte>();
+                ptb_main.Image = gray.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ptb_main.Image = ori.ToBitmap();
-            bar_brightness.Value = 0;
-            bar_contrast.Value = 100;
-        }
-
+   
         private void âmBảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> neg = img.Not();
-            ori_filter = neg;
-            ptb_main.Image = neg.ToBitmap();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> neg = img.Not();
+                ori_filter = neg;
+                ptb_main.Image = neg.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void làmMờToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> neg = img.SmoothGaussian(25);
-            ori_filter = neg;
-            ptb_main.Image = neg.ToBitmap();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> neg = img.SmoothGaussian(25);
+                ori_filter = neg;
+                ptb_main.Image = neg.ToBitmap();
+            }
+            catch { MessageBox.Show("Chưa có ảnh!"); }
         }
 
         private void mờToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
 
-            ori_filter = neg;
-            ptb_main.Image = neg.ToBitmap();
+                ori_filter = neg;
+                ptb_main.Image = neg.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void vẽBútChìĐenTrắngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
-            Mat output_gray = new Mat();
-            Mat output = new Mat();
-            CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
-            ori_filter = output_gray.ToImage<Bgr, byte>();
-            ptb_main.Image = output_gray.ToBitmap();
+                Mat output_gray = new Mat();
+                Mat output = new Mat();
+                CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+                ori_filter = output_gray.ToImage<Bgr, byte>();
+                ptb_main.Image = output_gray.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void vẽBútChìMàuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
-            Mat output_gray = new Mat();
-            Mat output = new Mat();
-            CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
-
+                Mat output_gray = new Mat();
+                Mat output = new Mat();
+                CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void hDRToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
 
-            Mat output = new Mat();
-            CvInvoke.DetailEnhance(img, output, (float)12.0, (float)0.15);
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
+                Mat output = new Mat();
+                CvInvoke.DetailEnhance(img, output, (float)12.0, (float)0.15);
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void ptb_main_Click(object sender, EventArgs e)
@@ -337,93 +410,126 @@ namespace FinalProject_NetCore
 
         private void mùaHèToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
-            Matrix<double> kernel = new Matrix<double>(3, 3);
-            kernel[0, 0] = 0.272;
-            kernel[0, 1] = 0.534;
-            kernel[0, 2] = 0.131;
-            kernel[1, 0] = 0.349;
-            kernel[1, 1] = 0.686;
-            kernel[1, 2] = 0.168;
-            kernel[2, 0] = 0.393;
-            kernel[2, 1] = 0.769;
-            kernel[2, 2] = 0.189;
-            Mat output = new Mat();
-            CvInvoke.Transform(img, output, kernel);
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
+            try
+            {
+                Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
+                Matrix<double> kernel = new Matrix<double>(3, 3);
+                kernel[0, 0] = 0.272;
+                kernel[0, 1] = 0.534;
+                kernel[0, 2] = 0.131;
+                kernel[1, 0] = 0.349;
+                kernel[1, 1] = 0.686;
+                kernel[1, 2] = 0.168;
+                kernel[2, 0] = 0.393;
+                kernel[2, 1] = 0.769;
+                kernel[2, 2] = 0.189;
+                Mat output = new Mat();
+                CvInvoke.Transform(img, output, kernel);
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
 
 
         private void cânBằngHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
-            Image<Gray, byte> gray = img.Convert<Gray, byte>();
-            Mat output = new Mat();
-            CvInvoke.EqualizeHist(gray, output);
+                Image<Gray, byte> gray = img.Convert<Gray, byte>();
+                Mat output = new Mat();
+                CvInvoke.EqualizeHist(gray, output);
 
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
-
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void cânBằngTrắngToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
 
-            Mat output = new Mat();
+                Mat output = new Mat();
 
-            var wb = new LearningBasedWB();
-            wb.BalanceWhite(img, output);
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
-
+                var wb = new LearningBasedWB();
+                wb.BalanceWhite(img, output);
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void tranhSơnDầuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            prev = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
-            Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
-            Mat output = new Mat();
-            XPhotoInvoke.OilPainting(img, output, 7, 1);
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output.ToBitmap();
+            try
+            {
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                prev = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
+                Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
+                Mat output = new Mat();
+                XPhotoInvoke.OilPainting(img, output, 7, 1);
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output.ToBitmap();
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void xóaNềnXanhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap inp = (Bitmap)ptb_main.Image;
-            prev = inp.ToImage<Bgr, byte>();
-            Bitmap output = new Bitmap(inp.Width, inp.Height);
-            for (int y = 0; y < inp.Height; y++)
+            try
             {
-                for (int x = 0; x < inp.Width; x++)
+                Bitmap inp = (Bitmap)ptb_main.Image;
+                prev = inp.ToImage<Bgr, byte>();
+                Bitmap output = new Bitmap(inp.Width, inp.Height);
+                for (int y = 0; y < inp.Height; y++)
                 {
-                    Color camcolor = inp.GetPixel(x, y);
-                    byte max = Math.Max(Math.Max(camcolor.R, camcolor.G), camcolor.B);
-                    byte min = Math.Min(Math.Min(camcolor.R, camcolor.G), camcolor.B);
-                    bool replace = camcolor.G != min //Xanh không phải màu có giá trị nhỏ nhất 
-                        && (camcolor.G == max || max - camcolor.G < 12)
-                        && (max - min > 96);
-                    if (replace)
-                        camcolor = Color.Transparent;
-                    output.SetPixel(x, y, camcolor);
+                    for (int x = 0; x < inp.Width; x++)
+                    {
+                        Color camcolor = inp.GetPixel(x, y);
+                        byte max = Math.Max(Math.Max(camcolor.R, camcolor.G), camcolor.B);
+                        byte min = Math.Min(Math.Min(camcolor.R, camcolor.G), camcolor.B);
+                        bool replace = camcolor.G != min //Xanh không phải màu có giá trị nhỏ nhất 
+                            && (camcolor.G == max || max - camcolor.G < 12)
+                            && (max - min > 96);
+                        if (replace)
+                            camcolor = Color.Transparent;
+                        output.SetPixel(x, y, camcolor);
+                    }
                 }
+                ori_filter = output.ToImage<Bgr, byte>();
+                ptb_main.Image = output;
             }
-            ori_filter = output.ToImage<Bgr, byte>();
-            ptb_main.Image = output;
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -434,22 +540,28 @@ namespace FinalProject_NetCore
 
         private void ảnhGốcToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap oribitmap = ori.ToBitmap();
-            ptb_main.Image = ori.ToBitmap();
-            bar_brightness.Value = 0;
-            bar_contrast.Value = 100;
-            if (WindowState == FormWindowState.Normal)
+            try
             {
-                ptb_main.Size = orisize;
+                Bitmap oribitmap = ori.ToBitmap();
+                ptb_main.Image = ori.ToBitmap();
+                bar_brightness.Value = 0;
+                bar_contrast.Value = 100;
+                if (WindowState == FormWindowState.Normal)
+                {
+                    ptb_main.Size = orisize;
+                }
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    ptb_main.Size = orisize * 2;
+
+
+                }
+                ratio = (int)oribitmap.Width / orisize.Width;
             }
-            if (WindowState == FormWindowState.Maximized)
+            catch
             {
-                ptb_main.Size = orisize * 2;
-
-
+                MessageBox.Show("Chưa có ảnh!");
             }
-            ratio = (int)oribitmap.Width / orisize.Width;
-
         }
 
         private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
@@ -868,20 +980,24 @@ namespace FinalProject_NetCore
             }
             catch
             {
-
+                MessageBox.Show("Chưa có ảnh!");
             }
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Bitmap bmp = prev.ToBitmap();
-            ptb_main.Image = prev.ToBitmap();
-            currentsize = prevsize;
-            ptb_main.Size = currentsize;
-            Bitmap bmp1 = prev.ToBitmap();
-            ori_filter = prev;
-            ori_rotate = ori_filter;
-            ptb_main.Invalidate();
+            try
+            {
+                Bitmap bmp = prev.ToBitmap();
+                ptb_main.Image = prev.ToBitmap();
+                currentsize = prevsize;
+                ptb_main.Size = currentsize;
+                Bitmap bmp1 = prev.ToBitmap();
+                ori_filter = prev;
+                ori_rotate = ori_filter;
+                ptb_main.Invalidate();
+            }
+            catch { MessageBox.Show("Chưa có ảnh!"); }
         }
 
         private void toolStripButton15_Click(object sender, EventArgs e)
