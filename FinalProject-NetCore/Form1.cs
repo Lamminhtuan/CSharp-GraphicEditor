@@ -14,7 +14,7 @@ namespace FinalProject_NetCore
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
-    
+        
         
         Color paintcolor = Color.Black;
         bool choose = false;
@@ -40,7 +40,7 @@ namespace FinalProject_NetCore
         {
             FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
             FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
-            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri
+            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,14 +69,18 @@ namespace FinalProject_NetCore
                     ptb_main.Width = (int)img.Width / 1;
                     ptb_main.Height = (int)img.Height / 1;
                 }
-                this.Invalidate();
+ 
                 ratio = img.Width / ptb_main.Width;
                 ori = img;
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
                 ptb_main.BackColor = Color.Transparent;
+                ptb_review.Image = img.ToBitmap();
+                Image temp = ptb_review.Image;
                 ptb_main.Image = img.ToBitmap();
+                ptb_main.Refresh();
+                ptb_main.Invalidate();
 
             }
         }
@@ -100,6 +104,7 @@ namespace FinalProject_NetCore
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            currentitem = Item.None;
             FontFamily[] ffm = FontFamily.Families;
             foreach (FontFamily f in ffm)
                 ts_fontcb.Items.Add(f.GetName(1).ToString());
@@ -467,6 +472,7 @@ namespace FinalProject_NetCore
                 ori_filter = bmp.ToImage<Bgr, byte>();
                 ori_rotate = ori_filter;
                 g.Dispose();
+                ptb_main.Refresh();
             }
             //else if (currentitem == Item.CropImage)
             //{
@@ -667,7 +673,7 @@ namespace FinalProject_NetCore
 
         private void ts_btn_aim_Click(object sender, EventArgs e)
         {
-          
+            ptb_main.Image = null;
         }
 
         private void toolStripButton13_Click(object sender, EventArgs e)
@@ -679,6 +685,7 @@ namespace FinalProject_NetCore
         {
             try
             {
+                
                 Graphics g = Graphics.FromImage(ptb_main.Image);
                 if (currentitem == Item.FilledTri || currentitem == Item.Tri)
                 {
@@ -897,7 +904,7 @@ namespace FinalProject_NetCore
                 ori_filter = bmp.ToImage<Bgr, byte>();
                 ori_rotate = ori_filter;
                 g.Dispose();
-
+                ptb_main.Refresh();
                 draw = true;
                 x = (e.X * ratio);
                 y = (e.Y * ratio);
@@ -926,15 +933,15 @@ namespace FinalProject_NetCore
 
             switch (currentitem)
             {
-                //filledrect
-                case Item.FilledRect:
-                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
-                    break;
+
+                
 
                 case Item.FilledRect1:
                     g.FillRectangle(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
-
+                case Item.FilledRect:
+                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
                 case Item.FilledRect2:
                     g.FillRectangle(trb2, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
@@ -1053,6 +1060,7 @@ namespace FinalProject_NetCore
                     break;
             }
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            ptb_main.Refresh();
             ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
             ori_rotate = ori_filter;
