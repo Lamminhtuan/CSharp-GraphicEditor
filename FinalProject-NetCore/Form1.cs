@@ -41,7 +41,7 @@ namespace FinalProject_NetCore
         {
             FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
             FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
-            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None
+            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -478,21 +478,7 @@ namespace FinalProject_NetCore
                 g.Dispose();
                 ptb_main.Refresh();
             }
-            //else if (currentitem == Item.CropImage)
-            //{
-            
-            //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            //    {
-            //        ptb_main.Refresh();
-            //        // set W and H for crop rectangel
-            //        lx = (int)Math.Round(e.X * ratio - x);
-            //        ly = (int)Math.Round(e.Y * ratio - y);
-            //        Graphics g = Graphics.FromImage(ptb_main.Image);
-            //        crpPen.Width = 2; // crop width pen
-            //        g.DrawRectangle(crpPen, x, y, lx, ly);
-            //        g.Dispose();
-            //    }
-            //}
+           
 
        
             
@@ -598,7 +584,7 @@ namespace FinalProject_NetCore
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Normal)
+             if (WindowState == FormWindowState.Normal)
             {
                 ptb_main.Size = orisize;
             }
@@ -690,12 +676,28 @@ namespace FinalProject_NetCore
 
                     }
 
+        private void toolStripButton14_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Bucket;
+        }
+
+        private void khửMắtĐỏToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            currentitem = Item.RedEyeRemover;
+        }
+
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
             try
             {
                 
                 Graphics g = Graphics.FromImage(ptb_main.Image);
+                if (currentitem == Item.Bucket)
+                {
+                    Bitmap bmp1 = (Bitmap)ptb_main.Image;
+                    
+                    pictureBox1.Image = bmp1;
+                }
                 if (currentitem == Item.FilledTri || currentitem == Item.Tri)
                 {
                     if (!fv1) {
@@ -939,11 +941,11 @@ namespace FinalProject_NetCore
             TextureBrush trb2 = new TextureBrush(texture2);
             TextureBrush trb3 = new TextureBrush(texture3);
             TextureBrush trb4 = new TextureBrush(texture4);
+            Cursor.Current = Cursors.Cross;
 
             switch (currentitem)
             {
 
-                
 
                 case Item.FilledRect1:
                     g.FillRectangle(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);
@@ -995,8 +997,25 @@ namespace FinalProject_NetCore
                 case Item.Ellipse:
                     g.DrawEllipse(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
+                case Item.RedEyeRemover:
+                    Bitmap tempp = (Bitmap)ptb_main.Image;
+                    for (int i = x; i < lx; i++)
+                    {
+                        for (int j = y; j < ly ; j++)
+                        {
+                            Color pixel = tempp.GetPixel(i, j);
+                            float redIntensity = ((float)pixel.R / ((pixel.G + pixel.B) / 2));
+                            if (redIntensity > 1.5f)  // 1.5 because it gives the best results
+                            {
+                                // reduce red to the average of blue and green
+                                tempp.SetPixel(i, j, Color.FromArgb((pixel.G + pixel.B) / 2, pixel.G, pixel.B));
+                            }
+                        }
+                    }
+                    ptb_main.Image = tempp;
+                    break;
                 case Item.CropImage:
-                    Cursor = Cursors.Default;
+                    
                     int w = lx - x;
                     int h = ly - y;
 
