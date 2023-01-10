@@ -45,7 +45,7 @@ namespace FinalProject_NetCore
             FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
             FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
             Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket,
-            FilledStar, Star, FilledPenta, Penta
+            FilledArrow, Arrow, FilledPenta, Penta
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -808,12 +808,16 @@ namespace FinalProject_NetCore
 
         private void toolStripButton16_Click(object sender, EventArgs e)
         {
-            currentitem = Item.Star;
+            currentitem = Item.Arrow;
         }
-
         private void toolStripButton17_Click(object sender, EventArgs e)
         {
             currentitem = Item.Penta;
+        }
+
+        private void toolStripButton18_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledArrow;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
@@ -1158,21 +1162,7 @@ namespace FinalProject_NetCore
                     Point[] ps = { p1, p2, p3, p4, p5 };
                     g.FillPolygon(new SolidBrush(paintcolor), ps);
                     break;
-                case Item.Star:
-                    int w_s1 = lx - x;
-                    int h_s1 = ly - y;
-                    Point p11 = new Point(x + w_s1 / 2, y);
-                    Point p21 = new Point(lx + w_s1 * 1/5, y + h_s1 * 7 / 16);
-                    Point p31 = new Point(lx, ly);
-                    Point p41 = new Point(lx - w_s1, ly);
-                    Point p51 = new Point(x - w_s1 * 1/5, y + h_s1 * 7 / 16);
-               
-                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p11, p31);
-                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p51, p21);
-                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p31, p51);
-                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p21, p41);
-                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p41, p11);
-                    break;
+                
                 case Item.Penta:
                     int w_s2 = lx - x;
                     int h_s2 = ly - y;
@@ -1184,6 +1174,32 @@ namespace FinalProject_NetCore
                     Point[] ps2 = { p12, p22, p32, p42, p52 };
                     g.DrawPolygon(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), ps2);
                     
+                    break;
+                case Item.Arrow:
+                    int w_ar = lx - x;
+                    int h_ar = ly - y;
+                    Point ar1 = new Point(x, y + h_ar * 1/3);
+                    Point ar2 = new Point(x + w_ar * 3 / 4, y + h_ar * 1 / 3);
+                    Point ar3 = new Point(x + w_ar * 3 / 4, y);
+                    Point ar4 = new Point(lx, ly - h_ar * 1 / 2);
+                    Point ar5 = new Point(lx - w_ar * 1 / 4, ly);
+                    Point ar6 = new Point(lx - w_ar * 1 / 4, ly - h_ar * 1 / 3);
+                    Point ar7 = new Point(x, y + h_ar * 2/3);
+                    Point[] par = { ar1, ar2, ar3, ar4, ar5, ar6, ar7 };
+                    g.DrawPolygon(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), par);
+                    break;
+                case Item.FilledArrow:
+                    int w_ar1 = lx - x;
+                    int h_ar1 = ly - y;
+                    Point ar11 = new Point(x, y + h_ar1 * 1 / 3);
+                    Point ar21 = new Point(x + w_ar1 * 3 / 4, y + h_ar1 * 1 / 3);
+                    Point ar31 = new Point(x + w_ar1 * 3 / 4, y);
+                    Point ar41 = new Point(lx, ly - h_ar1 * 1 / 2);
+                    Point ar51 = new Point(lx - w_ar1 * 1 / 4, ly);
+                    Point ar61 = new Point(lx - w_ar1 * 1 / 4, ly - h_ar1 * 1 / 3);
+                    Point ar71 = new Point(x, y + h_ar1 * 2 / 3);
+                    Point[] par1 = { ar11, ar21, ar31, ar41, ar51, ar61, ar71 };
+                    g.FillPolygon(new SolidBrush(paintcolor), par1);
                     break;
                 case Item.CropImage:
                     
