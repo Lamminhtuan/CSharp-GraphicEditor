@@ -127,6 +127,7 @@
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -161,7 +162,8 @@
             this.bộLọcToolStripMenuItem,
             this.côngCụToolStripMenuItem,
             this.thôngTinToolStripMenuItem,
-            this.chiaSẻQuaFacebookToolStripMenuItem});
+            this.chiaSẻQuaFacebookToolStripMenuItem,
+            this.undoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -184,7 +186,7 @@
             // 
             this.tạoMớiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tạoMớiToolStripMenuItem.Image")));
             this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
-            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
             this.tạoMớiToolStripMenuItem.Click += new System.EventHandler(this.tạoMớiToolStripMenuItem_Click);
             // 
@@ -192,7 +194,7 @@
             // 
             this.mởTậpTinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mởTậpTinToolStripMenuItem.Image")));
             this.mởTậpTinToolStripMenuItem.Name = "mởTậpTinToolStripMenuItem";
-            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.mởTậpTinToolStripMenuItem.Text = "Mở tập tin";
             this.mởTậpTinToolStripMenuItem.Click += new System.EventHandler(this.mởTậpTinToolStripMenuItem_Click);
             // 
@@ -200,7 +202,7 @@
             // 
             this.lưuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("lưuToolStripMenuItem.Image")));
             this.lưuToolStripMenuItem.Name = "lưuToolStripMenuItem";
-            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.lưuToolStripMenuItem.Text = "Lưu";
             this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
             // 
@@ -225,7 +227,6 @@
             this.xoayToolStripMenuItem.Name = "xoayToolStripMenuItem";
             this.xoayToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.xoayToolStripMenuItem.Text = "Xoay";
-            this.xoayToolStripMenuItem.Click += new System.EventHandler(this.xoayToolStripMenuItem_Click);
             // 
             // xoayTráiToolStripMenuItem
             // 
@@ -435,7 +436,6 @@
             this.pn_adjust.Name = "pn_adjust";
             this.pn_adjust.Size = new System.Drawing.Size(181, 431);
             this.pn_adjust.TabIndex = 2;
-            this.pn_adjust.Paint += new System.Windows.Forms.PaintEventHandler(this.pn_adjust_Paint);
             // 
             // pictureBox2
             // 
@@ -578,7 +578,6 @@
             this.pictureBox5.Size = new System.Drawing.Size(31, 28);
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox4
             // 
@@ -589,7 +588,6 @@
             this.pictureBox4.Size = new System.Drawing.Size(31, 28);
             this.pictureBox4.TabIndex = 4;
             this.pictureBox4.TabStop = false;
-            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 
@@ -621,7 +619,6 @@
             this.ptb_palette.Size = new System.Drawing.Size(175, 139);
             this.ptb_palette.TabIndex = 2;
             this.ptb_palette.TabStop = false;
-            this.ptb_palette.Click += new System.EventHandler(this.ptb_palette_Click);
             this.ptb_palette.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseDown);
             this.ptb_palette.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseMove);
             this.ptb_palette.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseUp);
@@ -862,7 +859,6 @@
             this.toolStrip2.Size = new System.Drawing.Size(34, 389);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
-            this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
             // 
             // toolStripButton4
             // 
@@ -918,7 +914,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "Hình chữ nhật rỗng";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton5
@@ -1128,6 +1124,14 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
             // 
+            // undoToolStripMenuItem
+            // 
+            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
+            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.undoToolStripMenuItem.Text = "Undo";
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1285,5 +1289,6 @@
         private ToolStripButton toolStripButton14;
         private Label lb_tool;
         private ListView listView1;
+        private ToolStripMenuItem undoToolStripMenuItem;
     }
 }

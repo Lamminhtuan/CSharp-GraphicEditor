@@ -16,8 +16,9 @@ namespace FinalProject_NetCore
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
-        
-        
+
+        Image<Bgr, byte> prev;
+        Size prevsize;
         Color paintcolor = Color.Black;
         bool choose = false;
         bool draw = false;
@@ -135,6 +136,7 @@ namespace FinalProject_NetCore
         private void xoayTráiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.Rotate270FlipNone);
             Bitmap rotated = bmp;
             int oldwidth = ptb_main.Width;
@@ -142,13 +144,17 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
+            prevsize = currentsize;
+            
             currentsize = ptb_main.Size;
             ptb_main.Image = bmp;
+            
         }
 
         private void xoayPhảiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
             Bitmap rotated = bmp;
             int oldwidth = ptb_main.Width;
@@ -156,13 +162,15 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
-            currentsize= ptb_main.Size;
+            prevsize = currentsize;
+            currentsize = ptb_main.Size;
             ptb_main.Image = bmp;
         }
 
         private void xoay180ĐộToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
             Bitmap rotated = bmp;
          
@@ -174,6 +182,7 @@ namespace FinalProject_NetCore
         private void lậtGươngNgangToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
             Bitmap rotated = bmp; 
           
@@ -185,6 +194,7 @@ namespace FinalProject_NetCore
         private void lậtGươngDọcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
             Bitmap rotated = bmp; 
            
@@ -196,6 +206,7 @@ namespace FinalProject_NetCore
         private void ảnhXámToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Gray, byte> gray = img.Convert<Gray, byte>();
             ori_filter = gray.Convert<Bgr, byte>();
@@ -212,6 +223,7 @@ namespace FinalProject_NetCore
         private void âmBảnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.Not();
             ori_filter = neg;
@@ -221,6 +233,7 @@ namespace FinalProject_NetCore
         private void làmMờToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.SmoothGaussian(25);
             ori_filter = neg;
@@ -230,6 +243,7 @@ namespace FinalProject_NetCore
         private void mờToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
 
@@ -240,6 +254,7 @@ namespace FinalProject_NetCore
         private void vẽBútChìĐenTrắngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
             Mat output_gray = new Mat();
@@ -252,6 +267,7 @@ namespace FinalProject_NetCore
         private void vẽBútChìMàuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
             Mat output_gray = new Mat();
@@ -265,6 +281,7 @@ namespace FinalProject_NetCore
         private void hDRToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
            
@@ -282,6 +299,7 @@ namespace FinalProject_NetCore
         private void mùaHèToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ori_rotate.ToBitmap();
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
             Matrix<double> kernel = new Matrix<double>(3,3);
@@ -300,31 +318,12 @@ namespace FinalProject_NetCore
             ptb_main.Image = output.ToBitmap();
         }
 
-        private void xoayToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void khửMắtĐỏToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-       
-
-        private void pn_adjust_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void cânBằngHistogramToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            
-        }
+  
 
         private void cânBằngHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
             Image<Gray, byte> gray = img.Convert<Gray, byte>();
@@ -339,6 +338,7 @@ namespace FinalProject_NetCore
         private void cânBằngTrắngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
           
@@ -354,6 +354,7 @@ namespace FinalProject_NetCore
         private void tranhSơnDầuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
+            prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> neg = img.SmoothBilateral(25, 85, 85);
             Mat output = new Mat();
@@ -365,6 +366,7 @@ namespace FinalProject_NetCore
         private void xóaNềnXanhToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap inp = (Bitmap)ptb_main.Image;
+            prev = inp.ToImage<Bgr, byte>();
             Bitmap output = new Bitmap(inp.Width, inp.Height);
             for (int y = 0; y < inp.Height; y++)
             {
@@ -432,11 +434,6 @@ namespace FinalProject_NetCore
             }
         }
 
-        private void pictureBox4_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ptb_adjust_Click(object sender, EventArgs e)
         {
             pn_adjust.Visible = true;
@@ -455,7 +452,8 @@ namespace FinalProject_NetCore
             {
 
                 Graphics g = Graphics.FromImage(ptb_main.Image);
-
+                Bitmap cur = (Bitmap)ptb_main.Image;
+                prev = cur.ToImage<Bgr, byte>();
                 switch (currentitem)
                 {
                     case Item.Brush:
@@ -584,10 +582,6 @@ namespace FinalProject_NetCore
             
         }
 
-        private void toolStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void chiaSẻQuaFacebookToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -742,18 +736,27 @@ namespace FinalProject_NetCore
 
             ptb_main.Image = new1;
             ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+            Bitmap bmp = (Bitmap)ptb_main.Image;
+            ptb_main.Invalidate();
+            ori_filter = bmp.ToImage<Bgr, byte>();
+            ori_rotate = ori_filter;
         }
 
-        private void ptb_palette_Click(object sender, EventArgs e)
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ptb_main.Image = prev.ToBitmap();
+            currentsize = prevsize;
+            ptb_main.Size = currentsize;
+            ori_filter = prev;
+            ori_rotate = ori_filter;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
             try
             {
-                
+                Bitmap cur = (Bitmap)ptb_main.Image;
+                prev = cur.ToImage<Bgr, byte>();
                 Graphics g = Graphics.FromImage(ptb_main.Image);
                 if (currentitem == Item.Bucket)
                 {
@@ -994,6 +997,8 @@ namespace FinalProject_NetCore
             draw = false;
             lx = (e.X * ratio);
             ly = (e.Y * ratio);
+            Bitmap cur = (Bitmap)ptb_main.Image;
+            prev = cur.ToImage<Bgr, byte>();
             Graphics g = Graphics.FromImage(ptb_main.Image);
 
             Image texture1 = Image.FromFile("./images/texture1.png");
@@ -1082,7 +1087,7 @@ namespace FinalProject_NetCore
                     int w = lx - x;
                     int h = ly - y;
 
-
+                    prevsize = currentsize;
                     Bitmap bmp2 = (Bitmap)ptb_main.Image;
                     Bitmap crpImg = new Bitmap(w, h);
                     for (int i = 0; i < w; i++)
@@ -1115,7 +1120,7 @@ namespace FinalProject_NetCore
                     ratio = crpImg.Width / ptb_main.Width;
                 
                     ptb_main.Image = (Image)crpImg;
-                    ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+                    currentsize = ptb_main.Size;
                     break;
                 case Item.FilledTri:
                     /*g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
