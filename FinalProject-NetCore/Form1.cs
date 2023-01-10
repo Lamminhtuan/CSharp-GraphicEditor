@@ -11,6 +11,16 @@ namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
     {
+        Image imgToPaste;
+        Color hatchbg = Color.Black;
+        Color hatchfg = Color.White;
+        Color grad1 = Color.Black;
+        Color grad2 = Color.White;
+        LinearGradientMode mode;
+        LinearGradientBrush lgb;
+        HatchStyle style = new HatchStyle();
+        bool usehatch = false;
+        bool usegrad = false;
         List<string> imageurls = new List<string>();
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
@@ -35,21 +45,21 @@ namespace FinalProject_NetCore
         bool fv1 = false;
         bool fv2 = false;
         bool fv3 = false;
-        
+
         public Form1()
         {
             InitializeComponent();
         }
         public enum Item
         {
-            FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
-            FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
+            FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, FilledRect5, FilledRect6, Rectangle,
+            FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, FilledEll5, FilledEll6, Ellipse,
             Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket,
-            FilledArrow, Arrow, FilledPenta, Penta, ZoomIn, ZoomOut
+            FilledArrow, Arrow, FilledPenta, Penta, ZoomIn, ZoomOut, ImageInImage
         }
         private void AddToRecent(string url)
         {
-            for (int i = 0; i < imageurls.Count; i++){
+            for (int i = 0; i < imageurls.Count; i++) {
                 if (imageurls[i] == url)
                     return;
 
@@ -68,7 +78,7 @@ namespace FinalProject_NetCore
                 AddToRecent(ofd.FileName);
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
                 prev = img;
-              
+
                 if (img.Height >= 1080)
                 {
                     ptb_main.Width = (int)img.Width / 3;
@@ -87,8 +97,8 @@ namespace FinalProject_NetCore
                     ptb_main.Width = (int)img.Width / 1;
                     ptb_main.Height = (int)img.Height / 1;
                 }
-                
-                
+
+
 
                 ori = img;
                 ori_rotate = ori;
@@ -100,9 +110,9 @@ namespace FinalProject_NetCore
                 currentsize = orisize;
                 prevsize = currentsize;
                 ptb_main.BackColor = Color.Transparent;
-              
+
                 ptb_main.Image = img.ToBitmap();
-       
+
                 ptb_main.Invalidate();
 
             }
@@ -116,7 +126,7 @@ namespace FinalProject_NetCore
                 Image<Bgr, byte> inp = bmp.ToImage<Bgr, byte>();
                 double currentcontrast = (double)bar_contrast.Value / 100;
                 var imgoutput = ori_filter.Mul(currentcontrast) + bar_brightness.Value;
-              
+
                 ptb_main.Image = imgoutput.AsBitmap();
             }
             catch (Exception ex)
@@ -127,11 +137,23 @@ namespace FinalProject_NetCore
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ptb_fg.BackColor = hatchfg;
+            ptb_bg.BackColor = hatchbg;
            
+            cb_hatch.Items.Add(HatchStyle.Cross.ToString());
+            cb_hatch.Items.Add(HatchStyle.OutlinedDiamond.ToString());
+            cb_hatch.Items.Add(HatchStyle.SmallCheckerBoard.ToString());
+            cb_hatch.Items.Add(HatchStyle.SmallConfetti.ToString());
+            cb_hatch.Items.Add(HatchStyle.Wave.ToString());
+            cb_hatch.Items.Add(HatchStyle.ZigZag.ToString());
+            cb_hatch.Items.Add(HatchStyle.Divot.ToString());
+            cb_hatch.Items.Add(HatchStyle.Percent10.ToString());
+            cb_hatch.Items.Add(HatchStyle.Sphere.ToString());
+            cb_hatch.Items.Add(HatchStyle.HorizontalBrick.ToString());
             FontFamily[] ffm = FontFamily.Families;
             foreach (FontFamily f in ffm)
                 ts_fontcb.Items.Add(f.GetName(1).ToString());
-            for (int i = 8; i<100;i+=2)
+            for (int i = 8; i < 100; i += 2)
                 ts_brushsize.Items.Add(i.ToString());
         }
 
@@ -162,10 +184,10 @@ namespace FinalProject_NetCore
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             prevsize = currentsize;
-            
+
             currentsize = ptb_main.Size;
             ptb_main.Image = bmp;
-            
+
         }
 
         private void xoayPhảiToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,7 +212,7 @@ namespace FinalProject_NetCore
             prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.Rotate180FlipNone);
             Bitmap rotated = bmp;
-         
+
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -201,8 +223,8 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipX);
-            Bitmap rotated = bmp; 
-          
+            Bitmap rotated = bmp;
+
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -213,8 +235,8 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             prev = bmp.ToImage<Bgr, byte>();
             bmp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-            Bitmap rotated = bmp; 
-           
+            Bitmap rotated = bmp;
+
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
             ptb_main.Image = bmp;
@@ -292,7 +314,7 @@ namespace FinalProject_NetCore
             CvInvoke.PencilSketch(img, output_gray, output, 60, (float)0.07, (float)0.07);
             ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
-            
+
         }
 
         private void hDRToolStripMenuItem_Click(object sender, EventArgs e)
@@ -301,7 +323,7 @@ namespace FinalProject_NetCore
             prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
-           
+
             Mat output = new Mat();
             CvInvoke.DetailEnhance(img, output, (float)12.0, (float)0.15);
             ori_filter = output.ToImage<Bgr, byte>();
@@ -310,7 +332,7 @@ namespace FinalProject_NetCore
 
         private void ptb_main_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void mùaHèToolStripMenuItem_Click(object sender, EventArgs e)
@@ -319,7 +341,7 @@ namespace FinalProject_NetCore
             prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
             float[,] array = new float[2, 4] { { 0, 64, 128, 256 }, { 0, 80, 160, 256 } };
-            Matrix<double> kernel = new Matrix<double>(3,3);
+            Matrix<double> kernel = new Matrix<double>(3, 3);
             kernel[0, 0] = 0.272;
             kernel[0, 1] = 0.534;
             kernel[0, 2] = 0.131;
@@ -335,7 +357,7 @@ namespace FinalProject_NetCore
             ptb_main.Image = output.ToBitmap();
         }
 
-  
+
 
         private void cânBằngHistogramToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -349,7 +371,7 @@ namespace FinalProject_NetCore
 
             ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
-          
+
         }
 
         private void cânBằngTrắngToolStripMenuItem_Click(object sender, EventArgs e)
@@ -358,16 +380,16 @@ namespace FinalProject_NetCore
             prev = bmp.ToImage<Bgr, byte>();
             Image<Bgr, byte> img = bmp.ToImage<Bgr, byte>();
 
-          
+
             Mat output = new Mat();
- 
+
             var wb = new LearningBasedWB();
             wb.BalanceWhite(img, output);
             ori_filter = output.ToImage<Bgr, byte>();
             ptb_main.Image = output.ToBitmap();
-    
+
         }
-       
+
         private void tranhSơnDầuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Bitmap bmp = (Bitmap)ptb_main.Image;
@@ -465,6 +487,7 @@ namespace FinalProject_NetCore
 
         private void ptb_adjust_Click(object sender, EventArgs e)
         {
+            pn_hatch.Visible = false;
             pn_adjust.Visible = true;
             pn_color.Visible = false;
         }
@@ -472,6 +495,7 @@ namespace FinalProject_NetCore
         private void ptb_color_Click(object sender, EventArgs e)
         {
             pn_adjust.Visible = false;
+            pn_hatch.Visible = false;
             pn_color.Visible = true;
         }
 
@@ -507,10 +531,10 @@ namespace FinalProject_NetCore
                 g.Dispose();
                 ptb_main.Refresh();
             }
-           
 
-       
-            
+
+
+
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -619,7 +643,7 @@ namespace FinalProject_NetCore
                 ptb_main.Image = b;
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ori_filter = bmp.ToImage<Bgr, byte>();
-               
+
                 ori_rotate = ori_filter;
             }
         }
@@ -649,7 +673,7 @@ namespace FinalProject_NetCore
                 ts_btn_drawtext.BackColor = Color.Red;
             }
 
-            
+
         }
 
 
@@ -657,24 +681,24 @@ namespace FinalProject_NetCore
         {
             fb_form f = new fb_form();
             f.ShowDialog();
-            
+
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-          
-                
-
-                if (WindowState == FormWindowState.Normal)
-                {
-                    ptb_main.Size = orisize;
-                }
-                if (WindowState == FormWindowState.Maximized)
-                {
-                    ptb_main.Size = orisize * 2;
 
 
-                }
+
+            if (WindowState == FormWindowState.Normal)
+            {
+                ptb_main.Size = orisize;
+            }
+            if (WindowState == FormWindowState.Maximized)
+            {
+                ptb_main.Size = orisize * 2;
+
+
+            }
             if (ptb_main.Image != null)
             {
                 Bitmap bmp = ori.ToBitmap();
@@ -753,7 +777,15 @@ namespace FinalProject_NetCore
 
         private void ts_btn_aim_Click(object sender, EventArgs e)
         {
-            ptb_main.Image = null;
+            currentitem = Item.ImageInImage;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;...";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                imgToPaste = Image.FromFile(ofd.FileName);
+                Bitmap tmp = new Bitmap(imgToPaste, new Size(imgToPaste.Width / 2, imgToPaste.Height / 2));
+                imgToPaste = (Image)tmp;
+            }
         }
 
         private void toolStripButton13_Click(object sender, EventArgs e)
@@ -765,7 +797,7 @@ namespace FinalProject_NetCore
         private void ptb_review_Click(object sender, EventArgs e)
         {
 
-                    }
+        }
 
         private void toolStripButton14_Click(object sender, EventArgs e)
         {
@@ -781,9 +813,9 @@ namespace FinalProject_NetCore
 
         private void lb_tool_Click(object sender, EventArgs e)
         {
-            
+
         }
-            
+
         private void tạoMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new_form nf = new new_form();
@@ -794,14 +826,14 @@ namespace FinalProject_NetCore
                 {
                     ptb_main.Width = (int)newcanvas.width / 3;
                     ptb_main.Height = (int)newcanvas.height / 3;
-             
+
 
                 }
                 else if (newcanvas.width >= 940 || newcanvas.height >= 497)
                 {
                     ptb_main.Width = (int)newcanvas.width / 2;
                     ptb_main.Height = (int)newcanvas.height / 2;
-                  
+
 
                 }
 
@@ -809,11 +841,11 @@ namespace FinalProject_NetCore
                 {
                     ptb_main.Width = (int)newcanvas.width / 1;
                     ptb_main.Height = (int)newcanvas.height / 1;
-               
+
                 }
 
                 orisize = ptb_main.Size;
-                
+
                 prevsize = orisize;
                 Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
                 Graphics g = Graphics.FromImage(new1);
@@ -882,7 +914,7 @@ namespace FinalProject_NetCore
             ptb_main.Height += Convert.ToInt32(scalefactor / constantWH);
             ptb_main.Width += scalefactor;
             Bitmap bori = ori.ToBitmap();
-            ratio = (float)bori. Width / ptb_main.Width;
+            ratio = (float)bori.Width / ptb_main.Width;
             lb_tool.Text = "Phóng to";
         }
 
@@ -902,7 +934,7 @@ namespace FinalProject_NetCore
             listView1.Items.Clear();
             imageList1.Images.Clear();
             for (int i = 0; i < imageurls.Count; i++) {
-                imageList1.Images.Add(Image.FromFile(imageurls[i]));    
+                imageList1.Images.Add(Image.FromFile(imageurls[i]));
             }
             listView1.LargeImageList = imageList1;
             for (int i = 0; i < imageurls.Count; i++)
@@ -954,6 +986,117 @@ namespace FinalProject_NetCore
 
             ptb_main.Invalidate();
             listView1.Visible = false;
+        }
+
+        private void ptb_hatch_Click(object sender, EventArgs e)
+        {
+            pn_adjust.Visible = false;
+            pn_color.Visible = false;
+            pn_hatch.Visible = true;
+        }
+
+        private void pn_hatch_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btn_bg_Click(object sender, EventArgs e)
+        {
+            ColorDialog cld = new ColorDialog();
+            if (cld.ShowDialog() == DialogResult.OK)
+            {
+                hatchbg = cld.Color;
+                ptb_bg.BackColor = hatchbg;
+            }
+        }
+
+        private void btn_fg_Click(object sender, EventArgs e)
+        {
+            ColorDialog cld = new ColorDialog();
+            if (cld.ShowDialog() == DialogResult.OK)
+            {
+                hatchfg = cld.Color;
+                ptb_fg.BackColor = hatchfg;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            //cb_hatch.Items.Add(HatchStyle.Cross.ToString());
+            //cb_hatch.Items.Add(HatchStyle.OutlinedDiamond.ToString());
+            //cb_hatch.Items.Add(HatchStyle.SmallCheckerBoard.ToString());
+            //cb_hatch.Items.Add(HatchStyle.SmallConfetti.ToString());
+            //cb_hatch.Items.Add(HatchStyle.Wave.ToString());
+            //cb_hatch.Items.Add(HatchStyle.ZigZag.ToString());
+            //cb_hatch.Items.Add(HatchStyle.Divot.ToString());
+            //cb_hatch.Items.Add(HatchStyle.Percent10.ToString());
+            //cb_hatch.Items.Add(HatchStyle.Sphere.ToString());
+            //cb_hatch.Items.Add(HatchStyle.HorizontalBrick.ToString());
+            usehatch = true;
+            usegrad = false;
+            string str = cb_hatch.Text;
+            switch (str) {
+                case "LargeGrid":
+                    style = HatchStyle.LargeGrid;
+                    break;
+                case "OutlinedDiamond":
+                    style = HatchStyle.OutlinedDiamond;
+                    break;
+                case "SmallCheckerBoard":
+                    style = HatchStyle.SmallCheckerBoard;
+                    break;
+                case "SmallConfetti":
+                    style = HatchStyle.SmallConfetti;
+                    break;
+                case "Wave":
+                    style = HatchStyle.Wave;
+                    break;
+                case "ZigZag":
+                    style = HatchStyle.ZigZag;
+                    break;
+                case "Divot":
+                    style = HatchStyle.Divot;
+                    break;
+                case "Percent10":
+                    style = HatchStyle.Percent10;
+                    break;
+                case "Sphere":
+                    style = HatchStyle.Sphere;
+                    break;
+                case "HorizontalBrick":
+                    style = HatchStyle.HorizontalBrick;
+                    break;
+            }
+            Graphics g = ptb_hatchtest.CreateGraphics();
+            HatchBrush b = new HatchBrush(style, hatchfg, hatchbg);
+            g.FillRectangle(b, 0, 0, ptb_hatchtest.Width, ptb_hatchtest.Height);
+            g.Dispose();
+        }
+
+        private void ptb_hatchtest_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bar_red_Scroll(object sender, EventArgs e)
+        {
+            ptb_ccolor.BackColor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+            lb_bar_r.Text = bar_red.Value.ToString();
+            paintcolor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+        }
+
+        private void bar_green_Scroll(object sender, EventArgs e)
+        {
+            ptb_ccolor.BackColor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+            lb_bar_g.Text = bar_red.Value.ToString();
+            paintcolor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+        }
+
+        private void bar_blue_Scroll(object sender, EventArgs e)
+        {
+            ptb_ccolor.BackColor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+            lb_bar_b.Text = bar_red.Value.ToString();
+            paintcolor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
@@ -1181,6 +1324,9 @@ namespace FinalProject_NetCore
                         }
                     }
                 }
+                if(currentitem == Item.ImageInImage)
+                     g.DrawImage(imgToPaste, new PointF(e.X * ratio, e.Y * ratio));
+       
 
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ptb_main.Invalidate();
@@ -1215,6 +1361,10 @@ namespace FinalProject_NetCore
             TextureBrush trb2 = new TextureBrush(texture2);
             TextureBrush trb3 = new TextureBrush(texture3);
             TextureBrush trb4 = new TextureBrush(texture4);
+            HatchBrush hb = new HatchBrush(HatchStyle.SolidDiamond, Color.Orchid);
+
+            Rectangle rect = new Rectangle(x, y, lx, ly);
+            LinearGradientBrush lgb = new LinearGradientBrush(rect, Color.PaleVioletRed, Color.Blue, LinearGradientMode.Horizontal);
             Cursor.Current = Cursors.Cross;
 
             switch (currentitem)
@@ -1224,7 +1374,10 @@ namespace FinalProject_NetCore
                     g.FillRectangle(trb1, x, y, (int)Math.Round(e.X * ratio - x), (int)Math.Round(e.Y * ratio - y));
                     break;
                 case Item.FilledRect:
-                    g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    if (usehatch)
+                        g.FillRectangle(new HatchBrush(style, hatchfg, hatchbg), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    else
+                        g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
                 case Item.FilledRect2:
                     g.FillRectangle(trb2, x, y, e.X * ratio - x, e.Y * ratio - y);
@@ -1237,7 +1390,13 @@ namespace FinalProject_NetCore
                 case Item.FilledRect4:
                     g.FillRectangle(trb4, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
+                case Item.FilledEll5:
+                    g.FillEllipse(hb, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
 
+                case Item.FilledEll6:
+                    g.FillEllipse(lgb, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
                 case Item.Rectangle:
                     g.DrawRectangle(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
@@ -1248,6 +1407,11 @@ namespace FinalProject_NetCore
 
                 // fill ellipse
                 case Item.FilledEll:
+                    if (usehatch)
+
+                        g.FillEllipse(new HatchBrush(style, hatchfg, hatchbg), x, y, e.X * ratio - x, e.Y * ratio - y);
+                  
+                    else
                     g.FillEllipse(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
@@ -1266,7 +1430,7 @@ namespace FinalProject_NetCore
                 case Item.FilledEll4:
                     g.FillEllipse(trb4, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
-
+               
                 case Item.Ellipse:
                     g.DrawEllipse(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
@@ -1288,6 +1452,7 @@ namespace FinalProject_NetCore
                     ptb_main.Image = tempp;
                     break;
                 case Item.FilledPenta:
+
                     int w_s = lx - x;
                     int h_s = ly - y;
                     Point p1 = new Point(x + w_s / 2, y);
@@ -1296,7 +1461,10 @@ namespace FinalProject_NetCore
                     Point p4 = new Point(lx - w_s, ly);
                     Point p5 = new Point(x - w_s * 1 / 5, y + h_s * 7 / 16);
                     Point[] ps = { p1, p2, p3, p4, p5 };
-                    g.FillPolygon(new SolidBrush(paintcolor), ps);
+                    if (usehatch)
+                        g.FillPolygon(new HatchBrush(style, hatchfg, hatchbg), ps);
+                    else
+                        g.FillPolygon(new SolidBrush(paintcolor), ps);
                     break;
                 
                 case Item.Penta:
@@ -1322,6 +1490,7 @@ namespace FinalProject_NetCore
                     Point ar6 = new Point(lx - w_ar * 1 / 4, ly - h_ar * 1 / 3);
                     Point ar7 = new Point(x, y + h_ar * 2/3);
                     Point[] par = { ar1, ar2, ar3, ar4, ar5, ar6, ar7 };
+                    
                     g.DrawPolygon(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), par);
                     break;
                 case Item.FilledArrow:
@@ -1335,8 +1504,14 @@ namespace FinalProject_NetCore
                     Point ar61 = new Point(lx - w_ar1 * 1 / 4, ly - h_ar1 * 1 / 3);
                     Point ar71 = new Point(x, y + h_ar1 * 2 / 3);
                     Point[] par1 = { ar11, ar21, ar31, ar41, ar51, ar61, ar71 };
-                    g.FillPolygon(new SolidBrush(paintcolor), par1);
+                    if (usehatch)
+                        g.FillPolygon(new HatchBrush(style, hatchfg, hatchbg), par1);
+                    else
+                        g.FillPolygon(new SolidBrush(paintcolor), par1);
                     break;
+                //case Item.ImageInImage:
+                //    g.DrawImage(imgToPaste, new Point(lx, ly));
+                //    break;
                 case Item.CropImage:
                     
                     int w = lx - x;
@@ -1386,8 +1561,10 @@ namespace FinalProject_NetCore
                         Point point2 = v2;
                         Point point3 = v3;
                         Point[] points = { point1, point2, point3 };
-
-                        g.FillPolygon(new SolidBrush(paintcolor), points);
+                        if (usehatch)
+                            g.FillPolygon(new HatchBrush(style, hatchfg, hatchbg), points);
+                        else
+                            g.FillPolygon(new SolidBrush(paintcolor), points);
                         /*g.DrawLine(new Pen(new SolidBrush(paintcolor)), point1, point2);
                         g.DrawLine(new Pen(new SolidBrush(paintcolor)), point1, point3);
                         g.DrawLine(new Pen(new SolidBrush(paintcolor)), point2, point3);*/

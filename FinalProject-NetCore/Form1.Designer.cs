@@ -33,9 +33,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tạoMớiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gầnĐâyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mởTậpTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lưuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gầnĐâyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ảnhGốcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xoayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,6 +83,15 @@
             this.bar_green = new System.Windows.Forms.TrackBar();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.bar_red = new System.Windows.Forms.TrackBar();
+            this.pn_hatch = new System.Windows.Forms.Panel();
+            this.ptb_hatchtest = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.ptb_fg = new System.Windows.Forms.PictureBox();
+            this.ptb_bg = new System.Windows.Forms.PictureBox();
+            this.btn_fg = new System.Windows.Forms.Button();
+            this.btn_bg = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cb_hatch = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.ts_fontcb = new System.Windows.Forms.ToolStripComboBox();
@@ -131,7 +140,7 @@
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton20 = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.ptb_hatch = new System.Windows.Forms.PictureBox();
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
             this.pnlZoom = new System.Windows.Forms.Panel();
@@ -155,9 +164,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar_green)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_red)).BeginInit();
+            this.pn_hatch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_hatchtest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_fg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_bg)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_hatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).BeginInit();
             this.pnlZoom.SuspendLayout();
             this.SuspendLayout();
@@ -197,9 +210,17 @@
             // 
             this.tạoMớiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tạoMớiToolStripMenuItem.Image")));
             this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
-            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
+            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
             this.tạoMớiToolStripMenuItem.Click += new System.EventHandler(this.tạoMớiToolStripMenuItem_Click);
+            // 
+            // gầnĐâyToolStripMenuItem
+            // 
+            this.gầnĐâyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("gầnĐâyToolStripMenuItem.Image")));
+            this.gầnĐâyToolStripMenuItem.Name = "gầnĐâyToolStripMenuItem";
+            this.gầnĐâyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.gầnĐâyToolStripMenuItem.Text = "Gần đây";
+            this.gầnĐâyToolStripMenuItem.Click += new System.EventHandler(this.gầnĐâyToolStripMenuItem_Click);
             // 
             // mởTậpTinToolStripMenuItem
             // 
@@ -216,14 +237,6 @@
             this.lưuToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.lưuToolStripMenuItem.Text = "Lưu";
             this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
-            // 
-            // gầnĐâyToolStripMenuItem
-            // 
-            this.gầnĐâyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("gầnĐâyToolStripMenuItem.Image")));
-            this.gầnĐâyToolStripMenuItem.Name = "gầnĐâyToolStripMenuItem";
-            this.gầnĐâyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.gầnĐâyToolStripMenuItem.Text = "Gần đây";
-            this.gầnĐâyToolStripMenuItem.Click += new System.EventHandler(this.gầnĐâyToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -660,6 +673,7 @@
             this.bar_blue.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.bar_blue.Size = new System.Drawing.Size(45, 190);
             this.bar_blue.TabIndex = 0;
+            this.bar_blue.Scroll += new System.EventHandler(this.bar_blue_Scroll);
             // 
             // bar_green
             // 
@@ -671,6 +685,7 @@
             this.bar_green.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.bar_green.Size = new System.Drawing.Size(45, 190);
             this.bar_green.TabIndex = 0;
+            this.bar_green.Scroll += new System.EventHandler(this.bar_green_Scroll);
             // 
             // trackBar1
             // 
@@ -692,6 +707,102 @@
             this.bar_red.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.bar_red.Size = new System.Drawing.Size(45, 190);
             this.bar_red.TabIndex = 0;
+            this.bar_red.Scroll += new System.EventHandler(this.bar_red_Scroll);
+            // 
+            // pn_hatch
+            // 
+            this.pn_hatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pn_hatch.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.pn_hatch.Controls.Add(this.ptb_hatchtest);
+            this.pn_hatch.Controls.Add(this.button1);
+            this.pn_hatch.Controls.Add(this.ptb_fg);
+            this.pn_hatch.Controls.Add(this.ptb_bg);
+            this.pn_hatch.Controls.Add(this.btn_fg);
+            this.pn_hatch.Controls.Add(this.btn_bg);
+            this.pn_hatch.Controls.Add(this.label4);
+            this.pn_hatch.Controls.Add(this.cb_hatch);
+            this.pn_hatch.Location = new System.Drawing.Point(1024, 124);
+            this.pn_hatch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pn_hatch.Name = "pn_hatch";
+            this.pn_hatch.Size = new System.Drawing.Size(181, 429);
+            this.pn_hatch.TabIndex = 8;
+            this.pn_hatch.Paint += new System.Windows.Forms.PaintEventHandler(this.pn_hatch_Paint);
+            // 
+            // ptb_hatchtest
+            // 
+            this.ptb_hatchtest.Location = new System.Drawing.Point(5, 175);
+            this.ptb_hatchtest.Name = "ptb_hatchtest";
+            this.ptb_hatchtest.Size = new System.Drawing.Size(173, 47);
+            this.ptb_hatchtest.TabIndex = 13;
+            this.ptb_hatchtest.TabStop = false;
+            this.ptb_hatchtest.Click += new System.EventHandler(this.ptb_hatchtest_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(55, 138);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 31);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Áp dụng";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // ptb_fg
+            // 
+            this.ptb_fg.Location = new System.Drawing.Point(5, 109);
+            this.ptb_fg.Name = "ptb_fg";
+            this.ptb_fg.Size = new System.Drawing.Size(75, 23);
+            this.ptb_fg.TabIndex = 11;
+            this.ptb_fg.TabStop = false;
+            // 
+            // ptb_bg
+            // 
+            this.ptb_bg.Location = new System.Drawing.Point(5, 80);
+            this.ptb_bg.Name = "ptb_bg";
+            this.ptb_bg.Size = new System.Drawing.Size(75, 23);
+            this.ptb_bg.TabIndex = 11;
+            this.ptb_bg.TabStop = false;
+            // 
+            // btn_fg
+            // 
+            this.btn_fg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_fg.Location = new System.Drawing.Point(82, 109);
+            this.btn_fg.Name = "btn_fg";
+            this.btn_fg.Size = new System.Drawing.Size(96, 23);
+            this.btn_fg.TabIndex = 10;
+            this.btn_fg.Text = "Chọn màu FG";
+            this.btn_fg.UseVisualStyleBackColor = true;
+            this.btn_fg.Click += new System.EventHandler(this.btn_fg_Click);
+            // 
+            // btn_bg
+            // 
+            this.btn_bg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_bg.Location = new System.Drawing.Point(82, 80);
+            this.btn_bg.Name = "btn_bg";
+            this.btn_bg.Size = new System.Drawing.Size(96, 23);
+            this.btn_bg.TabIndex = 10;
+            this.btn_bg.Text = "Chọn màu BG";
+            this.btn_bg.UseVisualStyleBackColor = true;
+            this.btn_bg.Click += new System.EventHandler(this.btn_bg_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(4, 25);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(126, 25);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Kiểu hoa văn";
+            // 
+            // cb_hatch
+            // 
+            this.cb_hatch.FormattingEnabled = true;
+            this.cb_hatch.Location = new System.Drawing.Point(3, 51);
+            this.cb_hatch.Name = "cb_hatch";
+            this.cb_hatch.Size = new System.Drawing.Size(174, 23);
+            this.cb_hatch.TabIndex = 8;
             // 
             // toolStrip1
             // 
@@ -1167,17 +1278,17 @@
             this.toolStripButton20.Text = "Thu nhỏ";
             this.toolStripButton20.Click += new System.EventHandler(this.toolStripButton20_Click);
             // 
-            // pictureBox6
+            // ptb_hatch
             // 
-            this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox6.Location = new System.Drawing.Point(1137, 66);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(46, 52);
-            this.pictureBox6.TabIndex = 3;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Click += new System.EventHandler(this.ptb_color_Click);
+            this.ptb_hatch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ptb_hatch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_hatch.BackgroundImage")));
+            this.ptb_hatch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ptb_hatch.Location = new System.Drawing.Point(1137, 66);
+            this.ptb_hatch.Name = "ptb_hatch";
+            this.ptb_hatch.Size = new System.Drawing.Size(46, 52);
+            this.ptb_hatch.TabIndex = 3;
+            this.ptb_hatch.TabStop = false;
+            this.ptb_hatch.Click += new System.EventHandler(this.ptb_hatch_Click);
             // 
             // ptb_main
             // 
@@ -1228,7 +1339,7 @@
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(978, 491);
+            this.listView1.Size = new System.Drawing.Size(859, 606);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
@@ -1246,6 +1357,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1205, 586);
+            this.Controls.Add(this.pn_hatch);
             this.Controls.Add(this.pn_color);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.pnlZoom);
@@ -1253,7 +1365,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pn_adjust);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.ptb_hatch);
             this.Controls.Add(this.ptb_color);
             this.Controls.Add(this.ptb_adjust);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1286,11 +1398,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar_green)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_red)).EndInit();
+            this.pn_hatch.ResumeLayout(false);
+            this.pn_hatch.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_hatchtest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_fg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_bg)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptb_hatch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).EndInit();
             this.pnlZoom.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1389,7 +1506,7 @@
         private ToolStripMenuItem toolStripMenuItem8;
         private ToolStripButton toolStripButton11;
         private ToolStripButton toolStripButton12;
-        private PictureBox pictureBox6;
+        private PictureBox ptb_hatch;
         private ToolStripButton ts_btn_aim;
         private ToolStripButton toolStripButton13;
         private ToolStripMenuItem khửMắtĐỏToolStripMenuItem;
@@ -1407,5 +1524,14 @@
         private Panel pnlZoom;
         private ListView listView1;
         private ImageList imageList1;
+        private Panel pn_hatch;
+        private Label label4;
+        private ComboBox cb_hatch;
+        private PictureBox ptb_fg;
+        private PictureBox ptb_bg;
+        private Button btn_fg;
+        private Button btn_bg;
+        private Button button1;
+        private PictureBox ptb_hatchtest;
     }
 }
