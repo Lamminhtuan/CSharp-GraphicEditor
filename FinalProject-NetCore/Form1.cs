@@ -131,6 +131,7 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
+            orisize = ptb_main.Size;
             ptb_main.Image = bmp;
         }
 
@@ -144,6 +145,7 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
+            orisize = ptb_main.Size;
             ptb_main.Image = bmp;
         }
 
@@ -462,7 +464,7 @@ namespace FinalProject_NetCore
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ptb_main.Invalidate();
                 ori_filter = bmp.ToImage<Bgr, byte>();
-
+                ori_rotate = ori_filter;
                 g.Dispose();
             }
             //else if (currentitem == Item.CropImage)
@@ -848,7 +850,7 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
-       
+            ori_rotate = ori_filter;
             g.Dispose();
           
             draw = true;
@@ -972,8 +974,8 @@ namespace FinalProject_NetCore
             Bitmap bmp = (Bitmap)ptb_main.Image;
             ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
-            
-            
+            ori_rotate = ori_filter;
+
             g.Dispose();
             
         }
