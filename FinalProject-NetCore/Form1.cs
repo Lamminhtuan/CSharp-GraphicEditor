@@ -4,6 +4,8 @@ using Emgu.CV.XPhoto;
 using System.Drawing.Imaging;
 using System.Drawing;
 using Facebook;
+using System.Drawing.Drawing2D;
+
 namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
@@ -20,6 +22,7 @@ namespace FinalProject_NetCore
         bool drawtext = false;
         Item currentitem;
         int x, y, lx, ly;
+        public Pen crpPen = new Pen(Color.White);
         Size orisize;
         float ratio;
 
@@ -34,7 +37,9 @@ namespace FinalProject_NetCore
         }
         public enum Item
         {
-            FilledRect, Rectangle, FilledEll, Ellipse, Line, Text, Brush, Pencil, eraser, ColorPicker
+            FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
+            FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
+            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,7 +74,7 @@ namespace FinalProject_NetCore
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
-                ptb_main.BackColor = Color.Transparent;
+                ptb_main.BackColor = Color.Red;
                 ptb_main.Image = img.ToBitmap();
 
             }
@@ -432,12 +437,13 @@ namespace FinalProject_NetCore
 
         private void ptb_main_MouseMove(object sender, MouseEventArgs e)
         {
-            if (draw)
+            if (draw && currentitem != Item.CropImage)
             {
 
                 Graphics g = Graphics.FromImage(ptb_main.Image);
 
-                switch (currentitem) {
+                switch (currentitem)
+                {
                     case Item.Brush:
                         g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y * ratio, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
                         break;
@@ -448,18 +454,35 @@ namespace FinalProject_NetCore
                         break;
                     case Item.Pencil:
 
-                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y *ratio, 5, 5);
-                           
+                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y * ratio, 5, 5);
+
                         break;
 
                 }
-
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ptb_main.Invalidate();
                 ori_filter = bmp.ToImage<Bgr, byte>();
 
                 g.Dispose();
             }
+            //else if (currentitem == Item.CropImage)
+            //{
+            
+            //    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            //    {
+            //        ptb_main.Refresh();
+            //        // set W and H for crop rectangel
+            //        lx = (int)Math.Round(e.X * ratio - x);
+            //        ly = (int)Math.Round(e.Y * ratio - y);
+            //        Graphics g = Graphics.FromImage(ptb_main.Image);
+            //        crpPen.Width = 2; // crop width pen
+            //        g.DrawRectangle(crpPen, x, y, lx, ly);
+            //        g.Dispose();
+            //    }
+            //}
+
+       
+            
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -570,6 +593,68 @@ namespace FinalProject_NetCore
             {
                 ptb_main.Size = orisize * 2;
             }
+        }
+
+        //test 
+        private void toolStripButton11_Click_1(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect2;
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect3;
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect1;
+
+        }
+
+        private void toolStripMenuItem2_Click_1(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect2;
+        }
+
+        private void toolStripMenuItem3_Click_1(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect3;
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect4;
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll1;
+        }
+
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll2;
+        }
+
+        private void toolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll3;
+        }
+
+        private void toolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll4;
+        }
+
+        private void toolStripButton11_Click_2(object sender, EventArgs e)
+        {
+            currentitem = Item.CropImage;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
@@ -777,11 +862,37 @@ namespace FinalProject_NetCore
             lx = (int)Math.Round(e.X * ratio);
             ly = (int)Math.Round(e.Y * ratio);
             Graphics g = Graphics.FromImage(ptb_main.Image);
-  
+
+            Image texture1 = Image.FromFile("./images/texture1.png");
+            Image texture2 = Image.FromFile("./images/texture2.png");
+            Image texture3 = Image.FromFile("./images/texture3.png");
+            Image texture4 = Image.FromFile("./images/texture4.png");
+            TextureBrush trb1 = new TextureBrush(texture1);
+            TextureBrush trb2 = new TextureBrush(texture2);
+            TextureBrush trb3 = new TextureBrush(texture3);
+            TextureBrush trb4 = new TextureBrush(texture4);
+
             switch (currentitem)
             {
+                //filledrect
                 case Item.FilledRect:
                     g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledRect1:
+                    g.FillRectangle(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledRect2:
+                    g.FillRectangle(trb2, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledRect3:
+                    g.FillRectangle(trb3, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledRect4:
+                    g.FillRectangle(trb4, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Rectangle:
@@ -792,19 +903,77 @@ namespace FinalProject_NetCore
                     g.DrawLine(new Pen(new SolidBrush(paintcolor)), new Point(x, y), new Point(lx, ly));
                     break;
 
+                // fill ellipse
                 case Item.FilledEll:
                     g.FillEllipse(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledEll1:
+                    g.FillEllipse(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledEll2:
+                    g.FillEllipse(trb2, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledEll3:
+                    g.FillEllipse(trb3, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledEll4:
+                    g.FillEllipse(trb4, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
 
                 case Item.Ellipse:
                     g.DrawEllipse(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
+                case Item.CropImage:
+                    Cursor = Cursors.Default;
+                    int w = lx - x;
+                    int h = ly - y;
+
+
+                    Bitmap bmp2 = (Bitmap)ptb_main.Image;
+                    Bitmap crpImg = new Bitmap(w, h);
+                    for (int i = 0; i < w; i++)
+                    {
+                        for (int j = 0; j < h; j++)
+                        {
+                            Color pxlclr = bmp2.GetPixel(x + i, y + j);
+                            crpImg.SetPixel(i, j, pxlclr);
+                        }
+                    }
+                    if (crpImg.Height > 1080)
+                    {
+                        ptb_main.Width = (int)crpImg.Width / 3;
+                        ptb_main.Height = (int)crpImg.Height / 3;
+
+                    }
+                    else if (crpImg.Width > 940 || crpImg.Height > 497)
+                    {
+                        ptb_main.Width = (int)crpImg.Width / 2;
+                        ptb_main.Height = (int)crpImg.Height / 2;
+
+                    }
+
+                    else
+                    {
+                        ptb_main.Width = (int)crpImg.Width / 1;
+                        ptb_main.Height = (int)crpImg.Height / 1;
+                    }
+                    this.Invalidate();
+                    ratio = (float)crpImg.Width / ptb_main.Width;
+                
+                    ptb_main.Image = (Image)crpImg;
+                    ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+                    break;
+                    
             }
             Bitmap bmp = (Bitmap)ptb_main.Image;
             ptb_main.Invalidate();
             ori_filter = bmp.ToImage<Bgr, byte>();
-
-
+            
+            
             g.Dispose();
             
         }
