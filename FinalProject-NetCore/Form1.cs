@@ -772,6 +772,7 @@ namespace FinalProject_NetCore
                 ptb_main.Height = (int)newcanvas.height / 1;
                 ratio = 1;
             }
+         
             orisize = ptb_main.Size;
             prevsize = orisize;
             Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
@@ -782,6 +783,7 @@ namespace FinalProject_NetCore
             ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
             Bitmap bmp = (Bitmap)ptb_main.Image;
             ptb_main.Invalidate();
+            prev = bmp.ToImage<Bgr, byte>();
             ori_filter = bmp.ToImage<Bgr, byte>();
             ori_rotate = ori_filter;
         }
