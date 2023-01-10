@@ -35,6 +35,7 @@
             this.tạoMớiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mởTậpTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lưuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gầnĐâyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ảnhGốcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xoayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -129,9 +130,12 @@
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton20 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
+            this.pnlZoom = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -155,6 +159,7 @@
             this.toolStrip2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).BeginInit();
+            this.pnlZoom.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -172,7 +177,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1159, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1205, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -181,7 +186,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tạoMớiToolStripMenuItem,
             this.mởTậpTinToolStripMenuItem,
-            this.lưuToolStripMenuItem});
+            this.lưuToolStripMenuItem,
+            this.gầnĐâyToolStripMenuItem});
             this.fileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
@@ -210,6 +216,13 @@
             this.lưuToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.lưuToolStripMenuItem.Text = "Lưu";
             this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
+            // 
+            // gầnĐâyToolStripMenuItem
+            // 
+            this.gầnĐâyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("gầnĐâyToolStripMenuItem.Image")));
+            this.gầnĐâyToolStripMenuItem.Name = "gầnĐâyToolStripMenuItem";
+            this.gầnĐâyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.gầnĐâyToolStripMenuItem.Text = "Gần đây";
             // 
             // undoToolStripMenuItem
             // 
@@ -445,7 +458,7 @@
             this.pn_adjust.Controls.Add(this.bar_contrast);
             this.pn_adjust.Controls.Add(this.bar_zoom);
             this.pn_adjust.Controls.Add(this.bar_brightness);
-            this.pn_adjust.Location = new System.Drawing.Point(981, 124);
+            this.pn_adjust.Location = new System.Drawing.Point(1027, 124);
             this.pn_adjust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_adjust.Name = "pn_adjust";
             this.pn_adjust.Size = new System.Drawing.Size(181, 431);
@@ -517,7 +530,7 @@
             this.ptb_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_color.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_color.BackgroundImage")));
             this.ptb_color.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptb_color.Location = new System.Drawing.Point(1039, 66);
+            this.ptb_color.Location = new System.Drawing.Point(1085, 66);
             this.ptb_color.Name = "ptb_color";
             this.ptb_color.Size = new System.Drawing.Size(46, 52);
             this.ptb_color.TabIndex = 3;
@@ -529,7 +542,7 @@
             this.ptb_adjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_adjust.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_adjust.BackgroundImage")));
             this.ptb_adjust.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptb_adjust.Location = new System.Drawing.Point(983, 67);
+            this.ptb_adjust.Location = new System.Drawing.Point(1029, 67);
             this.ptb_adjust.Name = "ptb_adjust";
             this.ptb_adjust.Size = new System.Drawing.Size(47, 51);
             this.ptb_adjust.TabIndex = 3;
@@ -558,7 +571,7 @@
             this.pn_color.Controls.Add(this.bar_green);
             this.pn_color.Controls.Add(this.trackBar1);
             this.pn_color.Controls.Add(this.bar_red);
-            this.pn_color.Location = new System.Drawing.Point(981, 123);
+            this.pn_color.Location = new System.Drawing.Point(1027, 123);
             this.pn_color.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_color.Name = "pn_color";
             this.pn_color.Size = new System.Drawing.Size(181, 429);
@@ -716,7 +729,7 @@
             this.ts_btn_aim});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1159, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1205, 27);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -882,11 +895,13 @@
             this.toolStripButton9,
             this.toolStripButton10,
             this.toolStripButton11,
-            this.toolStripButton14});
+            this.toolStripButton14,
+            this.toolStripButton19,
+            this.toolStripButton20});
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.toolStrip2.Location = new System.Drawing.Point(7, 60);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 34);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(34, 516);
+            this.toolStrip2.Size = new System.Drawing.Size(34, 551);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -1144,12 +1159,32 @@
             this.toolStripButton14.Text = "Đổ màu";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
+            // toolStripButton19
+            // 
+            this.toolStripButton19.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton19.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton19.Image")));
+            this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton19.Name = "toolStripButton19";
+            this.toolStripButton19.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton19.Text = "toolStripButton19";
+            this.toolStripButton19.Click += new System.EventHandler(this.toolStripButton19_Click);
+            // 
+            // toolStripButton20
+            // 
+            this.toolStripButton20.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton20.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton20.Image")));
+            this.toolStripButton20.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton20.Name = "toolStripButton20";
+            this.toolStripButton20.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton20.Text = "toolStripButton20";
+            this.toolStripButton20.Click += new System.EventHandler(this.toolStripButton20_Click);
+            // 
             // pictureBox6
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox6.Location = new System.Drawing.Point(1091, 66);
+            this.pictureBox6.Location = new System.Drawing.Point(1137, 66);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(46, 52);
             this.pictureBox6.TabIndex = 3;
@@ -1159,7 +1194,7 @@
             // ptb_main
             // 
             this.ptb_main.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_main.Location = new System.Drawing.Point(230, 57);
+            this.ptb_main.Location = new System.Drawing.Point(3, 2);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
             this.ptb_main.Size = new System.Drawing.Size(524, 338);
@@ -1177,21 +1212,32 @@
             this.lb_tool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lb_tool.AutoSize = true;
             this.lb_tool.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lb_tool.Location = new System.Drawing.Point(12, 542);
+            this.lb_tool.Location = new System.Drawing.Point(40, 564);
             this.lb_tool.Name = "lb_tool";
-            this.lb_tool.Size = new System.Drawing.Size(0, 21);
+            this.lb_tool.Size = new System.Drawing.Size(181, 21);
             this.lb_tool.TabIndex = 6;
+            this.lb_tool.Text = "Công cụ đang sử dụng";
             this.lb_tool.Click += new System.EventHandler(this.lb_tool_Click);
+            // 
+            // pnlZoom
+            // 
+            this.pnlZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlZoom.AutoScroll = true;
+            this.pnlZoom.Controls.Add(this.ptb_main);
+            this.pnlZoom.Location = new System.Drawing.Point(37, 58);
+            this.pnlZoom.Name = "pnlZoom";
+            this.pnlZoom.Size = new System.Drawing.Size(938, 497);
+            this.pnlZoom.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1159, 572);
-            this.Controls.Add(this.lb_tool);
-            this.Controls.Add(this.ptb_main);
+            this.ClientSize = new System.Drawing.Size(1205, 586);
             this.Controls.Add(this.toolStrip2);
+            this.Controls.Add(this.pnlZoom);
+            this.Controls.Add(this.lb_tool);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.pn_color);
             this.Controls.Add(this.pn_adjust);
@@ -1236,6 +1282,7 @@
             this.toolStrip2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).EndInit();
+            this.pnlZoom.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1345,5 +1392,9 @@
         private ToolStripButton toolStripButton16;
         private ToolStripButton toolStripButton17;
         private ToolStripButton toolStripButton18;
+        private ToolStripMenuItem gầnĐâyToolStripMenuItem;
+        private ToolStripButton toolStripButton19;
+        private ToolStripButton toolStripButton20;
+        private Panel pnlZoom;
     }
 }

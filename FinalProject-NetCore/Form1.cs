@@ -16,7 +16,7 @@ namespace FinalProject_NetCore
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
-
+        int scalefactor = 20;
         Image<Bgr, byte> prev;
         Size prevsize;
         Color paintcolor = Color.Black;
@@ -28,7 +28,7 @@ namespace FinalProject_NetCore
         public Pen crpPen = new Pen(Color.White);
         Size currentsize;
         Size orisize;
-        int ratio;
+        float ratio;
         //Point
         Point v1;
         Point v2;
@@ -45,7 +45,7 @@ namespace FinalProject_NetCore
             FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
             FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
             Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket,
-            FilledArrow, Arrow, FilledPenta, Penta
+            FilledArrow, Arrow, FilledPenta, Penta, ZoomIn, ZoomOut
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -398,7 +398,9 @@ namespace FinalProject_NetCore
 
         private void ảnhGốcToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Bitmap oribitmap = ori.ToBitmap();
             ptb_main.Image = ori.ToBitmap();
+            ratio = (int)oribitmap.Width / orisize.Width;
             bar_brightness.Value = 0;
             bar_contrast.Value = 100;
             ptb_main.Size = orisize;
@@ -460,16 +462,16 @@ namespace FinalProject_NetCore
                 switch (currentitem)
                 {
                     case Item.Brush:
-                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y * ratio, Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
+                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
                         break;
 
                     case Item.eraser:
-                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), e.X * ratio, e.Y * ratio,
+                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
                             Convert.ToInt32(ts_brushsize.Text), Convert.ToInt32(ts_brushsize.Text));
                         break;
                     case Item.Pencil:
 
-                        g.FillEllipse(new SolidBrush(paintcolor), e.X * ratio, e.Y * ratio, 5, 5);
+                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), 5, 5);
 
                         break;
 
@@ -589,7 +591,7 @@ namespace FinalProject_NetCore
                 Bitmap b = (Bitmap)ptb_main.Image;
                 prev = old.ToImage<Bgr, byte>();
                 Color color = b.GetPixel(e.X, e.Y);
-                Fill(b, e.X * ratio, e.Y * ratio, paintcolor);
+                Fill(b, (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), paintcolor);
                 ptb_main.Image = b;
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ori_filter = bmp.ToImage<Bgr, byte>();
@@ -820,6 +822,27 @@ namespace FinalProject_NetCore
             currentitem = Item.FilledArrow;
         }
 
+        private void toolStripButton19_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.ZoomIn;
+            float constantWH = (ptb_main.Image.Width / ptb_main.Image.Height);
+            ptb_main.Height += Convert.ToInt32(scalefactor / constantWH);
+            ptb_main.Width += scalefactor;
+            Bitmap bori = ori.ToBitmap();
+            ratio = (float)bori. Width / ptb_main.Width;
+            lb_tool.Text = "Phóng to";
+        }
+
+        private void toolStripButton20_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.ZoomOut;
+            ptb_main.Height -= scalefactor;
+            ptb_main.Width -= scalefactor;
+            Bitmap bori = ori.ToBitmap();
+            ratio = (float)bori.Width / ptb_main.Width;
+            lb_tool.Text = "Thu nhỏ";
+        }
+
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
             try
@@ -836,16 +859,16 @@ namespace FinalProject_NetCore
                 if (currentitem == Item.FilledTri || currentitem == Item.Tri)
                 {
                     if (!fv1) {
-                        int x = e.X * ratio;
-                        int y = e.Y * ratio;
+                        int x = (int)Math.Round(e.X * ratio);
+                        int y = (int)Math.Round(e.Y * ratio);
                         Point temp = new Point(x, y);
                         v1 = temp;
                         fv1 = true;
                     }
                     else if (fv1 && !fv2)
                     {
-                        int x = e.X * ratio;
-                        int y = e.Y * ratio;
+                        int x = (int)Math.Round(e.X * ratio);
+                        int y = (int)Math.Round(e.Y * ratio);
                         Point temp = new Point(x, y);
                         v2 = temp;
                        
@@ -853,8 +876,8 @@ namespace FinalProject_NetCore
                     }
                     else if (fv1 && fv2 && !fv3)
                     {
-                        int x = e.X * ratio;
-                        int y = e.Y * ratio;
+                        int x = (int)Math.Round(e.X * ratio);
+                        int y = (int)Math.Round(e.Y * ratio);
                         Point temp = new Point(x, y);
 
                         fv3 = true;
@@ -1053,8 +1076,8 @@ namespace FinalProject_NetCore
                 g.Dispose();
                 ptb_main.Refresh();
                 draw = true;
-                x = (e.X * ratio);
-                y = (e.Y * ratio);
+                x = (int)Math.Round(e.X * ratio);
+                y = (int)Math.Round(e.Y * ratio);
             }
             catch
             {
@@ -1065,8 +1088,8 @@ namespace FinalProject_NetCore
         private void ptb_main_MouseUp(object sender, MouseEventArgs e)
         {
             draw = false;
-            lx = (e.X * ratio);
-            ly = (e.Y * ratio);
+            lx = (int)Math.Round(e.X * ratio);
+            ly = (int)Math.Round(e.Y * ratio);
             Bitmap cur = (Bitmap)ptb_main.Image;
 
             Graphics g = Graphics.FromImage(ptb_main.Image);
@@ -1085,7 +1108,7 @@ namespace FinalProject_NetCore
             {
 
                 case Item.FilledRect1:
-                    g.FillRectangle(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    g.FillRectangle(trb1, x, y, (int)Math.Round(e.X * ratio - x), (int)Math.Round(e.Y * ratio - y));
                     break;
                 case Item.FilledRect:
                     g.FillRectangle(new SolidBrush(paintcolor), x, y, e.X * ratio - x, e.Y * ratio - y);
