@@ -99,6 +99,7 @@
             this.ts_TxtShadow = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.ts_FontStyle = new System.Windows.Forms.ToolStripComboBox();
+            this.ts_btn_aim = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,6 +120,9 @@
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_main)).BeginInit();
             this.pn_adjust.SuspendLayout();
@@ -140,6 +144,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar_red)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -491,9 +496,9 @@
             this.ptb_color.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_color.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_color.BackgroundImage")));
             this.ptb_color.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptb_color.Location = new System.Drawing.Point(1081, 58);
+            this.ptb_color.Location = new System.Drawing.Point(1039, 66);
             this.ptb_color.Name = "ptb_color";
-            this.ptb_color.Size = new System.Drawing.Size(61, 61);
+            this.ptb_color.Size = new System.Drawing.Size(46, 52);
             this.ptb_color.TabIndex = 3;
             this.ptb_color.TabStop = false;
             this.ptb_color.Click += new System.EventHandler(this.ptb_color_Click);
@@ -503,9 +508,9 @@
             this.ptb_adjust.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ptb_adjust.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ptb_adjust.BackgroundImage")));
             this.ptb_adjust.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ptb_adjust.Location = new System.Drawing.Point(1014, 58);
+            this.ptb_adjust.Location = new System.Drawing.Point(983, 67);
             this.ptb_adjust.Name = "ptb_adjust";
-            this.ptb_adjust.Size = new System.Drawing.Size(61, 61);
+            this.ptb_adjust.Size = new System.Drawing.Size(47, 51);
             this.ptb_adjust.TabIndex = 3;
             this.ptb_adjust.TabStop = false;
             this.ptb_adjust.Click += new System.EventHandler(this.ptb_adjust_Click);
@@ -688,7 +693,8 @@
             this.toolStripLabel5,
             this.ts_TxtShadow,
             this.toolStripLabel6,
-            this.ts_FontStyle});
+            this.ts_FontStyle,
+            this.ts_btn_aim});
             this.toolStrip1.Location = new System.Drawing.Point(0, 28);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1159, 27);
@@ -824,6 +830,16 @@
             this.ts_FontStyle.Size = new System.Drawing.Size(93, 27);
             this.ts_FontStyle.Text = "Regular";
             // 
+            // ts_btn_aim
+            // 
+            this.ts_btn_aim.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ts_btn_aim.Image = ((System.Drawing.Image)(resources.GetObject("ts_btn_aim.Image")));
+            this.ts_btn_aim.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ts_btn_aim.Name = "ts_btn_aim";
+            this.ts_btn_aim.Size = new System.Drawing.Size(24, 24);
+            this.ts_btn_aim.Text = "toolStripButton13";
+            this.ts_btn_aim.Click += new System.EventHandler(this.ts_btn_aim_Click);
+            // 
             // toolStrip2
             // 
             this.toolStrip2.Anchor = System.Windows.Forms.AnchorStyles.Left;
@@ -840,11 +856,13 @@
             this.toolStripButton8,
             this.toolStripButton9,
             this.toolStripButton10,
-            this.toolStripButton11});
+            this.toolStripButton11,
+            this.toolStripButton12,
+            this.toolStripButton13});
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip2.Location = new System.Drawing.Point(7, 57);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(34, 308);
+            this.toolStrip2.Size = new System.Drawing.Size(34, 381);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
@@ -1033,6 +1051,38 @@
             this.toolStripButton11.Text = "toolStripButton11";
             this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click_2);
             // 
+            // toolStripButton12
+            // 
+            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
+            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton12.Name = "toolStripButton12";
+            this.toolStripButton12.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton12.Text = "toolStripButton12";
+            this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox6.Location = new System.Drawing.Point(1091, 66);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(46, 52);
+            this.pictureBox6.TabIndex = 3;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Click += new System.EventHandler(this.ptb_color_Click);
+            // 
+            // toolStripButton13
+            // 
+            this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
+            this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton13.Name = "toolStripButton13";
+            this.toolStripButton13.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton13.Text = "toolStripButton13";
+            this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1045,6 +1095,7 @@
             this.Controls.Add(this.pn_adjust);
             this.Controls.Add(this.ptb_main);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.ptb_color);
             this.Controls.Add(this.ptb_adjust);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -1082,6 +1133,7 @@
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1178,5 +1230,9 @@
         private ToolStripMenuItem toolStripMenuItem7;
         private ToolStripMenuItem toolStripMenuItem8;
         private ToolStripButton toolStripButton11;
+        private ToolStripButton toolStripButton12;
+        private PictureBox pictureBox6;
+        private ToolStripButton ts_btn_aim;
+        private ToolStripButton toolStripButton13;
     }
 }

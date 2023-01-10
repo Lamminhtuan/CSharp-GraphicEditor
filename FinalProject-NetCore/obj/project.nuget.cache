@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iK+ZBNA5q5s3E7hVa+UQlD1od/4yuIEW7DTEoHxo7DHoAwgYkXXCS9V+zJBl7s0EQGh2sS99r6mkCQ+X8p91+g==",
+  "dgSpecHash": "7JXeRdEnVPL2QA662FhENa7yOpCBpzQ9lDDOu+hiPrlE5MQJaZlgSofOaYHN6h1gxd+2RpxsD2MEwq5XXiObpQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tuan\\Downloads\\CSharp-GraphicEditor-namtest\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
+  "projectFilePath": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tuan\\.nuget\\packages\\emgu.cv\\4.6.0.5131\\emgu.cv.4.6.0.5131.nupkg.sha512",
     "C:\\Users\\Tuan\\.nuget\\packages\\emgu.cv.bitmap\\4.6.0.5131\\emgu.cv.bitmap.4.6.0.5131.nupkg.sha512",
