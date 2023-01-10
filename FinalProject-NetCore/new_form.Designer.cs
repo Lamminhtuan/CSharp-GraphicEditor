@@ -86,7 +86,7 @@
             this.txt_height.Location = new System.Drawing.Point(103, 47);
             this.txt_height.Name = "txt_height";
             this.txt_height.Size = new System.Drawing.Size(100, 23);
-            this.txt_height.TabIndex = 0;
+            this.txt_height.TabIndex = 1;
             this.txt_height.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txt_width
@@ -223,6 +223,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(261, 289);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btn_a4);

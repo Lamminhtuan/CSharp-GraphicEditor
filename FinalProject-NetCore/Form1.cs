@@ -3,7 +3,6 @@ using Emgu.CV.Structure;
 using Emgu.CV.XPhoto;
 using System.Drawing.Imaging;
 using System.Drawing;
-using Facebook;
 using System.Drawing.Drawing2D;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Edge;
@@ -12,7 +11,7 @@ namespace FinalProject_NetCore
 {
     public partial class Form1 : Form
     {
-
+        List<string> imageurls = new List<string>();
         Image<Bgr, byte> ori;
         Image<Bgr, byte> ori_rotate;
         Image<Bgr, byte> ori_filter;
@@ -36,6 +35,7 @@ namespace FinalProject_NetCore
         bool fv1 = false;
         bool fv2 = false;
         bool fv3 = false;
+        
         public Form1()
         {
             InitializeComponent();
@@ -47,17 +47,29 @@ namespace FinalProject_NetCore
             Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket,
             FilledArrow, Arrow, FilledPenta, Penta, ZoomIn, ZoomOut
         }
+        private void AddToRecent(string url)
+        {
+            for (int i = 0; i < imageurls.Count; i++){
+                if (imageurls[i] == url)
+                    return;
+
+            }
+            imageurls.Add(url);
+        }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
             currentitem = Item.None;
+            listView1.Visible = false;
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;...";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                AddToRecent(ofd.FileName);
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
                 prev = img;
-                if (img.Height > 1080)
+              
+                if (img.Height >= 1080)
                 {
                     ptb_main.Width = (int)img.Width / 3;
                     ptb_main.Height = (int)img.Height / 3;
@@ -75,14 +87,16 @@ namespace FinalProject_NetCore
                     ptb_main.Width = (int)img.Width / 1;
                     ptb_main.Height = (int)img.Height / 1;
                 }
-
-                ratio = img.Width / ptb_main.Width;
+                
+                
 
                 ori = img;
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
-                
+                if (WindowState == FormWindowState.Maximized)
+                    ptb_main.Size = orisize * 2;
+                ratio = (float)img.Width / ptb_main.Width;
                 currentsize = orisize;
                 prevsize = currentsize;
                 ptb_main.BackColor = Color.Transparent;
@@ -400,10 +414,20 @@ namespace FinalProject_NetCore
         {
             Bitmap oribitmap = ori.ToBitmap();
             ptb_main.Image = ori.ToBitmap();
-            ratio = (int)oribitmap.Width / orisize.Width;
             bar_brightness.Value = 0;
             bar_contrast.Value = 100;
-            ptb_main.Size = orisize;
+            if (WindowState == FormWindowState.Normal)
+            {
+                ptb_main.Size = orisize;
+            }
+            if (WindowState == FormWindowState.Maximized)
+            {
+                ptb_main.Size = orisize * 2;
+
+
+            }
+            ratio = (int)oribitmap.Width / orisize.Width;
+
         }
 
         private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
@@ -466,8 +490,8 @@ namespace FinalProject_NetCore
                         break;
 
                     case Item.eraser:
-                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
-                            Convert.ToInt32(ts_brushsize.Text), Convert.ToInt32(ts_brushsize.Text));
+                        g.FillEllipse(new SolidBrush(Color.Transparent), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
+                            Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
                         break;
                     case Item.Pencil:
 
@@ -638,13 +662,23 @@ namespace FinalProject_NetCore
 
         private void Form1_SizeChanged(object sender, EventArgs e)
         {
-             if (WindowState == FormWindowState.Normal)
+          
+                
+
+                if (WindowState == FormWindowState.Normal)
+                {
+                    ptb_main.Size = orisize;
+                }
+                if (WindowState == FormWindowState.Maximized)
+                {
+                    ptb_main.Size = orisize * 2;
+
+
+                }
+            if (ptb_main.Image != null)
             {
-                ptb_main.Size = orisize;
-            }
-            if (WindowState == FormWindowState.Maximized)
-            {
-                ptb_main.Size = orisize * 2;
+                Bitmap bmp = ori.ToBitmap();
+                ratio = (float)ori.Width / ptb_main.Width;
             }
         }
 
@@ -754,41 +788,56 @@ namespace FinalProject_NetCore
         {
             new_form nf = new new_form();
             nf.ShowDialog();
-            if (newcanvas.height >= 1080)
+            try
             {
-                ptb_main.Width = (int)newcanvas.width / 3;
-                ptb_main.Height = (int)newcanvas.height / 3;
-                ratio = 3;
+                if (newcanvas.height >= 1080)
+                {
+                    ptb_main.Width = (int)newcanvas.width / 3;
+                    ptb_main.Height = (int)newcanvas.height / 3;
+             
+
+                }
+                else if (newcanvas.width >= 940 || newcanvas.height >= 497)
+                {
+                    ptb_main.Width = (int)newcanvas.width / 2;
+                    ptb_main.Height = (int)newcanvas.height / 2;
+                  
+
+                }
+
+                else
+                {
+                    ptb_main.Width = (int)newcanvas.width / 1;
+                    ptb_main.Height = (int)newcanvas.height / 1;
+               
+                }
+
+                orisize = ptb_main.Size;
+                
+                prevsize = orisize;
+                Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
+                Graphics g = Graphics.FromImage(new1);
+                g.FillRectangle(new SolidBrush(newcanvas.bgcolor), new Rectangle(0, 0, newcanvas.width, newcanvas.height));
+
+                ptb_main.Image = new1;
+                ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                ptb_main.Invalidate();
+                prev = bmp.ToImage<Bgr, byte>();
+                ori_filter = bmp.ToImage<Bgr, byte>();
+                ori_rotate = ori_filter;
+                ori = ori_filter;
+                if (WindowState == FormWindowState.Maximized && new1.Width < 1900 && new1.Height < 1000)
+                    ptb_main.Size = new1.Size;
+                else
+                    ptb_main.Size = orisize * 2;
+                ratio = (float)new1.Width / ptb_main.Width;
+                g.Dispose();
+            }
+            catch
+            {
 
             }
-            else if (newcanvas.width >= 940 || newcanvas.height >= 497)
-            {
-                ptb_main.Width = (int)newcanvas.width / 2;
-                ptb_main.Height = (int)newcanvas.height / 2;
-                ratio = 2;
-
-            }
-
-            else
-            {
-                ptb_main.Width = (int)newcanvas.width / 1;
-                ptb_main.Height = (int)newcanvas.height / 1;
-                ratio = 1;
-            }
-         
-            orisize = ptb_main.Size;
-            prevsize = orisize;
-            Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
-            Graphics g = Graphics.FromImage(new1);
-            g.FillRectangle(new SolidBrush(newcanvas.bgcolor), new Rectangle(0, 0, newcanvas.width, newcanvas.height));
-
-            ptb_main.Image = new1;
-            ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
-            Bitmap bmp = (Bitmap)ptb_main.Image;
-            ptb_main.Invalidate();
-            prev = bmp.ToImage<Bgr, byte>();
-            ori_filter = bmp.ToImage<Bgr, byte>();
-            ori_rotate = ori_filter;
         }
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -806,20 +855,24 @@ namespace FinalProject_NetCore
         private void toolStripButton15_Click(object sender, EventArgs e)
         {
             currentitem = Item.FilledPenta;
+            lb_tool.Text = "Ngũ giác đặc";
         }
 
         private void toolStripButton16_Click(object sender, EventArgs e)
         {
             currentitem = Item.Arrow;
+            lb_tool.Text = "Mũi tên trái rỗng";
         }
         private void toolStripButton17_Click(object sender, EventArgs e)
         {
             currentitem = Item.Penta;
+            lb_tool.Text = "Ngũ giác rỗng";
         }
 
         private void toolStripButton18_Click(object sender, EventArgs e)
         {
             currentitem = Item.FilledArrow;
+            lb_tool.Text = "Mũi tên phải đặc";
         }
 
         private void toolStripButton19_Click(object sender, EventArgs e)
@@ -841,6 +894,66 @@ namespace FinalProject_NetCore
             Bitmap bori = ori.ToBitmap();
             ratio = (float)bori.Width / ptb_main.Width;
             lb_tool.Text = "Thu nhỏ";
+        }
+
+        private void gầnĐâyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.Visible = true;
+            listView1.Items.Clear();
+            imageList1.Images.Clear();
+            for (int i = 0; i < imageurls.Count; i++) {
+                imageList1.Images.Add(Image.FromFile(imageurls[i]));    
+            }
+            listView1.LargeImageList = imageList1;
+            for (int i = 0; i < imageurls.Count; i++)
+            {
+                listView1.Items.Add("", i);
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string path = imageurls[listView1.SelectedIndices[0]];
+            Bitmap open = new Bitmap(path);
+            Image<Bgr, byte> img = open.ToImage<Bgr, byte>();
+            prev = open.ToImage<Bgr, byte>();
+
+            if (img.Height >= 1080)
+            {
+                ptb_main.Width = (int)img.Width / 3;
+                ptb_main.Height = (int)img.Height / 3;
+
+            }
+            else if (img.Width > 940 || img.Height > 497)
+            {
+                ptb_main.Width = (int)img.Width / 2;
+                ptb_main.Height = (int)img.Height / 2;
+
+            }
+
+            else
+            {
+                ptb_main.Width = (int)img.Width / 1;
+                ptb_main.Height = (int)img.Height / 1;
+            }
+
+
+            ori = img;
+            ori_rotate = ori;
+            ori_filter = ori;
+            orisize = ptb_main.Size;
+            if (WindowState == FormWindowState.Maximized)
+                ptb_main.Size = orisize * 2;
+            currentsize = orisize;
+            prevsize = currentsize;
+            ratio = (float)img.Width / ptb_main.Width;
+
+            ptb_main.BackColor = Color.Transparent;
+
+            ptb_main.Image = img.ToBitmap();
+
+            ptb_main.Invalidate();
+            listView1.Visible = false;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)

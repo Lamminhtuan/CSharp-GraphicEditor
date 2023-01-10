@@ -66,7 +66,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bar_contrast = new System.Windows.Forms.TrackBar();
-            this.bar_zoom = new System.Windows.Forms.TrackBar();
             this.bar_brightness = new System.Windows.Forms.TrackBar();
             this.ptb_color = new System.Windows.Forms.PictureBox();
             this.ptb_adjust = new System.Windows.Forms.PictureBox();
@@ -136,12 +135,13 @@
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
             this.pnlZoom = new System.Windows.Forms.Panel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_contrast)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bar_zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_brightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_color)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_adjust)).BeginInit();
@@ -185,9 +185,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tạoMớiToolStripMenuItem,
+            this.gầnĐâyToolStripMenuItem,
             this.mởTậpTinToolStripMenuItem,
-            this.lưuToolStripMenuItem,
-            this.gầnĐâyToolStripMenuItem});
+            this.lưuToolStripMenuItem});
             this.fileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
@@ -197,7 +197,7 @@
             // 
             this.tạoMớiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tạoMớiToolStripMenuItem.Image")));
             this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
-            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
             this.tạoMớiToolStripMenuItem.Click += new System.EventHandler(this.tạoMớiToolStripMenuItem_Click);
             // 
@@ -223,6 +223,7 @@
             this.gầnĐâyToolStripMenuItem.Name = "gầnĐâyToolStripMenuItem";
             this.gầnĐâyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.gầnĐâyToolStripMenuItem.Text = "Gần đây";
+            this.gầnĐâyToolStripMenuItem.Click += new System.EventHandler(this.gầnĐâyToolStripMenuItem_Click);
             // 
             // undoToolStripMenuItem
             // 
@@ -456,7 +457,6 @@
             this.pn_adjust.Controls.Add(this.pictureBox2);
             this.pn_adjust.Controls.Add(this.pictureBox1);
             this.pn_adjust.Controls.Add(this.bar_contrast);
-            this.pn_adjust.Controls.Add(this.bar_zoom);
             this.pn_adjust.Controls.Add(this.bar_brightness);
             this.pn_adjust.Location = new System.Drawing.Point(1027, 124);
             this.pn_adjust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -469,7 +469,7 @@
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(121, 189);
+            this.pictureBox2.Location = new System.Drawing.Point(96, 200);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(34, 26);
@@ -481,7 +481,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(70, 189);
+            this.pictureBox1.Location = new System.Drawing.Point(45, 200);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(34, 26);
@@ -491,7 +491,7 @@
             // bar_contrast
             // 
             this.bar_contrast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bar_contrast.Location = new System.Drawing.Point(121, 219);
+            this.bar_contrast.Location = new System.Drawing.Point(96, 230);
             this.bar_contrast.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_contrast.Maximum = 500;
             this.bar_contrast.Name = "bar_contrast";
@@ -501,22 +501,10 @@
             this.bar_contrast.Value = 100;
             this.bar_contrast.Scroll += new System.EventHandler(this.bar_contrast_Scroll);
             // 
-            // bar_zoom
-            // 
-            this.bar_zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bar_zoom.Location = new System.Drawing.Point(19, 219);
-            this.bar_zoom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.bar_zoom.Maximum = 4;
-            this.bar_zoom.Name = "bar_zoom";
-            this.bar_zoom.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.bar_zoom.Size = new System.Drawing.Size(45, 190);
-            this.bar_zoom.TabIndex = 0;
-            this.bar_zoom.Scroll += new System.EventHandler(this.bar_brightness_Scroll);
-            // 
             // bar_brightness
             // 
             this.bar_brightness.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bar_brightness.Location = new System.Drawing.Point(70, 219);
+            this.bar_brightness.Location = new System.Drawing.Point(45, 230);
             this.bar_brightness.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.bar_brightness.Maximum = 100;
             this.bar_brightness.Name = "bar_brightness";
@@ -571,7 +559,7 @@
             this.pn_color.Controls.Add(this.bar_green);
             this.pn_color.Controls.Add(this.trackBar1);
             this.pn_color.Controls.Add(this.bar_red);
-            this.pn_color.Location = new System.Drawing.Point(1027, 123);
+            this.pn_color.Location = new System.Drawing.Point(1027, 124);
             this.pn_color.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_color.Name = "pn_color";
             this.pn_color.Size = new System.Drawing.Size(181, 429);
@@ -1026,7 +1014,7 @@
             this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton15.Name = "toolStripButton15";
             this.toolStripButton15.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton15.Text = "toolStripButton15";
+            this.toolStripButton15.Text = "Ngũ giác đặc";
             this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
             // 
             // toolStripButton17
@@ -1036,7 +1024,7 @@
             this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton17.Name = "toolStripButton17";
             this.toolStripButton17.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton17.Text = "toolStripButton17";
+            this.toolStripButton17.Text = "Ngũ giác rỗng";
             this.toolStripButton17.Click += new System.EventHandler(this.toolStripButton17_Click);
             // 
             // toolStripButton12
@@ -1046,7 +1034,7 @@
             this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton12.Name = "toolStripButton12";
             this.toolStripButton12.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton12.Text = "toolStripButton12";
+            this.toolStripButton12.Text = "Tam giác đặc";
             this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
             // 
             // toolStripButton13
@@ -1056,7 +1044,7 @@
             this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton13.Name = "toolStripButton13";
             this.toolStripButton13.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton13.Text = "Tam giác";
+            this.toolStripButton13.Text = "Tam giác rỗng";
             this.toolStripButton13.Click += new System.EventHandler(this.toolStripButton13_Click);
             // 
             // toolStripButton18
@@ -1066,7 +1054,7 @@
             this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton18.Name = "toolStripButton18";
             this.toolStripButton18.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton18.Text = "toolStripButton18";
+            this.toolStripButton18.Text = "Mũi tên đặc";
             this.toolStripButton18.Click += new System.EventHandler(this.toolStripButton18_Click);
             // 
             // toolStripButton16
@@ -1076,7 +1064,7 @@
             this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton16.Name = "toolStripButton16";
             this.toolStripButton16.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton16.Text = "toolStripButton16";
+            this.toolStripButton16.Text = "Mũi tên rỗng";
             this.toolStripButton16.Click += new System.EventHandler(this.toolStripButton16_Click);
             // 
             // toolStripButton3
@@ -1086,7 +1074,7 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Text = "Đường thẳng";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton6
@@ -1096,7 +1084,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton6.Text = "toolStripButton6";
+            this.toolStripButton6.Text = "Cọ vẽ";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton7
@@ -1106,7 +1094,7 @@
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton7.Text = "toolStripButton7";
+            this.toolStripButton7.Text = "Bút chì";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // toolStripButton8
@@ -1116,7 +1104,7 @@
             this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton8.Name = "toolStripButton8";
             this.toolStripButton8.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton8.Text = "toolStripButton8";
+            this.toolStripButton8.Text = "Color Picker";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
             // toolStripButton9
@@ -1126,7 +1114,7 @@
             this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton9.Name = "toolStripButton9";
             this.toolStripButton9.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton9.Text = "toolStripButton9";
+            this.toolStripButton9.Text = "Cục tẩy";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // toolStripButton10
@@ -1136,7 +1124,7 @@
             this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton10.Text = "toolStripButton10";
+            this.toolStripButton10.Text = "Chữ";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // toolStripButton11
@@ -1166,7 +1154,7 @@
             this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton19.Name = "toolStripButton19";
             this.toolStripButton19.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton19.Text = "toolStripButton19";
+            this.toolStripButton19.Text = "Phóng to";
             this.toolStripButton19.Click += new System.EventHandler(this.toolStripButton19_Click);
             // 
             // toolStripButton20
@@ -1176,7 +1164,7 @@
             this.toolStripButton20.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton20.Name = "toolStripButton20";
             this.toolStripButton20.Size = new System.Drawing.Size(32, 24);
-            this.toolStripButton20.Text = "toolStripButton20";
+            this.toolStripButton20.Text = "Thu nhỏ";
             this.toolStripButton20.Click += new System.EventHandler(this.toolStripButton20_Click);
             // 
             // pictureBox6
@@ -1221,13 +1209,36 @@
             // 
             // pnlZoom
             // 
-            this.pnlZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pnlZoom.AutoScroll = true;
+            this.pnlZoom.Controls.Add(this.listView1);
             this.pnlZoom.Controls.Add(this.ptb_main);
             this.pnlZoom.Location = new System.Drawing.Point(37, 58);
             this.pnlZoom.Name = "pnlZoom";
-            this.pnlZoom.Size = new System.Drawing.Size(938, 497);
+            this.pnlZoom.Size = new System.Drawing.Size(984, 497);
             this.pnlZoom.TabIndex = 7;
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView1.Location = new System.Drawing.Point(3, 3);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(978, 491);
+            this.listView1.TabIndex = 2;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(250, 200);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // Form1
             // 
@@ -1235,11 +1246,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1205, 586);
+            this.Controls.Add(this.pn_color);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.pnlZoom);
             this.Controls.Add(this.lb_tool);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.pn_color);
             this.Controls.Add(this.pn_adjust);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pictureBox6);
@@ -1261,7 +1272,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_contrast)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bar_zoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_brightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_color)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_adjust)).EndInit();
@@ -1387,7 +1397,6 @@
         private ToolStripButton toolStripButton14;
         private Label lb_tool;
         private ToolStripMenuItem undoToolStripMenuItem;
-        private TrackBar bar_zoom;
         private ToolStripButton toolStripButton15;
         private ToolStripButton toolStripButton16;
         private ToolStripButton toolStripButton17;
@@ -1396,5 +1405,7 @@
         private ToolStripButton toolStripButton19;
         private ToolStripButton toolStripButton20;
         private Panel pnlZoom;
+        private ListView listView1;
+        private ImageList imageList1;
     }
 }
