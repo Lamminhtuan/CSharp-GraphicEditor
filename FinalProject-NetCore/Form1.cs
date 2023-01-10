@@ -55,7 +55,7 @@ namespace FinalProject_NetCore
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
-
+                prev = img;
                 if (img.Height > 1080)
                 {
                     ptb_main.Width = (int)img.Width / 3;
@@ -81,7 +81,9 @@ namespace FinalProject_NetCore
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
+                
                 currentsize = orisize;
+                prevsize = currentsize;
                 ptb_main.BackColor = Color.Transparent;
               
                 ptb_main.Image = img.ToBitmap();
@@ -531,7 +533,35 @@ namespace FinalProject_NetCore
             currentitem = Item.ColorPicker;
             lb_tool.Text = "Công cụ chọn màu";
         }
+        private void validate(Bitmap bm, Stack<Point> sp, int px, int py, Color old_Color, Color new_color)
+        {
+            Color cx = bm.GetPixel(px, py);
+            if (cx == old_Color)
+            {
+                sp.Push(new Point(px, py));
+                bm.SetPixel(px, py, new_color);
+            }
+        }
+        public void Fill(Bitmap bm, int px, int py, Color new_color)
+        {
+            Color old_color = bm.GetPixel(px, py);
+            Stack<Point> pixel = new Stack<Point>();
+            pixel.Push(new Point(px, py));
+            bm.SetPixel(px, py, new_color);
+            if (old_color == new_color) return;
 
+            while (pixel.Count > 0)
+            {
+                Point pt = (Point)pixel.Pop();
+                if ((pt.X > 0) && (pt.Y > 0) && (pt.X < bm.Width - 1) && (pt.Y < bm.Height - 1))
+                {
+                    validate(bm, pixel, pt.X - 1, pt.Y, old_color, new_color);
+                    validate(bm, pixel, pt.X, pt.Y - 1, old_color, new_color);
+                    validate(bm, pixel, pt.X + 1, pt.Y, old_color, new_color);
+                    validate(bm, pixel, pt.X, pt.Y + 1, old_color, new_color);
+                }
+            }
+        }
         private void ptb_main_MouseClick(object sender, MouseEventArgs e)
         {
             if (currentitem == Item.ColorPicker)
@@ -551,6 +581,19 @@ namespace FinalProject_NetCore
                 lb_bar_b.Text = paintcolor.B.ToString();
                 bmp.Dispose();
 
+            }
+            else if (currentitem == Item.Bucket)
+            {
+                Bitmap old = (Bitmap)ptb_main.Image;
+                Bitmap b = (Bitmap)ptb_main.Image;
+                prev = old.ToImage<Bgr, byte>();
+                Color color = b.GetPixel(e.X, e.Y);
+                Fill(b, e.X * ratio, e.Y * ratio, paintcolor);
+                ptb_main.Image = b;
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                ori_filter = bmp.ToImage<Bgr, byte>();
+               
+                ori_rotate = ori_filter;
             }
         }
 
@@ -708,14 +751,14 @@ namespace FinalProject_NetCore
         {
             new_form nf = new new_form();
             nf.ShowDialog();
-            if (newcanvas.height > 1080)
+            if (newcanvas.height >= 1080)
             {
                 ptb_main.Width = (int)newcanvas.width / 3;
                 ptb_main.Height = (int)newcanvas.height / 3;
                 ratio = 3;
 
             }
-            else if (newcanvas.width > 940 || newcanvas.height > 497)
+            else if (newcanvas.width >= 940 || newcanvas.height >= 497)
             {
                 ptb_main.Width = (int)newcanvas.width / 2;
                 ptb_main.Height = (int)newcanvas.height / 2;
@@ -729,7 +772,8 @@ namespace FinalProject_NetCore
                 ptb_main.Height = (int)newcanvas.height / 1;
                 ratio = 1;
             }
-                
+            orisize = ptb_main.Size;
+            prevsize = orisize;
             Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
             Graphics g = Graphics.FromImage(new1);
             g.FillRectangle(new SolidBrush(newcanvas.bgcolor), new Rectangle(0, 0, newcanvas.width, newcanvas.height));
@@ -744,11 +788,14 @@ namespace FinalProject_NetCore
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Bitmap bmp = prev.ToBitmap();
             ptb_main.Image = prev.ToBitmap();
             currentsize = prevsize;
             ptb_main.Size = currentsize;
+            Bitmap bmp1 = prev.ToBitmap();
             ori_filter = prev;
             ori_rotate = ori_filter;
+            ptb_main.Invalidate();
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
@@ -998,7 +1045,7 @@ namespace FinalProject_NetCore
             lx = (e.X * ratio);
             ly = (e.Y * ratio);
             Bitmap cur = (Bitmap)ptb_main.Image;
-            prev = cur.ToImage<Bgr, byte>();
+
             Graphics g = Graphics.FromImage(ptb_main.Image);
 
             Image texture1 = Image.FromFile("./images/texture1.png");
@@ -1013,7 +1060,6 @@ namespace FinalProject_NetCore
 
             switch (currentitem)
             {
-
 
                 case Item.FilledRect1:
                     g.FillRectangle(trb1, x, y, e.X * ratio - x, e.Y * ratio - y);

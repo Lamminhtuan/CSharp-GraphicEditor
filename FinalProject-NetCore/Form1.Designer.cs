@@ -60,6 +60,7 @@
             this.khửMắtĐỏToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiaSẻQuaFacebookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pn_adjust = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -127,7 +128,6 @@
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -186,7 +186,7 @@
             // 
             this.tạoMớiToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tạoMớiToolStripMenuItem.Image")));
             this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
-            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
             this.tạoMớiToolStripMenuItem.Click += new System.EventHandler(this.tạoMớiToolStripMenuItem_Click);
             // 
@@ -194,7 +194,7 @@
             // 
             this.mởTậpTinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("mởTậpTinToolStripMenuItem.Image")));
             this.mởTậpTinToolStripMenuItem.Name = "mởTậpTinToolStripMenuItem";
-            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.mởTậpTinToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.mởTậpTinToolStripMenuItem.Text = "Mở tập tin";
             this.mởTậpTinToolStripMenuItem.Click += new System.EventHandler(this.mởTậpTinToolStripMenuItem_Click);
             // 
@@ -202,7 +202,7 @@
             // 
             this.lưuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("lưuToolStripMenuItem.Image")));
             this.lưuToolStripMenuItem.Name = "lưuToolStripMenuItem";
-            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.lưuToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.lưuToolStripMenuItem.Text = "Lưu";
             this.lưuToolStripMenuItem.Click += new System.EventHandler(this.lưuToolStripMenuItem_Click);
             // 
@@ -422,6 +422,14 @@
             this.chiaSẻQuaFacebookToolStripMenuItem.Size = new System.Drawing.Size(154, 24);
             this.chiaSẻQuaFacebookToolStripMenuItem.Text = "Chia sẻ qua Facebook";
             this.chiaSẻQuaFacebookToolStripMenuItem.Click += new System.EventHandler(this.chiaSẻQuaFacebookToolStripMenuItem_Click);
+            // 
+            // undoToolStripMenuItem
+            // 
+            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
+            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.undoToolStripMenuItem.Text = "Undo";
+            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // pn_adjust
             // 
@@ -1090,7 +1098,7 @@
             // 
             this.ptb_main.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptb_main.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_main.Location = new System.Drawing.Point(143, 67);
+            this.ptb_main.Location = new System.Drawing.Point(44, 57);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
             this.ptb_main.Size = new System.Drawing.Size(524, 338);
@@ -1110,9 +1118,8 @@
             this.lb_tool.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lb_tool.Location = new System.Drawing.Point(12, 542);
             this.lb_tool.Name = "lb_tool";
-            this.lb_tool.Size = new System.Drawing.Size(181, 21);
+            this.lb_tool.Size = new System.Drawing.Size(0, 21);
             this.lb_tool.TabIndex = 6;
-            this.lb_tool.Text = "Công cụ đang sử dụng";
             this.lb_tool.Click += new System.EventHandler(this.lb_tool_Click);
             // 
             // listView1
@@ -1123,14 +1130,6 @@
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.Visible = false;
-            // 
-            // undoToolStripMenuItem
-            // 
-            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
-            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.undoToolStripMenuItem.Text = "Undo";
-            this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
             // Form1
             // 

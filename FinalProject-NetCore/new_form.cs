@@ -78,8 +78,8 @@ namespace FinalProject_NetCore
 
         private void new_form_Load(object sender, EventArgs e)
         {
-            newcanvas.bgcolor = Color.White;
-            ptb_color.BackColor = Color.White;
+            newcanvas.bgcolor = Color.Gray;
+            ptb_color.BackColor = Color.Gray;
         }
     }
 }
