@@ -5,6 +5,8 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using Facebook;
 using System.Drawing.Drawing2D;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Edge;
 
 namespace FinalProject_NetCore
 {
@@ -487,41 +489,49 @@ namespace FinalProject_NetCore
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             currentitem = Item.Line;
+            lb_tool.Text = "Đường thẳng";
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             currentitem = Item.FilledRect;
+            lb_tool.Text = "Hình chữ nhật đặc";
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             currentitem = Item.Rectangle;
+            lb_tool.Text = "Hình chữ nhật rỗng";
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             currentitem = Item.Ellipse;
+            lb_tool.Text = "Hình ellipse rỗng";
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
             currentitem = Item.FilledEll;
+            lb_tool.Text = "Hình ellipse đặc";
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
             currentitem = Item.Brush;
+            lb_tool.Text = "Cọ vẽ";
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             currentitem = Item.Pencil;
+            lb_tool.Text = "Bút chì";
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             currentitem = Item.ColorPicker;
+            lb_tool.Text = "Công cụ chọn màu";
         }
 
         private void ptb_main_MouseClick(object sender, MouseEventArgs e)
@@ -549,11 +559,13 @@ namespace FinalProject_NetCore
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
             currentitem = Item.eraser;
+            lb_tool.Text = "Cục tẩy";
         }
 
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
             currentitem = Item.Text;
+            lb_tool.Text = "Viết chữ";
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)
@@ -579,7 +591,9 @@ namespace FinalProject_NetCore
 
         private void chiaSẻQuaFacebookToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var client = new FacebookClient();
+            fb_form f = new fb_form();
+            f.ShowDialog();
+            
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -654,11 +668,13 @@ namespace FinalProject_NetCore
         private void toolStripButton11_Click_2(object sender, EventArgs e)
         {
             currentitem = Item.CropImage;
+            lb_tool.Text = "Cắt hình";
         }
 
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
             currentitem = Item.FilledTri;
+            lb_tool.Text = "Tam giác đặc";
         }
 
         private void ts_btn_aim_Click(object sender, EventArgs e)
@@ -669,6 +685,7 @@ namespace FinalProject_NetCore
         private void toolStripButton13_Click(object sender, EventArgs e)
         {
             currentitem = Item.Tri;
+            lb_tool.Text = "Tam giác rỗng";
         }
 
         private void ptb_review_Click(object sender, EventArgs e)
@@ -679,11 +696,57 @@ namespace FinalProject_NetCore
         private void toolStripButton14_Click(object sender, EventArgs e)
         {
             currentitem = Item.Bucket;
+            lb_tool.Text = "Đổ màu";
         }
 
         private void khửMắtĐỏToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             currentitem = Item.RedEyeRemover;
+            lb_tool.Text = "Khử mắt đỏ";
+        }
+
+        private void lb_tool_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tạoMớiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new_form nf = new new_form();
+            nf.ShowDialog();
+            if (newcanvas.height > 1080)
+            {
+                ptb_main.Width = (int)newcanvas.width / 3;
+                ptb_main.Height = (int)newcanvas.height / 3;
+                ratio = 3;
+
+            }
+            else if (newcanvas.width > 940 || newcanvas.height > 497)
+            {
+                ptb_main.Width = (int)newcanvas.width / 2;
+                ptb_main.Height = (int)newcanvas.height / 2;
+                ratio = 2;
+
+            }
+
+            else
+            {
+                ptb_main.Width = (int)newcanvas.width / 1;
+                ptb_main.Height = (int)newcanvas.height / 1;
+                ratio = 1;
+            }
+                
+            Bitmap new1 = new Bitmap(newcanvas.width, newcanvas.height);
+            Graphics g = Graphics.FromImage(new1);
+            g.FillRectangle(new SolidBrush(newcanvas.bgcolor), new Rectangle(0, 0, newcanvas.width, newcanvas.height));
+
+            ptb_main.Image = new1;
+            ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+        }
+
+        private void ptb_palette_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)

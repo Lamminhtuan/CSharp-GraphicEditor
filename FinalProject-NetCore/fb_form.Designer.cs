@@ -28,21 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fb_form));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_pass = new System.Windows.Forms.TextBox();
+            this.txt_username = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txt_caption = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txt_pass);
+            this.groupBox1.Controls.Add(this.txt_username);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(271, 100);
@@ -50,44 +54,46 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tài khoản";
             // 
-            // pictureBox1
+            // label2
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 22);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(99, 72);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(26, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Mật khẩu:";
             // 
-            // button2
+            // label1
             // 
-            this.button2.Location = new System.Drawing.Point(190, 22);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Đăng nhập";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(26, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tên tài khoản:";
             // 
-            // groupBox2
+            // txt_pass
             // 
-            this.groupBox2.Controls.Add(this.richTextBox1);
-            this.groupBox2.Location = new System.Drawing.Point(12, 118);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(271, 283);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Caption";
+            this.txt_pass.Location = new System.Drawing.Point(132, 51);
+            this.txt_pass.Name = "txt_pass";
+            this.txt_pass.Size = new System.Drawing.Size(133, 23);
+            this.txt_pass.TabIndex = 0;
+            this.txt_pass.Text = "Chaucach789!";
+            this.txt_pass.UseSystemPasswordChar = true;
             // 
-            // richTextBox1
+            // txt_username
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(6, 22);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(259, 255);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.txt_username.Location = new System.Drawing.Point(132, 22);
+            this.txt_username.Name = "txt_username";
+            this.txt_username.Size = new System.Drawing.Size(133, 23);
+            this.txt_username.TabIndex = 0;
+            this.txt_username.Text = "mt076067@gmail.com";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(208, 407);
+            this.button1.Location = new System.Drawing.Point(208, 314);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -95,19 +101,40 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txt_caption);
+            this.groupBox2.Location = new System.Drawing.Point(12, 118);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(271, 190);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Caption";
+            // 
+            // txt_caption
+            // 
+            this.txt_caption.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txt_caption.Location = new System.Drawing.Point(6, 22);
+            this.txt_caption.Name = "txt_caption";
+            this.txt_caption.Size = new System.Drawing.Size(259, 162);
+            this.txt_caption.TabIndex = 0;
+            this.txt_caption.Text = "TEST PHẦN MỀM";
+            // 
             // fb_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 441);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(295, 349);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fb_form";
-            this.Text = "fb_form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Chia sẻ qua Facebook";
             this.Load += new System.EventHandler(this.fb_form_Load);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -116,10 +143,12 @@
         #endregion
 
         private GroupBox groupBox1;
-        private PictureBox pictureBox1;
-        private Button button2;
-        private GroupBox groupBox2;
-        private RichTextBox richTextBox1;
         private Button button1;
+        private Label label2;
+        private Label label1;
+        private TextBox txt_pass;
+        private TextBox txt_username;
+        private GroupBox groupBox2;
+        private RichTextBox txt_caption;
     }
 }

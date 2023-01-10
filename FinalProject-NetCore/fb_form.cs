@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Edge;
 using Facebook;
 namespace FinalProject_NetCore
 {
@@ -21,51 +23,30 @@ namespace FinalProject_NetCore
         {
            
         }
-        public static bool Post(string accesstoken, string status, string link = "")
-        {
-            try
-            {
-                FacebookClient fb = new FacebookClient(accesstoken);
-                Dictionary<string, object> PostArgs = new Dictionary<string, object>();
-                PostArgs["message"] = status;
-                if (link != "")
-                {
-                    PostArgs["link"] = link;
-                }
-                fb.Post("/me/feed", PostArgs);
-                return true;
-            }
-            catch   
-            {
-                return false;
-            }
-        }
-        public static bool PostImage(string accesstoken, string status, string imagepath)
-        {
-            try
-            {
-                FacebookClient fb = new FacebookClient(accesstoken);
-                var imgstream = File.OpenRead(imagepath);
-                dynamic res = fb.Post("/me/photos", new
-                {
-                    message = status,
-                    file = new FacebookMediaStream
-                    {
-                        ContentType = "image/jpg",
-                        FileName = Path.GetFileName(imagepath)
-                    }.SetValue(imgstream)
-                });
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
             
+            var driverservice = EdgeDriverService.CreateDefaultService();
+            driverservice.HideCommandPromptWindow = true;
+            EdgeOptions options = new EdgeOptions();
+            options.AddArguments("--disable-notifications");
+            options.AddArguments("--disable-application-cache");
+            var driver = new EdgeDriver(driverservice, options);
+            driver.Navigate().GoToUrl("https://www.facebook.com/");
+            driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[1]/input")).SendKeys(txt_username.Text);
+            driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div[2]/div/input")).SendKeys(txt_pass.Text);
+            driver.FindElement(By.XPath("/html/body/div[1]/div[1]/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/button")).Click();
+            Thread.Sleep(2000);
+            //driver.FindElement(By.XPath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[3]/div/div[2]/div/div/div/div[2]/div[2]")).Click();
+            driver.FindElement(By.XPath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div/div[2]/div/div/div/div[3]/div/div[2]/div/div/div/div[1]/div")).SendKeys(txt_caption.Text);
+            var ele = driver.SwitchTo().ActiveElement();
+            
+            
+
+
+
         }
     }
 }

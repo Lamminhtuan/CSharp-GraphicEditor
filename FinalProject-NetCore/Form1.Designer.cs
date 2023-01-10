@@ -125,6 +125,8 @@
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.ptb_main = new System.Windows.Forms.PictureBox();
+            this.lb_tool = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -184,6 +186,7 @@
             this.tạoMớiToolStripMenuItem.Name = "tạoMớiToolStripMenuItem";
             this.tạoMớiToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.tạoMớiToolStripMenuItem.Text = "Tạo mới";
+            this.tạoMớiToolStripMenuItem.Click += new System.EventHandler(this.tạoMớiToolStripMenuItem_Click);
             // 
             // mởTậpTinToolStripMenuItem
             // 
@@ -375,7 +378,7 @@
             // 
             this.cânBằngHistogramToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cânBằngHistogramToolStripMenuItem.Image")));
             this.cânBằngHistogramToolStripMenuItem.Name = "cânBằngHistogramToolStripMenuItem";
-            this.cânBằngHistogramToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.cânBằngHistogramToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.cânBằngHistogramToolStripMenuItem.Text = "Cân bằng histogram (Ảnh xám)";
             this.cânBằngHistogramToolStripMenuItem.Click += new System.EventHandler(this.cânBằngHistogramToolStripMenuItem_Click);
             // 
@@ -383,7 +386,7 @@
             // 
             this.cânBằngTrắngToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cânBằngTrắngToolStripMenuItem.Image")));
             this.cânBằngTrắngToolStripMenuItem.Name = "cânBằngTrắngToolStripMenuItem";
-            this.cânBằngTrắngToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.cânBằngTrắngToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.cânBằngTrắngToolStripMenuItem.Text = "Cân bằng trắng";
             this.cânBằngTrắngToolStripMenuItem.Click += new System.EventHandler(this.cânBằngTrắngToolStripMenuItem_Click);
             // 
@@ -391,7 +394,7 @@
             // 
             this.xóaNềnXanhToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xóaNềnXanhToolStripMenuItem.Image")));
             this.xóaNềnXanhToolStripMenuItem.Name = "xóaNềnXanhToolStripMenuItem";
-            this.xóaNềnXanhToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.xóaNềnXanhToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.xóaNềnXanhToolStripMenuItem.Text = "Xóa nền xanh";
             this.xóaNềnXanhToolStripMenuItem.Click += new System.EventHandler(this.xóaNềnXanhToolStripMenuItem_Click);
             // 
@@ -399,7 +402,7 @@
             // 
             this.khửMắtĐỏToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("khửMắtĐỏToolStripMenuItem.Image")));
             this.khửMắtĐỏToolStripMenuItem.Name = "khửMắtĐỏToolStripMenuItem";
-            this.khửMắtĐỏToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.khửMắtĐỏToolStripMenuItem.Size = new System.Drawing.Size(241, 22);
             this.khửMắtĐỏToolStripMenuItem.Text = "Khử mắt đỏ";
             this.khửMắtĐỏToolStripMenuItem.Click += new System.EventHandler(this.khửMắtĐỏToolStripMenuItem_Click_1);
             // 
@@ -618,6 +621,7 @@
             this.ptb_palette.Size = new System.Drawing.Size(175, 139);
             this.ptb_palette.TabIndex = 2;
             this.ptb_palette.TabStop = false;
+            this.ptb_palette.Click += new System.EventHandler(this.ptb_palette_Click);
             this.ptb_palette.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseDown);
             this.ptb_palette.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseMove);
             this.ptb_palette.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox5_MouseUp);
@@ -1090,7 +1094,7 @@
             // 
             this.ptb_main.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptb_main.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_main.Location = new System.Drawing.Point(242, 57);
+            this.ptb_main.Location = new System.Drawing.Point(143, 67);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
             this.ptb_main.Size = new System.Drawing.Size(524, 338);
@@ -1103,12 +1107,35 @@
             this.ptb_main.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseMove);
             this.ptb_main.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseUp);
             // 
+            // lb_tool
+            // 
+            this.lb_tool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lb_tool.AutoSize = true;
+            this.lb_tool.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lb_tool.Location = new System.Drawing.Point(12, 542);
+            this.lb_tool.Name = "lb_tool";
+            this.lb_tool.Size = new System.Drawing.Size(181, 21);
+            this.lb_tool.TabIndex = 6;
+            this.lb_tool.Text = "Công cụ đang sử dụng";
+            this.lb_tool.Click += new System.EventHandler(this.lb_tool_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(44, 228);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(931, 482);
+            this.listView1.TabIndex = 7;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1159, 572);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lb_tool);
             this.Controls.Add(this.ptb_main);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.toolStrip1);
@@ -1256,5 +1283,7 @@
         private ToolStripMenuItem khửMắtĐỏToolStripMenuItem;
         private PictureBox ptb_main;
         private ToolStripButton toolStripButton14;
+        private Label lb_tool;
+        private ListView listView1;
     }
 }
