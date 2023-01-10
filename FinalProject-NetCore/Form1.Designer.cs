@@ -65,6 +65,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bar_contrast = new System.Windows.Forms.TrackBar();
+            this.bar_zoom = new System.Windows.Forms.TrackBar();
             this.bar_brightness = new System.Windows.Forms.TrackBar();
             this.ptb_color = new System.Windows.Forms.PictureBox();
             this.ptb_adjust = new System.Windows.Forms.PictureBox();
@@ -124,15 +125,18 @@
             this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton14 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton15 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton17 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton16 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.ptb_main = new System.Windows.Forms.PictureBox();
             this.lb_tool = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.menuStrip1.SuspendLayout();
             this.pn_adjust.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_contrast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar_zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_brightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_color)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_adjust)).BeginInit();
@@ -438,6 +442,7 @@
             this.pn_adjust.Controls.Add(this.pictureBox2);
             this.pn_adjust.Controls.Add(this.pictureBox1);
             this.pn_adjust.Controls.Add(this.bar_contrast);
+            this.pn_adjust.Controls.Add(this.bar_zoom);
             this.pn_adjust.Controls.Add(this.bar_brightness);
             this.pn_adjust.Location = new System.Drawing.Point(981, 124);
             this.pn_adjust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -481,6 +486,18 @@
             this.bar_contrast.TabIndex = 0;
             this.bar_contrast.Value = 100;
             this.bar_contrast.Scroll += new System.EventHandler(this.bar_contrast_Scroll);
+            // 
+            // bar_zoom
+            // 
+            this.bar_zoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bar_zoom.Location = new System.Drawing.Point(19, 219);
+            this.bar_zoom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bar_zoom.Maximum = 4;
+            this.bar_zoom.Name = "bar_zoom";
+            this.bar_zoom.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.bar_zoom.Size = new System.Drawing.Size(45, 190);
+            this.bar_zoom.TabIndex = 0;
+            this.bar_zoom.Scroll += new System.EventHandler(this.bar_brightness_Scroll);
             // 
             // bar_brightness
             // 
@@ -540,7 +557,7 @@
             this.pn_color.Controls.Add(this.bar_green);
             this.pn_color.Controls.Add(this.trackBar1);
             this.pn_color.Controls.Add(this.bar_red);
-            this.pn_color.Location = new System.Drawing.Point(978, 126);
+            this.pn_color.Location = new System.Drawing.Point(981, 123);
             this.pn_color.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pn_color.Name = "pn_color";
             this.pn_color.Size = new System.Drawing.Size(181, 429);
@@ -860,11 +877,14 @@
             this.toolStripButton11,
             this.toolStripButton12,
             this.toolStripButton13,
-            this.toolStripButton14});
+            this.toolStripButton14,
+            this.toolStripButton15,
+            this.toolStripButton17,
+            this.toolStripButton16});
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.toolStrip2.Location = new System.Drawing.Point(7, 60);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(34, 389);
+            this.toolStrip2.Size = new System.Drawing.Size(34, 489);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -1082,6 +1102,36 @@
             this.toolStripButton14.Text = "Đổ màu";
             this.toolStripButton14.Click += new System.EventHandler(this.toolStripButton14_Click);
             // 
+            // toolStripButton15
+            // 
+            this.toolStripButton15.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton15.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton15.Image")));
+            this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton15.Name = "toolStripButton15";
+            this.toolStripButton15.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton15.Text = "toolStripButton15";
+            this.toolStripButton15.Click += new System.EventHandler(this.toolStripButton15_Click);
+            // 
+            // toolStripButton17
+            // 
+            this.toolStripButton17.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton17.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton17.Image")));
+            this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton17.Name = "toolStripButton17";
+            this.toolStripButton17.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton17.Text = "toolStripButton17";
+            this.toolStripButton17.Click += new System.EventHandler(this.toolStripButton17_Click);
+            // 
+            // toolStripButton16
+            // 
+            this.toolStripButton16.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton16.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton16.Image")));
+            this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton16.Name = "toolStripButton16";
+            this.toolStripButton16.Size = new System.Drawing.Size(32, 24);
+            this.toolStripButton16.Text = "toolStripButton16";
+            this.toolStripButton16.Click += new System.EventHandler(this.toolStripButton16_Click);
+            // 
             // pictureBox6
             // 
             this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1096,9 +1146,8 @@
             // 
             // ptb_main
             // 
-            this.ptb_main.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.ptb_main.BackColor = System.Drawing.Color.Transparent;
-            this.ptb_main.Location = new System.Drawing.Point(44, 57);
+            this.ptb_main.Location = new System.Drawing.Point(230, 57);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
             this.ptb_main.Size = new System.Drawing.Size(524, 338);
@@ -1122,22 +1171,12 @@
             this.lb_tool.TabIndex = 6;
             this.lb_tool.Click += new System.EventHandler(this.lb_tool_Click);
             // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(44, 228);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(931, 482);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1159, 572);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.lb_tool);
             this.Controls.Add(this.ptb_main);
             this.Controls.Add(this.toolStrip2);
@@ -1164,6 +1203,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_contrast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar_zoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar_brightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_color)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptb_adjust)).EndInit();
@@ -1287,7 +1327,10 @@
         private PictureBox ptb_main;
         private ToolStripButton toolStripButton14;
         private Label lb_tool;
-        private ListView listView1;
         private ToolStripMenuItem undoToolStripMenuItem;
+        private TrackBar bar_zoom;
+        private ToolStripButton toolStripButton15;
+        private ToolStripButton toolStripButton16;
+        private ToolStripButton toolStripButton17;
     }
 }

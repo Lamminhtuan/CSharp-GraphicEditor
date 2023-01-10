@@ -44,7 +44,8 @@ namespace FinalProject_NetCore
         {
             FilledRect, FilledRect1, FilledRect2, FilledRect3, FilledRect4, Rectangle, 
             FilledEll, FilledEll1, FilledEll2, FilledEll3, FilledEll4, Ellipse, 
-            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket
+            Line, Text, Brush, Pencil, eraser, ColorPicker, test, CropImage, FilledTri, Tri, None, RedEyeRemover, Bucket,
+            FilledStar, Star, FilledPenta, Penta
         }
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
@@ -744,9 +745,9 @@ namespace FinalProject_NetCore
 
         private void lb_tool_Click(object sender, EventArgs e)
         {
-
+            
         }
-
+            
         private void tạoMớiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new_form nf = new new_form();
@@ -798,6 +799,21 @@ namespace FinalProject_NetCore
             ori_filter = prev;
             ori_rotate = ori_filter;
             ptb_main.Invalidate();
+        }
+
+        private void toolStripButton15_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledPenta;
+        }
+
+        private void toolStripButton16_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Star;
+        }
+
+        private void toolStripButton17_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.Penta;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
@@ -861,6 +877,7 @@ namespace FinalProject_NetCore
                     }
                     else if (ts_FontStyle.Text == "Strikeout")
                     {
+                       
                         g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
                             FontStyle.Strikeout), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                     }
@@ -1129,6 +1146,44 @@ namespace FinalProject_NetCore
                         }
                     }
                     ptb_main.Image = tempp;
+                    break;
+                case Item.FilledPenta:
+                    int w_s = lx - x;
+                    int h_s = ly - y;
+                    Point p1 = new Point(x + w_s / 2, y);
+                    Point p2 = new Point(lx + w_s * 1 / 5, y + h_s * 7 / 16);
+                    Point p3 = new Point(lx, ly);
+                    Point p4 = new Point(lx - w_s, ly);
+                    Point p5 = new Point(x - w_s * 1 / 5, y + h_s * 7 / 16);
+                    Point[] ps = { p1, p2, p3, p4, p5 };
+                    g.FillPolygon(new SolidBrush(paintcolor), ps);
+                    break;
+                case Item.Star:
+                    int w_s1 = lx - x;
+                    int h_s1 = ly - y;
+                    Point p11 = new Point(x + w_s1 / 2, y);
+                    Point p21 = new Point(lx + w_s1 * 1/5, y + h_s1 * 7 / 16);
+                    Point p31 = new Point(lx, ly);
+                    Point p41 = new Point(lx - w_s1, ly);
+                    Point p51 = new Point(x - w_s1 * 1/5, y + h_s1 * 7 / 16);
+               
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p11, p31);
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p51, p21);
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p31, p51);
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p21, p41);
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), p41, p11);
+                    break;
+                case Item.Penta:
+                    int w_s2 = lx - x;
+                    int h_s2 = ly - y;
+                    Point p12 = new Point(x + w_s2 / 2, y);
+                    Point p22 = new Point(lx + w_s2 * 1 / 5, y + h_s2 * 7 / 16);
+                    Point p32 = new Point(lx, ly);
+                    Point p42 = new Point(lx - w_s2, ly);
+                    Point p52 = new Point(x - w_s2 * 1 / 5, y + h_s2 * 7 / 16);
+                    Point[] ps2 = { p12, p22, p32, p42, p52 };
+                    g.DrawPolygon(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), ps2);
+                    
                     break;
                 case Item.CropImage:
                     
