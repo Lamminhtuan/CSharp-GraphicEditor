@@ -23,6 +23,7 @@ namespace FinalProject_NetCore
         Item currentitem;
         int x, y, lx, ly;
         public Pen crpPen = new Pen(Color.White);
+        Size currentsize;
         Size orisize;
         int ratio;
         //Point
@@ -45,41 +46,43 @@ namespace FinalProject_NetCore
 
         private void mởTậpTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            currentitem = Item.None;
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;...";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Image<Bgr, byte> img = new Image<Bgr, byte>(ofd.FileName);
-              
+
                 if (img.Height > 1080)
                 {
                     ptb_main.Width = (int)img.Width / 3;
                     ptb_main.Height = (int)img.Height / 3;
-                    
+
                 }
                 else if (img.Width > 940 || img.Height > 497)
                 {
                     ptb_main.Width = (int)img.Width / 2;
                     ptb_main.Height = (int)img.Height / 2;
-                    
+
                 }
-            
+
                 else
                 {
                     ptb_main.Width = (int)img.Width / 1;
                     ptb_main.Height = (int)img.Height / 1;
                 }
- 
+
                 ratio = img.Width / ptb_main.Width;
+
                 ori = img;
                 ori_rotate = ori;
                 ori_filter = ori;
                 orisize = ptb_main.Size;
+                currentsize = orisize;
                 ptb_main.BackColor = Color.Transparent;
-                ptb_review.Image = img.ToBitmap();
-                Image temp = ptb_review.Image;
+              
                 ptb_main.Image = img.ToBitmap();
-                ptb_main.Refresh();
+       
                 ptb_main.Invalidate();
 
             }
@@ -104,7 +107,7 @@ namespace FinalProject_NetCore
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            currentitem = Item.None;
+           
             FontFamily[] ffm = FontFamily.Families;
             foreach (FontFamily f in ffm)
                 ts_fontcb.Items.Add(f.GetName(1).ToString());
@@ -137,7 +140,7 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
-            orisize = ptb_main.Size;
+            currentsize = ptb_main.Size;
             ptb_main.Image = bmp;
         }
 
@@ -151,7 +154,7 @@ namespace FinalProject_NetCore
             ptb_main.Height = oldwidth;
             ori_rotate = rotated.ToImage<Bgr, byte>();
             ori_filter = ori_rotate;
-            orisize = ptb_main.Size;
+            currentsize= ptb_main.Size;
             ptb_main.Image = bmp;
         }
 
@@ -391,6 +394,7 @@ namespace FinalProject_NetCore
             ptb_main.Image = ori.ToBitmap();
             bar_brightness.Value = 0;
             bar_contrast.Value = 100;
+            ptb_main.Size = orisize;
         }
 
         private void pictureBox5_MouseDown(object sender, MouseEventArgs e)
@@ -680,6 +684,11 @@ namespace FinalProject_NetCore
         {
             currentitem = Item.Tri;
         }
+
+        private void ptb_review_Click(object sender, EventArgs e)
+        {
+
+                    }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
