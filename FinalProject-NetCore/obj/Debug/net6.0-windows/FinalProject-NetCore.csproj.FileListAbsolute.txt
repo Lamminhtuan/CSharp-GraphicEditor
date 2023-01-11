@@ -308,3 +308,13 @@ C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Deb
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject-NetCore.genruntimeconfig.cache
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\ref\FinalProject-NetCore.dll
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.border_form.resources
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\linux\selenium-manager
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\macos\selenium-manager
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\Facebook.dll
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\WebDriver.dll
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.border_form.resources
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.fb_form.resources
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.info_form.resources
+C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.new_form.resources

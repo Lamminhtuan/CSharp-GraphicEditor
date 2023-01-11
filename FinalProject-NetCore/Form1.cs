@@ -1264,6 +1264,11 @@ namespace FinalProject_NetCore
             currentitem = Item.FilledEll6;
         }
 
+        private void pnlZoom_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
         {
             try
@@ -1419,7 +1424,7 @@ namespace FinalProject_NetCore
                             g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
                                 FontStyle.Regular), new SolidBrush(Color.Gray), new PointF(e.X * ratio + 5, e.Y * ratio - 5));
                             g.DrawString(ts_txtToDraw.Text, new Font(ts_fontcb.Text, Convert.ToInt32(ts_FontSize.Text),
-                                FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X, e.Y));
+                                FontStyle.Regular), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                         }
                         else if (ts_FontStyle.Text == "Bold")
                         {
