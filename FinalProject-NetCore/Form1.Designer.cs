@@ -61,7 +61,6 @@
             this.xóaNềnXanhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khửMắtĐỏToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thôngTinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chiaSẻQuaFacebookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pn_adjust = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -190,8 +189,7 @@
             this.xoayToolStripMenuItem,
             this.bộLọcToolStripMenuItem,
             this.côngCụToolStripMenuItem,
-            this.thôngTinToolStripMenuItem,
-            this.chiaSẻQuaFacebookToolStripMenuItem});
+            this.thôngTinToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -334,7 +332,6 @@
             this.bộLọcToolStripMenuItem.Name = "bộLọcToolStripMenuItem";
             this.bộLọcToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
             this.bộLọcToolStripMenuItem.Text = "Bộ lọc";
-            this.bộLọcToolStripMenuItem.Click += new System.EventHandler(this.bộLọcToolStripMenuItem_Click);
             // 
             // ảnhXámToolStripMenuItem
             // 
@@ -459,14 +456,6 @@
             this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(90, 24);
             this.thôngTinToolStripMenuItem.Text = "Thông tin";
             this.thôngTinToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
-            // 
-            // chiaSẻQuaFacebookToolStripMenuItem
-            // 
-            this.chiaSẻQuaFacebookToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chiaSẻQuaFacebookToolStripMenuItem.Image")));
-            this.chiaSẻQuaFacebookToolStripMenuItem.Name = "chiaSẻQuaFacebookToolStripMenuItem";
-            this.chiaSẻQuaFacebookToolStripMenuItem.Size = new System.Drawing.Size(154, 24);
-            this.chiaSẻQuaFacebookToolStripMenuItem.Text = "Chia sẻ qua Facebook";
-            this.chiaSẻQuaFacebookToolStripMenuItem.Click += new System.EventHandler(this.chiaSẻQuaFacebookToolStripMenuItem_Click);
             // 
             // pn_adjust
             // 
@@ -731,7 +720,6 @@
             this.pn_hatch.Name = "pn_hatch";
             this.pn_hatch.Size = new System.Drawing.Size(181, 429);
             this.pn_hatch.TabIndex = 8;
-            this.pn_hatch.Paint += new System.Windows.Forms.PaintEventHandler(this.pn_hatch_Paint);
             // 
             // ptb_hatchtest
             // 
@@ -740,7 +728,6 @@
             this.ptb_hatchtest.Size = new System.Drawing.Size(173, 47);
             this.ptb_hatchtest.TabIndex = 13;
             this.ptb_hatchtest.TabStop = false;
-            this.ptb_hatchtest.Click += new System.EventHandler(this.ptb_hatchtest_Click);
             // 
             // button1
             // 
@@ -1345,7 +1332,7 @@
             // 
             // ptb_main
             // 
-            this.ptb_main.BackColor = System.Drawing.Color.Transparent;
+            this.ptb_main.BackColor = System.Drawing.Color.White;
             this.ptb_main.Location = new System.Drawing.Point(3, 2);
             this.ptb_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ptb_main.Name = "ptb_main";
@@ -1353,11 +1340,8 @@
             this.ptb_main.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ptb_main.TabIndex = 1;
             this.ptb_main.TabStop = false;
-            this.ptb_main.Click += new System.EventHandler(this.ptb_main_Click);
-            this.ptb_main.Paint += new System.Windows.Forms.PaintEventHandler(this.ptb_main_Paint);
             this.ptb_main.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseClick);
             this.ptb_main.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseDown);
-            this.ptb_main.MouseEnter += new System.EventHandler(this.ptb_main_MouseEnter);
             this.ptb_main.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseMove);
             this.ptb_main.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ptb_main_MouseUp);
             // 
@@ -1371,7 +1355,6 @@
             this.lb_tool.Size = new System.Drawing.Size(181, 21);
             this.lb_tool.TabIndex = 6;
             this.lb_tool.Text = "Công cụ đang sử dụng";
-            this.lb_tool.Click += new System.EventHandler(this.lb_tool_Click);
             // 
             // pnlZoom
             // 
@@ -1386,7 +1369,6 @@
             this.pnlZoom.Name = "pnlZoom";
             this.pnlZoom.Size = new System.Drawing.Size(984, 497);
             this.pnlZoom.TabIndex = 7;
-            this.pnlZoom.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlZoom_Paint);
             // 
             // listView1
             // 
@@ -1547,7 +1529,6 @@
         private ToolStripComboBox ts_TxtShadow;
         private ToolStripLabel toolStripLabel6;
         private ToolStripComboBox ts_FontStyle;
-        private ToolStripMenuItem chiaSẻQuaFacebookToolStripMenuItem;
         private ToolStripMenuItem tạoMớiToolStripMenuItem;
         private ToolStripDropDownButton toolStripButton4;
         private ToolStripMenuItem toolStripMenuItem1;

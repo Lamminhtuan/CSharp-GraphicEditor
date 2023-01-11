@@ -291,7 +291,6 @@ C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Deb
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\runtimes\win-x86\native\msvcp140_codecvt_ids.dll
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\runtimes\win-x86\native\vcruntime140.dll
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject-NetCore.csproj.AssemblyReference.cache
-C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.fb_form.resources
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.Form1.resources
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.info_form.resources
 C:\Users\Tuan\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.new_form.resources
