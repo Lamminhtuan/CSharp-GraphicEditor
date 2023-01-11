@@ -80,7 +80,6 @@
             this.txt_pass.Name = "txt_pass";
             this.txt_pass.Size = new System.Drawing.Size(133, 23);
             this.txt_pass.TabIndex = 0;
-            this.txt_pass.Text = "Chaucach789!";
             this.txt_pass.UseSystemPasswordChar = true;
             // 
             // txt_username
@@ -89,7 +88,6 @@
             this.txt_username.Name = "txt_username";
             this.txt_username.Size = new System.Drawing.Size(133, 23);
             this.txt_username.TabIndex = 0;
-            this.txt_username.Text = "mt076067@gmail.com";
             // 
             // button1
             // 

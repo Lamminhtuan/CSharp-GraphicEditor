@@ -33,6 +33,9 @@ namespace FinalProject_NetCore
         bool draw = false;
         bool drawtext = false;
         Item currentitem;
+        bool iscrop = false;
+        int cx = -1, cy = -1;
+        int lcx, lcy;
         int x, y, lx, ly;
         public Pen crpPen = new Pen(Color.White);
         Size currentsize;
@@ -615,6 +618,16 @@ namespace FinalProject_NetCore
 
         private void ptb_main_MouseMove(object sender, MouseEventArgs e)
         {
+            if (currentitem  == Item.CropImage && cx > -1 && cy > -1)
+            {
+                Graphics g = ptb_main.CreateGraphics();
+                g.DrawRectangle(new Pen(Color.White, 2), cx, cy, e.X- cx, e.Y - cy);
+                lcx = e.X;
+                lcy = e.Y;
+                ptb_main.Invalidate();
+                ptb_main.Refresh();
+                g.Dispose();
+            }
             if (draw && currentitem != Item.CropImage)
             {
 
@@ -880,6 +893,7 @@ namespace FinalProject_NetCore
         private void toolStripButton11_Click_2(object sender, EventArgs e)
         {
             currentitem = Item.CropImage;
+            iscrop = true;
             lb_tool.Text = "Cắt hình";
         }
 
@@ -1275,6 +1289,25 @@ namespace FinalProject_NetCore
             currentitem = Item.FilledEll6;
         }
 
+        private void ptb_main_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = ptb_main.CreateGraphics();
+            e.Graphics.DrawRectangle(new Pen(Color.White, 2), cx, cy, lcx - cx, lcy - cy);
+            ptb_main.Invalidate();
+            g.Dispose();
+           
+        }
+
+        private void ptb_main_MouseEnter(object sender, EventArgs e)
+        {
+            Graphics g = ptb_main.CreateGraphics();
+            g.DrawRectangle(new Pen(Color.White, 2), cx, cy, lcx - cx, lcy - cy);
+  
+            ptb_main.Invalidate();
+            ptb_main.Refresh();
+            g.Dispose();
+        }
+
         private void pnlZoom_Paint(object sender, PaintEventArgs e)
         {
 
@@ -1284,9 +1317,16 @@ namespace FinalProject_NetCore
         {
             try
             {
+
                 Bitmap cur = (Bitmap)ptb_main.Image;
                 prev = cur.ToImage<Bgr, byte>();
                 Graphics g = Graphics.FromImage(ptb_main.Image);
+                if (currentitem == Item.CropImage)
+                {
+                    base.OnMouseDown(e);
+                    //iscrop = false;
+                    
+                }
                 if (currentitem == Item.Bucket)
                 {
                     Bitmap bmp1 = (Bitmap)ptb_main.Image;
@@ -1518,6 +1558,14 @@ namespace FinalProject_NetCore
                 draw = true;
                 x = (int)Math.Round(e.X * ratio);
                 y = (int)Math.Round(e.Y * ratio);
+                if (iscrop)
+                {
+                    cx = e.X;
+                    cy = e.Y;
+                  
+                    //cx = -1;
+                    //cy = -1;
+                }
             }
             catch
             {
@@ -1704,7 +1752,8 @@ namespace FinalProject_NetCore
                     
                     int w = lx - x;
                     int h = ly - y;
-
+                    cx = -1;
+                    cy = -1;
                     prevsize = currentsize;
                     Bitmap bmp2 = (Bitmap)ptb_main.Image;
                     Bitmap crpImg = new Bitmap(w, h);
