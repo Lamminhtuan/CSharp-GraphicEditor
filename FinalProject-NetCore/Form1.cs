@@ -626,7 +626,7 @@ namespace FinalProject_NetCore
                         break;
 
                     case Item.eraser:
-                        g.FillEllipse(new SolidBrush(Color.Transparent), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
+                        g.FillEllipse(new SolidBrush(ptb_main.BackColor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
                             Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
                         break;
                     case Item.Pencil:
@@ -996,6 +996,7 @@ namespace FinalProject_NetCore
                 ori_filter = prev;
                 ori_rotate = ori_filter;
                 ptb_main.Invalidate();
+                ratio = (float)prev.Width / ptb_main.Width;
             }
             catch { MessageBox.Show("Chưa có ảnh!"); }
         }
@@ -1213,6 +1214,50 @@ namespace FinalProject_NetCore
             ptb_ccolor.BackColor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
             lb_bar_b.Text = bar_red.Value.ToString();
             paintcolor = Color.FromArgb(bar_red.Value, bar_green.Value, bar_blue.Value);
+        }
+
+        private void toolStripButton21_Click(object sender, EventArgs e)
+        {
+            border_form bf = new border_form();
+            bf.ShowDialog();
+            
+            try
+            {
+
+                
+                
+                Bitmap cur = (Bitmap)ptb_main.Image;
+                Bitmap border = new Bitmap(Image.FromFile(borders.borderhientai), cur.Size);
+               
+                prev = cur.ToImage<Bgr, byte>();
+                Graphics g = Graphics.FromImage(cur);
+                g.DrawImage(border, 0, 0, cur.Width, cur.Height);
+                g.Dispose();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void toolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect5;
+        }
+
+        private void toolStripMenuItem10_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledRect6;
+        }
+
+        private void toolStripMenuItem11_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll5;
+        }
+
+        private void toolStripMenuItem12_Click(object sender, EventArgs e)
+        {
+            currentitem = Item.FilledEll6;
         }
 
         private void ptb_main_MouseDown(object sender, MouseEventArgs e)
