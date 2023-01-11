@@ -314,6 +314,5 @@ C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\De
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\WebDriver.dll
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.border_form.resources
-C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.fb_form.resources
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.info_form.resources
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.new_form.resources
