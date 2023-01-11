@@ -610,6 +610,8 @@ namespace FinalProject_NetCore
             if (currentitem  == Item.CropImage && cx > -1 && cy > -1)
             {
                 Graphics g = ptb_main.CreateGraphics();
+                Bitmap cur = (Bitmap)ptb_main.Image;
+                //prev = cur.ToImage<Bgr, byte>();
                 g.DrawRectangle(new Pen(Color.White, 2), cx, cy, e.X- cx, e.Y - cy);
                 lcx = e.X;
                 lcy = e.Y;
@@ -622,7 +624,7 @@ namespace FinalProject_NetCore
 
                 Graphics g = Graphics.FromImage(ptb_main.Image);
                 Bitmap cur = (Bitmap)ptb_main.Image;
-                prev = cur.ToImage<Bgr, byte>();
+                //prev = cur.ToImage<Bgr, byte>();
                 switch (currentitem)
                 {
                     case Item.Brush:
@@ -1022,23 +1024,37 @@ namespace FinalProject_NetCore
 
         private void toolStripButton19_Click(object sender, EventArgs e)
         {
-            currentitem = Item.ZoomIn;
-            float constantWH = (ptb_main.Image.Width / ptb_main.Image.Height);
-            ptb_main.Height += Convert.ToInt32(scalefactor / constantWH);
-            ptb_main.Width += scalefactor;
-            Bitmap bori = ori.ToBitmap();
-            ratio = (float)bori.Width / ptb_main.Width;
-            lb_tool.Text = "Phóng to";
+            try
+            {
+                currentitem = Item.ZoomIn;
+                float constantWH = (ptb_main.Image.Width / ptb_main.Image.Height);
+                ptb_main.Height += Convert.ToInt32(scalefactor / constantWH);
+                ptb_main.Width += scalefactor;
+                Bitmap bori = ori.ToBitmap();
+                ratio = (float)bori.Width / ptb_main.Width;
+                lb_tool.Text = "Phóng to";
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void toolStripButton20_Click(object sender, EventArgs e)
         {
-            currentitem = Item.ZoomOut;
-            ptb_main.Height -= scalefactor;
-            ptb_main.Width -= scalefactor;
-            Bitmap bori = ori.ToBitmap();
-            ratio = (float)bori.Width / ptb_main.Width;
-            lb_tool.Text = "Thu nhỏ";
+            try
+            {
+                currentitem = Item.ZoomOut;
+                ptb_main.Height -= scalefactor;
+                ptb_main.Width -= scalefactor;
+                Bitmap bori = ori.ToBitmap();
+                ratio = (float)bori.Width / ptb_main.Width;
+                lb_tool.Text = "Thu nhỏ";
+            }
+            catch
+            {
+                MessageBox.Show("Chưa có ảnh!");
+            }
         }
 
         private void gầnĐâyToolStripMenuItem_Click(object sender, EventArgs e)
