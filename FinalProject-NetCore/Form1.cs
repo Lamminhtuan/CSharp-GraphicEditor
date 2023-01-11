@@ -628,7 +628,7 @@ namespace FinalProject_NetCore
                 switch (currentitem)
                 {
                     case Item.Brush:
-                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
+                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), Convert.ToUInt16(ts_brushsize.Text) * ratio, Convert.ToUInt16(ts_brushsize.Text) * ratio);
                         break;
 
                     case Item.eraser:
@@ -636,13 +636,13 @@ namespace FinalProject_NetCore
                         {
                             g.SmoothingMode = SmoothingMode.None;
                             g.FillEllipse(br, (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio),
-                                Convert.ToUInt16(ts_brushsize.Text), Convert.ToUInt16(ts_brushsize.Text));
+                                Convert.ToUInt16(ts_brushsize.Text) * ratio, Convert.ToUInt16(ts_brushsize.Text) * ratio);
                             cur.MakeTransparent(Color.Red);
                         }
                         break;
                     case Item.Pencil:
 
-                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), 5, 5);
+                        g.FillEllipse(new SolidBrush(paintcolor), (int)Math.Round(e.X * ratio), (int)Math.Round(e.Y * ratio), 5 * ratio, 5 * ratio);
 
                         break;
 
