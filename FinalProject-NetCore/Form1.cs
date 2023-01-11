@@ -557,6 +557,8 @@ namespace FinalProject_NetCore
 
                 }
                 ratio = (int)oribitmap.Width / orisize.Width;
+                ori_filter = ori;
+                ori_rotate = ori;
             }
             catch
             {
@@ -1560,6 +1562,13 @@ namespace FinalProject_NetCore
                 case Item.FilledRect4:
                     g.FillRectangle(trb4, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
+                case Item.FilledRect5:
+                    g.FillRectangle(hb, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
+
+                case Item.FilledRect6:
+                    g.FillRectangle(lgb, x, y, e.X * ratio - x, e.Y * ratio - y);
+                    break;
                 case Item.FilledEll5:
                     g.FillEllipse(hb, x, y, e.X * ratio - x, e.Y * ratio - y);
                     break;
@@ -1715,11 +1724,14 @@ namespace FinalProject_NetCore
                     {
                         ptb_main.Width = (int)crpImg.Width / 1;
                         ptb_main.Height = (int)crpImg.Height / 1;
+
                     }
+                    if (WindowState == FormWindowState.Maximized)
+                        ptb_main.Size = crpImg.Size * 2;
                     this.Invalidate();
-                    ratio = crpImg.Width / ptb_main.Width;
+                    ratio = (float)crpImg.Width / ptb_main.Width;
                 
-                    ptb_main.Image = (Image)crpImg;
+                    ptb_main.Image = crpImg;
                     currentsize = ptb_main.Size;
                     break;
                 case Item.FilledTri:
