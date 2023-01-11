@@ -556,7 +556,7 @@ namespace FinalProject_NetCore
 
 
                 }
-                ratio = (int)oribitmap.Width / orisize.Width;
+                ratio = (float)oribitmap.Width / ptb_main.Width;
                 ori_filter = ori;
                 ori_rotate = ori;
             }
@@ -892,6 +892,7 @@ namespace FinalProject_NetCore
         private void ts_btn_aim_Click(object sender, EventArgs e)
         {
             currentitem = Item.ImageInImage;
+            lb_tool.Text = "Chèn hình vào hình";
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Image Files|*.jpg;*.jpeg;*.png;...";
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -1156,7 +1157,15 @@ namespace FinalProject_NetCore
             //cb_hatch.Items.Add(HatchStyle.HorizontalBrick.ToString());
             usehatch = true;
             usegrad = false;
-            string str = cb_hatch.Text;
+            if (currentitem == Item.FilledRect || currentitem == Item.FilledRect3
+               || currentitem == Item.FilledRect1 || currentitem == Item.FilledRect2 || currentitem == Item.FilledRect4
+               || currentitem == Item.FilledRect5 || currentitem == Item.FilledRect6)
+                currentitem = Item.FilledRect;
+            else if (currentitem == Item.FilledEll || currentitem == Item.FilledEll1
+               || currentitem == Item.FilledEll2 || currentitem == Item.FilledEll3 || currentitem == Item.FilledEll4
+               || currentitem == Item.FilledEll5 || currentitem == Item.FilledEll6)
+                currentitem = Item.FilledEll;
+                string str = cb_hatch.Text;
             switch (str) {
                 case "LargeGrid":
                     style = HatchStyle.LargeGrid;
@@ -1581,7 +1590,7 @@ namespace FinalProject_NetCore
                     break;
 
                 case Item.Line:
-                    g.DrawLine(new Pen(new SolidBrush(paintcolor)), new Point(x, y), new Point(lx, ly));
+                    g.DrawLine(new Pen(paintcolor, Convert.ToUInt16(ts_brushsize.Text)), new Point(x, y), new Point(lx, ly));
                     break;
 
                 // fill ellipse
