@@ -1300,12 +1300,7 @@ namespace FinalProject_NetCore
 
         private void ptb_main_MouseEnter(object sender, EventArgs e)
         {
-            Graphics g = ptb_main.CreateGraphics();
-            g.DrawRectangle(new Pen(Color.White, 2), cx, cy, lcx - cx, lcy - cy);
-  
-            ptb_main.Invalidate();
-            ptb_main.Refresh();
-            g.Dispose();
+            
         }
 
         private void pnlZoom_Paint(object sender, PaintEventArgs e)
