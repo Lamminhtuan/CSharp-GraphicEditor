@@ -996,7 +996,10 @@ namespace FinalProject_NetCore
                 ori_filter = prev;
                 ori_rotate = ori_filter;
                 ptb_main.Invalidate();
+                if (WindowState == FormWindowState.Maximized)
+                    ptb_main.Size = orisize * 2;
                 ratio = (float)prev.Width / ptb_main.Width;
+
             }
             catch { MessageBox.Show("Chưa có ảnh!"); }
         }
@@ -1232,6 +1235,7 @@ namespace FinalProject_NetCore
                 prev = cur.ToImage<Bgr, byte>();
                 Graphics g = Graphics.FromImage(cur);
                 g.DrawImage(border, 0, 0, cur.Width, cur.Height);
+                ptb_main.Invalidate();
                 g.Dispose();
             }
             catch
