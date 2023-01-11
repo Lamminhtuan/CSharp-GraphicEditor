@@ -1291,11 +1291,11 @@ namespace FinalProject_NetCore
 
         private void ptb_main_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = ptb_main.CreateGraphics();
-            e.Graphics.DrawRectangle(new Pen(Color.White, 2), cx, cy, lcx - cx, lcy - cy);
-            ptb_main.Invalidate();
-            g.Dispose();
-           
+            //Graphics g = ptb_main.CreateGraphics();
+            //e.Graphics.DrawRectangle(new Pen(Color.White, 2), cx, cy, lcx - cx, lcy - cy);
+            //ptb_main.Invalidate();
+            //g.Dispose();
+
         }
 
         private void ptb_main_MouseEnter(object sender, EventArgs e)
@@ -1749,48 +1749,54 @@ namespace FinalProject_NetCore
                 //    g.DrawImage(imgToPaste, new Point(lx, ly));
                 //    break;
                 case Item.CropImage:
-                    
-                    int w = lx - x;
-                    int h = ly - y;
-                    cx = -1;
-                    cy = -1;
-                    prevsize = currentsize;
-                    Bitmap bmp2 = (Bitmap)ptb_main.Image;
-                    Bitmap crpImg = new Bitmap(w, h);
-                    for (int i = 0; i < w; i++)
+                    try
                     {
-                        for (int j = 0; j < h; j++)
+                        int w = lx - x;
+                        int h = ly - y;
+                        cx = -1;
+                        cy = -1;
+                        prevsize = currentsize;
+                        Bitmap bmp2 = (Bitmap)ptb_main.Image;
+                        Bitmap crpImg = new Bitmap(w, h);
+                        for (int i = 0; i < w; i++)
                         {
-                            Color pxlclr = bmp2.GetPixel(x + i, y + j);
-                            crpImg.SetPixel(i, j, pxlclr);
+                            for (int j = 0; j < h; j++)
+                            {
+                                Color pxlclr = bmp2.GetPixel(x + i, y + j);
+                                crpImg.SetPixel(i, j, pxlclr);
+                            }
                         }
+                        if (crpImg.Height > 1080)
+                        {
+                            ptb_main.Width = (int)crpImg.Width / 3;
+                            ptb_main.Height = (int)crpImg.Height / 3;
+
+                        }
+                        else if (crpImg.Width > 940 || crpImg.Height > 497)
+                        {
+                            ptb_main.Width = (int)crpImg.Width / 2;
+                            ptb_main.Height = (int)crpImg.Height / 2;
+
+                        }
+
+                        else
+                        {
+                            ptb_main.Width = (int)crpImg.Width / 1;
+                            ptb_main.Height = (int)crpImg.Height / 1;
+
+                        }
+                        if (WindowState == FormWindowState.Maximized)
+                            ptb_main.Size = crpImg.Size * 2;
+                        this.Invalidate();
+                        ratio = (float)crpImg.Width / ptb_main.Width;
+
+                        ptb_main.Image = crpImg;
+                        currentsize = ptb_main.Size;
                     }
-                    if (crpImg.Height > 1080)
+                    catch
                     {
-                        ptb_main.Width = (int)crpImg.Width / 3;
-                        ptb_main.Height = (int)crpImg.Height / 3;
 
                     }
-                    else if (crpImg.Width > 940 || crpImg.Height > 497)
-                    {
-                        ptb_main.Width = (int)crpImg.Width / 2;
-                        ptb_main.Height = (int)crpImg.Height / 2;
-
-                    }
-
-                    else
-                    {
-                        ptb_main.Width = (int)crpImg.Width / 1;
-                        ptb_main.Height = (int)crpImg.Height / 1;
-
-                    }
-                    if (WindowState == FormWindowState.Maximized)
-                        ptb_main.Size = crpImg.Size * 2;
-                    this.Invalidate();
-                    ratio = (float)crpImg.Width / ptb_main.Width;
-                
-                    ptb_main.Image = crpImg;
-                    currentsize = ptb_main.Size;
                     break;
                 case Item.FilledTri:
                     /*g.DrawRectangle(new Pen(paintcolor, 2), x, y, e.X * ratio - x, e.Y * ratio - y);
