@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj": {}
+    "C:\\Users\\84981\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj": {
+    "C:\\Users\\84981\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
+        "projectUniqueName": "C:\\Users\\84981\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
         "projectName": "FinalProject-NetCore",
-        "projectPath": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
-        "packagesPath": "C:\\Users\\Tuan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tuan\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\obj\\",
+        "projectPath": "C:\\Users\\84981\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\FinalProject-NetCore.csproj",
+        "packagesPath": "C:\\Users\\84981\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\84981\\Documents\\GitHub\\CSharp-GraphicEditor\\FinalProject-NetCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Tuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\84981\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net6.0-windows7.0"
+          "net6.0-windows"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -71,7 +71,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -83,7 +84,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

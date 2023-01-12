@@ -22,7 +22,7 @@ namespace FinalProject_NetCore
             borders.KhoiTao();
             for (int i = 0; i < borders.borderurls.Count; i++)
             {
-                imageList1.Images.Add(Image.FromFile(Directory.GetCurrentDirectory() + borders.borderurls[i]));
+                imageList1.Images.Add(Image.FromFile(borders.borderurls[i]));
             }
             listView1.LargeImageList = imageList1;
             for (int i = 0; i < imageList1.Images.Count; i++)
