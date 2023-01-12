@@ -1030,8 +1030,7 @@ namespace FinalProject_NetCore
             try
             {
                 currentitem = Item.ZoomIn;
-                float constantWH = (ptb_main.Image.Width / ptb_main.Image.Height);
-                ptb_main.Height += Convert.ToInt32(scalefactor / constantWH);
+                ptb_main.Height += scalefactor;
                 ptb_main.Width += scalefactor;
                 Bitmap bori = ori.ToBitmap();
                 ratio = (float)bori.Width / ptb_main.Width;

@@ -316,3 +316,11 @@ C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\bin\De
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.border_form.resources
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.info_form.resources
 C:\Users\84981\Documents\GitHub\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.new_form.resources
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\linux\selenium-manager
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\macos\selenium-manager
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\selenium-manager\windows\selenium-manager.exe
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\Facebook.dll
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\bin\Debug\net6.0-windows\WebDriver.dll
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.border_form.resources
+D:\C#\FinalProject\CSharp-GraphicEditor\FinalProject-NetCore\obj\Debug\net6.0-windows\FinalProject_NetCore.new_form.resources
