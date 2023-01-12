@@ -444,6 +444,7 @@ namespace FinalProject_NetCore
                 CvInvoke.EqualizeHist(gray, output);
 
                 ori_filter = output.ToImage<Bgr, byte>();
+                ori_rotate = ori_filter;
                 ptb_main.Image = output.ToBitmap();
             }
             catch
@@ -466,6 +467,7 @@ namespace FinalProject_NetCore
                 var wb = new LearningBasedWB();
                 wb.BalanceWhite(img, output);
                 ori_filter = output.ToImage<Bgr, byte>();
+                ori_rotate = ori_filter;
                 ptb_main.Image = output.ToBitmap();
             }
             catch
@@ -516,6 +518,7 @@ namespace FinalProject_NetCore
                     }
                 }
                 ori_filter = output.ToImage<Bgr, byte>();
+                ori_rotate = ori_filter;
                 ptb_main.Image = output;
             }
             catch
@@ -1235,6 +1238,9 @@ namespace FinalProject_NetCore
               
                 ptb_main.Invalidate();
                 g.Dispose();
+                Bitmap bmp = (Bitmap)ptb_main.Image;
+                ori_filter = bmp.ToImage<Bgr, byte>();
+                ori_rotate = ori_filter;
             }
             catch
             {
@@ -1342,7 +1348,7 @@ namespace FinalProject_NetCore
                     }
 
                     // shadow 
-                    if (ts_TxtShadow.Text == "SE")
+                    if (ts_TxtShadow.Text == "Đông Nam")
                     {
                         if (ts_FontStyle.Text == "Regular")
                         {
@@ -1380,7 +1386,7 @@ namespace FinalProject_NetCore
                                 FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                         }
                     }
-                    else if (ts_TxtShadow.Text == "SW")
+                    else if (ts_TxtShadow.Text == "Tây Nam")
                     {
                         if (ts_FontStyle.Text == "Regular")
                         {
@@ -1418,7 +1424,7 @@ namespace FinalProject_NetCore
                                 FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                         }
                     }
-                    else if (ts_TxtShadow.Text == "NE")
+                    else if (ts_TxtShadow.Text == "Đông Bắc")
                     {
                         if (ts_FontStyle.Text == "Regular")
                         {
@@ -1456,7 +1462,7 @@ namespace FinalProject_NetCore
                                 FontStyle.Italic), new SolidBrush(paintcolor), new PointF(e.X * ratio, e.Y * ratio));
                         }
                     }
-                    else if (ts_TxtShadow.Text == "NW")
+                    else if (ts_TxtShadow.Text == "Tây Bắc")
                     {
                         if (ts_FontStyle.Text == "Regular")
                         {
