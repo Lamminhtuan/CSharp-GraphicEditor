@@ -953,7 +953,6 @@ namespace FinalProject_NetCore
                     ptb_main.Height = (int)newcanvas.height / 1;
 
                 }
-
                 orisize = ptb_main.Size;
 
                 prevsize = orisize;
@@ -963,6 +962,8 @@ namespace FinalProject_NetCore
 
                 ptb_main.Image = new1;
                 ptb_main.SizeMode = PictureBoxSizeMode.StretchImage;
+
+               
                 Bitmap bmp = (Bitmap)ptb_main.Image;
                 ptb_main.Invalidate();
                 prev = bmp.ToImage<Bgr, byte>();
@@ -971,8 +972,10 @@ namespace FinalProject_NetCore
                 ori = ori_filter;
                 if (WindowState == FormWindowState.Maximized && new1.Width < 1900 && new1.Height < 1000)
                     ptb_main.Size = new1.Size;
-                else
+                else if (WindowState == FormWindowState.Maximized && new1.Width >= 1900 && new1.Height >= 1000)
                     ptb_main.Size = orisize * 2;
+                else
+                    ptb_main.Size = orisize;
                 ratio = (float)new1.Width / ptb_main.Width;
                 g.Dispose();
             }
