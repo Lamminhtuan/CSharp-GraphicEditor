@@ -472,7 +472,7 @@ namespace FinalProject_NetCore
             }
             catch
             {
-                MessageBox.Show("Chưa có ảnh!");
+                MessageBox.Show("Chưa có ảnh hoặc không thể cân bằng trắng ảnh!");
             }
         }
 
