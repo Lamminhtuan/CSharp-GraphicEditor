@@ -1,9 +1,23 @@
 # Phần mềm chỉnh sửa ảnh sử dụng ngôn ngữ lập trình C#
 <hr>
-By
-
-## Lâm Minh Tuấn - 20520843
-## Đậu Văn Nam - 20521626
+<table>
+<thead>
+  <tr>
+    <th>Tên thành viên<br></th>
+    <th>MSSV</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Lâm Minh Tuấn</td>
+    <td>20520843</td>
+  </tr>
+  <tr>
+    <td>Đậu Văn Nam<br></td>
+    <td>20521626</td>
+  </tr>
+</tbody>
+  </table>
 <hr>
 <h2>Giới thiệu phần mềm</h2>
 <p>Phần mềm chỉnh sửa ảnh sử dụng ngôn ngữ lập trình C# trên nền tảng .NET
