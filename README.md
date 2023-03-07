@@ -1,6 +1,6 @@
 # Phần mềm chỉnh sửa ảnh sử dụng ngôn ngữ lập trình C#
 <hr>
-<h2>Các thành viên sau là sinh viên Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM</h2>
+<h2>Phần mềm được thực hiển bởi sinh viên Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM</h2>
 <table>
 <thead>
   <tr>
