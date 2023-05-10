@@ -1,6 +1,10 @@
 # Phần mềm chỉnh sửa ảnh sử dụng ngôn ngữ lập trình C#
 <hr>
-<h2>Phần mềm được thực hiện bởi sinh viên Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM</h2>
+
+![image](https://github.com/Lamminhtuan/CSharp-GraphicEditor/assets/79350128/cb3e565a-3ce7-41a3-811b-26a74d30a311)
+
+<hr>
+<h2>Trường Đại học Công nghệ Thông tin - ĐHQG TP.HCM</h2>
 <table>
 <thead>
   <tr>
