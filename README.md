@@ -30,3 +30,4 @@
 mềm cung cấp những chức năng cơ bản và nâng cao cho nhu cầu chỉnh sửa
 ảnh bán chuyên trên hình ảnh Bitmap.</p>
 <h2>Hướng dẫn sử dụng nằm trong file Báo cáo (pdf).</h2>
+<b>Các hình ảnh được sử dụng trong project chỉ nhằm mục đích học tập. Bản quyền thuộc về chủ sở hữu các hình ảnh đó.</b>
